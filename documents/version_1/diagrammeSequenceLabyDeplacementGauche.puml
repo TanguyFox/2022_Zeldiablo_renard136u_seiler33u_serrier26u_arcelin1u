@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title Methode Deplacement Perso Gauche
+participant "main : Main" as M
+participant "laby : Labyrinthe" as L
+participant "suivante : int[]" as S
+participant "pj : Perso" as P
+M -> L : deplacerPerso(GAUCHE)
+activate L
+L -> L : getSuivant(2,2,GAUCHE)
+activate L
+L <-- L : suivante
+deactivate L
+L -> S : get[0]
+activate S
+L <-- S : 1
+deactivate S
+L -> P : setX(1)
+activate P
+P --> L
+deactivate P
+L -> S : get[1]
+activate S
+L <-- S : 2
+deactivate S
+L -> P : setY(2)
+activate P
+P --> L
+deactivate P
+L --> M
+deactivate L
+@enduml
