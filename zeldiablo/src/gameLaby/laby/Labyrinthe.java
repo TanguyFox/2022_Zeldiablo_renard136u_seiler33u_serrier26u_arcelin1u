@@ -145,7 +145,6 @@ public class Labyrinthe {
         // calcule case suivante
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
-        System.out.println("avant deplacemet");
         System.out.println(suivante[0]);
         System.out.println(suivante[1]);
 
@@ -156,7 +155,6 @@ public class Labyrinthe {
             this.pj.setY(suivante[1]);
         }
     }
-
 
     /**
      * jamais fini

@@ -45,14 +45,8 @@ public class LabyDessin implements DessinJeu {
         gc.setFill(Color.RED);
         Perso perso = labyrinthe.pj;
         int px = perso.getX();
-        System.out.println("px : "+px);
         int py = perso.getY();
-        System.out.println("py : "+py);
         gc.fillOval(py*30, px*30, 30, 30);
-
-        System.out.println(px);
-        System.out.println(py);
-
 
     }
 
