@@ -61,4 +61,12 @@ public class Perso {
     public void setY(int y) {
         this.y = y;
     }
+
+    @Override
+    public String toString() {
+        return "Perso{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

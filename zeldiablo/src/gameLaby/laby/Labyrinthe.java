@@ -145,12 +145,16 @@ public class Labyrinthe {
         // calcule case suivante
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
+        System.out.println("avant deplacemet");
+        System.out.println(suivante[0]);
+        System.out.println(suivante[1]);
+
         // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]]) {
+        //if (!this.murs[suivante[0]][suivante[1]]) {
             // on met a jour personnage
             this.pj.setX(suivante[0]);
             this.pj.setY(suivante[1]);
-        }
+        //}
     }
 
 

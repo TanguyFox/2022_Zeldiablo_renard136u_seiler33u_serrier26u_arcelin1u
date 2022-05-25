@@ -11,7 +11,6 @@ public class LabyJeu implements Jeu {
     //Labyrinthe et personnage
 
     private Labyrinthe laby;
-    private Perso perso;
 
     /**
      Constructeur par défaut
@@ -22,26 +21,28 @@ public class LabyJeu implements Jeu {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        this.perso=new Perso(30,30);
     }
-    /**
-     *
-     */
+
 
     public void update(double secondes, Clavier clavier) {
         // deplace le perso en fonction des touches
         if (clavier.droite) {
-            this.laby.deplacerPerso(DROITE);
+            laby.deplacerPerso(DROITE);
+            System.out.println("aller à droite");
         }
         if (clavier.gauche) {
-            this.laby.deplacerPerso(GAUCHE);
+            laby.deplacerPerso(GAUCHE);
+            System.out.println("aller à gauche");
         }
         if (clavier.bas) {
-            this.laby.deplacerPerso(BAS);
+            laby.deplacerPerso(BAS);
+            System.out.println("aller en bas");
         }
         if (clavier.haut) {
             this.laby.deplacerPerso(HAUT);
+            System.out.println("aller en haut");
         }
+
 
     }
     @Override
@@ -57,9 +58,6 @@ public class LabyJeu implements Jeu {
         return this.laby;
     }
 
-    public Perso getPerso() {
-        return perso;
-    }
 
 
 }

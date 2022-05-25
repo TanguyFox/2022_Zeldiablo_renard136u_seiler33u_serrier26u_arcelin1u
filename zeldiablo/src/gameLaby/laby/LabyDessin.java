@@ -28,26 +28,30 @@ public class LabyDessin implements DessinJeu {
         // dessin laby
         Labyrinthe labyrinthe = labyJeu.getLabyrinthe();
 
-        for (int y = 0; y < labyrinthe.getLengthY(); y++) {
+        for (int x = 0; x < labyrinthe.getLength(); x++) {
             // affiche la ligne
-            for (int x = 0; x < labyrinthe.getLength(); x++) {
+            for (int y = 0; y < labyrinthe.getLengthY(); y++) {
                 if (labyrinthe.getMur(x, y)) {
                     gc.setFill(Color.BLACK);
-                    gc.fillRect(y*30,x*30,30, 30);
+                    gc.fillRect(x*30,y*30,30, 30);
                 } else {
                     gc.setFill(Color.WHITE);
-                    gc.fillRect(y*30, x*30, 30, 30);
+                    gc.fillRect(x*30, y*30, 30, 30);
                 }
             }
         }
 
-
         // dessin Perso
         gc.setFill(Color.RED);
-        Perso perso = labyJeu.getPerso();
-        double px = perso.getX();
-        double py = perso.getY();
-        gc.fillOval(px, py, 20, 20);
+        Perso perso = labyrinthe.pj;
+        int px = perso.getX();
+        System.out.println("px : "+px);
+        int py = perso.getY();
+        System.out.println("py : "+py);
+        gc.fillOval(py*30, px*30, 30, 30);
+
+        System.out.println(px);
+        System.out.println(py);
 
 
     }
