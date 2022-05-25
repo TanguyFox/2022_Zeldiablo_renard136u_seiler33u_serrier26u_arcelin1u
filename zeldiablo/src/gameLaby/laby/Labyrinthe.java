@@ -48,19 +48,19 @@ public class Labyrinthe {
         switch (action) {
             case HAUT:
                 // on monte une ligne
-                y--;
+                x--;
                 break;
             case BAS:
                 // on descend une ligne
-                y++;
+                x++;
                 break;
             case DROITE:
                 // on augmente colonne
-                x++;
+                y++;
                 break;
             case GAUCHE:
                 // on augmente colonne
-                x--;
+                y--;
                 break;
             default:
                 throw new Error("action inconnue");
@@ -88,7 +88,7 @@ public class Labyrinthe {
         nbColonnes = Integer.parseInt(bfRead.readLine());
 
         // creation labyrinthe vide
-        this.murs = new boolean[nbColonnes][nbLignes];
+        this.murs = new boolean[nbLignes][nbColonnes];
         this.pj = null;
 
         // lecture des cases
@@ -105,14 +105,14 @@ public class Labyrinthe {
                 char c = ligne.charAt(colonne);
                 switch (c) {
                     case MUR:
-                        this.murs[colonne][numeroLigne] = true;
+                        this.murs[numeroLigne][colonne] = true;
                         break;
                     case VIDE:
-                        this.murs[colonne][numeroLigne] = false;
+                        this.murs[numeroLigne][colonne] = false;
                         break;
                     case PJ:
                         // pas de mur
-                        this.murs[colonne][numeroLigne] = false;
+                        this.murs[numeroLigne][colonne] = false;
                         // ajoute PJ
                         this.pj = new Perso(colonne, numeroLigne);
                         break;
@@ -145,18 +145,16 @@ public class Labyrinthe {
         // calcule case suivante
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
-        System.out.println("avant deplacemet");
         System.out.println(suivante[0]);
         System.out.println(suivante[1]);
 
         // si c'est pas un mur, on effectue le deplacement
-        //if (!this.murs[suivante[0]][suivante[1]]) {
+        if (!this.murs[suivante[0]][suivante[1]]) {
             // on met a jour personnage
             this.pj.setX(suivante[0]);
             this.pj.setY(suivante[1]);
-        //}
+        }
     }
-
 
     /**
      * jamais fini
