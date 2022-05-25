@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title Fonctionnement MainLaby - MoteurJeu
+
+participant "main : MainLaby" as M
+participant "MoteurJeu" as Mo
+participant "jeuLaby : LabyJeu" as lj
+
+participant "dessinLaby : LabyDessin" as dl
+
+
+create lj
+
+M -> lj : new
+
+create dl
+
+M ->dl : new
+M -> Mo : setTaille(300,350)
+activate Mo
+Mo --> M
+deactivate Mo
+M-> Mo : setFPS(20)
+activate Mo
+Mo --> M
+deactivate Mo
+
+M-> Mo : launch(jeuLaby, dessinLaby)
+activate Mo
+Mo --> M
+deactivate Mo
+
+
+
+@enduml
