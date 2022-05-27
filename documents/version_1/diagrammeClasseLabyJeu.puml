@@ -14,7 +14,6 @@ class Labyrinthe{
 + {static} BAS : String
 + {static} GAUCHE : String
 + {static} DROITE : String
-+ pj : Perso
 + murs : boolean[][]
 + {static} getSuivant (x : int, y : int, action : String) : int []
 + Labyrinthe (nom : String)
@@ -66,7 +65,7 @@ interface DessinJeu{
 LabyJeu .|> Jeu
 LabyDessin ..|> DessinJeu
 LabyJeu "1" --> "1 " Labyrinthe : labyrinthe
-LabyJeu "1" --> "1" Perso : perso
+Labyrinthe "1" --> "1" Perso : perso
 LabyDessin ..> LabyJeu : uses
 
 
