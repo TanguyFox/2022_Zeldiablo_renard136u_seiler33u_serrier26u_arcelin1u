@@ -1,0 +1,72 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title Structure Jeu Labyrinthe
+
+
+package gameLaby.laby{
+skinparam classAttributeIconSize 0
+class Labyrinthe{
++ {static} MUR : char
++ {static} PJ : char
++ {static} VIDE : char
++ {static} HAUT : String
++ {static} BAS : String
++ {static} GAUCHE : String
++ {static} DROITE : String
++ murs : boolean[][]
++ {static} getSuivant (x : int, y : int, action : String) : int []
++ Labyrinthe (nom : String)
++ deplacerPerso(action : String)
++ etreFini() : boolean
++ getLengthY() : int
++ getLength() : int
++ getMur(x : int, y : int) : boolean
+}
+
+class LabyJeu{
++LabyJeu()
++update(seconde : Double, clavier : Clavier)
++init()
++etreFini() : boolean
++getLabyrinthe() : Labyrinthe
+}
+class LabyDessin{
++dessinerJeu(jeu : Jeu, canvas: Canvas)
+}
+
+class Perso{
++ x : int
++ y : int
++ Personnage(dx : int, dy : int)
++etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ toString() : String
+}
+
+}
+
+package Moteurjeu{
+interface Jeu{
++ init()
++update(seconds:double, clavier: Clavier)
++etreFini() : boolean
+}
+
+interface DessinJeu{
++ dessinerJeu(jeu : Jeu, canvas : Canvas)
+}
+}
+
+
+LabyJeu .|> Jeu
+LabyDessin ..|> DessinJeu
+LabyJeu "1" --> "1 " Labyrinthe : labyrinthe
+Labyrinthe "1" --> "1..*" Perso : perso,monstre
+LabyDessin ..> LabyJeu : uses
+
+
+@enduml
