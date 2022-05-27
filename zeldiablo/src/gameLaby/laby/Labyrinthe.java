@@ -17,6 +17,7 @@ public class Labyrinthe {
     public static final char MUR = 'X';
     public static final char PJ = 'P';
     public static final char VIDE = '.';
+    public static final char MONSTRE = 'M';
 
     /**
      * constantes actions possibles
@@ -30,6 +31,7 @@ public class Labyrinthe {
      * attribut du personnage
      */
     public Perso pj;
+    public Perso monstre;
 
     /**
      * les murs du labyrinthe
@@ -90,6 +92,7 @@ public class Labyrinthe {
         // creation labyrinthe vide
         this.murs = new boolean[nbLignes][nbColonnes];
         this.pj = null;
+        this.monstre = null;
 
         // lecture des cases
         String ligne = bfRead.readLine();
@@ -115,6 +118,12 @@ public class Labyrinthe {
                         this.murs[numeroLigne][colonne] = false;
                         // ajoute PJ
                         this.pj = new Perso(numeroLigne, colonne);
+                        break;
+                    case MONSTRE:
+                        this.murs[numeroLigne][colonne] = false;
+                        this.monstre = new Perso(numeroLigne, colonne);
+                        System.out.println("hello");
+                        System.out.println(monstre.getX()+" "+monstre.getY());
                         break;
 
                     default:
@@ -145,14 +154,16 @@ public class Labyrinthe {
         // calcule case suivante
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
-        System.out.println(suivante[0]);
-        System.out.println(suivante[1]);
-
         // si c'est pas un mur, on effectue le deplacement
         if (!this.murs[suivante[0]][suivante[1]]) {
-            // on met a jour personnage
-            this.pj.setX(suivante[0]);
-            this.pj.setY(suivante[1]);
+            // si c'est un monstre, on reste aux mêmes coordonnées
+            if(suivante[0]==monstre.getX() && suivante[1]==monstre.getY()){
+                System.out.println("ATTENTION, il y a un monstre ici");
+            }else{
+                // on met a jour personnage
+                this.pj.setX(suivante[0]);
+                this.pj.setY(suivante[1]);
+            }
         }
     }
 
@@ -196,5 +207,9 @@ public class Labyrinthe {
     public boolean getMur(int x, int y) {
         // utilise le tableau de boolean
         return this.murs[x][y];
+    }
+
+    public Perso getMonstre(){
+        return this.monstre;
     }
 }

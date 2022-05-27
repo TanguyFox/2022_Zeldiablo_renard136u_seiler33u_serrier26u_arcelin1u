@@ -48,6 +48,13 @@ public class LabyDessin implements DessinJeu {
         int py = perso.getY();
         gc.fillOval(py*30, px*30, 30, 30);
 
+        gc.setFill(Color.PURPLE);
+        Perso monstre = labyrinthe.monstre;
+        int monstreX = monstre.getX();
+        int monstreY = monstre.getY();
+        gc.fillOval(monstreY*30,monstreX*30,30,30);
+
+
     }
 
 }
