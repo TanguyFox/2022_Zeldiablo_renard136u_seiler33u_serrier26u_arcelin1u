@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant "Main : main" as M
+participant "jeuLaby : LabyJeu" as LJ
+participant "laby : Labyrinthe" as lab
+participant "monstre : Montre" as Monstre
+
+create LJ
+M -> LJ : new
+
+create lab
+LJ -> lab : new Labyrinthe("zeldiablo/labySimple/laby1.txt")
+
+create Monstre
+lab -> Monstre : new Monstre(2,3)
+
+@enduml
