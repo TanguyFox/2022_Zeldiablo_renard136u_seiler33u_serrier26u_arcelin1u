@@ -122,7 +122,6 @@ public class Labyrinthe {
                     case MONSTRE:
                         this.murs[numeroLigne][colonne] = false;
                         this.monstre = new Perso(numeroLigne, colonne);
-                        System.out.println("hello");
                         System.out.println(monstre.getX()+" "+monstre.getY());
                         break;
 
@@ -139,6 +138,8 @@ public class Labyrinthe {
         // ferme fichier
         bfRead.close();
     }
+
+
 
 
     /**
@@ -163,6 +164,26 @@ public class Labyrinthe {
                 // on met a jour personnage
                 this.pj.setX(suivante[0]);
                 this.pj.setY(suivante[1]);
+            }
+        }
+    }
+
+    public void deplacerMonstre(String action) {
+        // case courante
+        int[] courante = {this.monstre.getX(), this.monstre.getY()};
+
+        // calcule case suivante
+        int[] suivante = getSuivant(courante[0], courante[1], action);
+
+        // si c'est pas un mur, on effectue le deplacement
+        if (!this.murs[suivante[0]][suivante[1]]) {
+            // si c'est un monstre, on reste aux mêmes coordonnées
+            if(suivante[0]==pj.getX() && suivante[1]==pj.getY()){
+                System.out.println("Le Monstre attaque !");
+            }else{
+                // on met a jour personnage
+                this.monstre.setX(suivante[0]);
+                this.monstre.setY(suivante[1]);
             }
         }
     }
