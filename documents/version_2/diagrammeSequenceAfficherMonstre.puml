@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title "Affichage du Monstre"
+
+participant "main : Main" as MAIN
+participant "dessinlaby : LabyDessin" as LD
+participant "laby : Labyrinthe" as L
+participant "monstre : Perso" as M
+
+activate MAIN
+MAIN ->LD : dessinerJeu(labyjeu,gc)
+activate LD
+LD -> L : getMonstre()
+activate L
+L --> LD : monstre
+deactivate L
+LD -> M : getX()
+activate M
+M --> LD : 2
+deactivate M
+LD -> M : getY()
+activate M
+M --> LD : 3
+deactivate M
+LD -> LD : gc.fillOval(2*30,3*30,30,30)
+activate LD
+LD --> LD
+deactivate LD
+LD --> MAIN
+deactivate LD
+
+@enduml
