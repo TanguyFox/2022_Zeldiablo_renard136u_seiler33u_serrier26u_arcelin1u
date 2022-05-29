@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+
+title Considérer Monstre dans Déplacement Perso
+
+participant "main: MainLaby" as M
+participant "Labyrinthe" as L
+participant "suivant : int[]" as S
+participant "M1 : Personnage" as monstre
+participant "P1 : Personnage" as perso
+
+M -> L : deplacerPerso()
+activate L
+L -> L : getSuivant(5,5,HAUT)
+
+L --> L : suivante
+
+L -> monstre : getY()
+activate monstre
+monstre --> L : 3
+deactivate monstre
+
+L -> monstre : getX()
+activate monstre
+monstre --> L : 2
+deactivate monstre
+L -> perso : setX(4)
+activate perso
+perso --> L
+deactivate perso
+
+L -> perso : setY(5)
+activate perso
+perso --> L
+deactivate perso
+
+L --> M
+deactivate L
+
+@enduml
