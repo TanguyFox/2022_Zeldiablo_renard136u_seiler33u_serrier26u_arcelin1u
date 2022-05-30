@@ -12,7 +12,7 @@ public class LabyJeu implements Jeu {
     //Labyrinthe et personnage
 
     private Labyrinthe laby;
-    public final String[] deplacementMonstre = {"Gauche","Droite","Haut","Bas"};
+    public final String[] DEPLACEMENT_MONSTRE = {"Gauche","Droite","Haut","Bas"};
 
     /**
      Constructeur par défaut
@@ -32,19 +32,19 @@ public class LabyJeu implements Jeu {
         // deplace le perso en fonction des touches
         if (clavier.droite) {
             laby.deplacerPerso(DROITE);
-            laby.deplacerMonstre(deplacementMonstre[i]);
+            laby.deplacerMonstre(DEPLACEMENT_MONSTRE[i]);
         }
         if (clavier.gauche) {
             laby.deplacerPerso(GAUCHE);
-            laby.deplacerMonstre(deplacementMonstre[i]);
+            laby.deplacerMonstre(DEPLACEMENT_MONSTRE[i]);
         }
         if (clavier.bas) {
             laby.deplacerPerso(BAS);
-            laby.deplacerMonstre(deplacementMonstre[i]);
+            laby.deplacerMonstre(DEPLACEMENT_MONSTRE[i]);
         }
         if (clavier.haut) {
             this.laby.deplacerPerso(HAUT);
-            laby.deplacerMonstre(deplacementMonstre[i]);
+            laby.deplacerMonstre(DEPLACEMENT_MONSTRE[i]);
         }
 
 

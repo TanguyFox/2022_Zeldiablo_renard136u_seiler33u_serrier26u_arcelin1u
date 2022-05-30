@@ -18,13 +18,17 @@ class Labyrinthe{
 + {static} getSuivant (x : int, y : int, action : String) : int []
 + Labyrinthe (nom : String)
 + deplacerPerso(action : String)
++ deplacerMonstre((action : String)
 + etreFini() : boolean
 + getLengthY() : int
 + getLength() : int
 + getMur(x : int, y : int) : boolean
++ getPerso() : Perso
++ getMonstre() : Perso
 }
 
 class LabyJeu{
++DEPLACEMENT_MONSTRE : String[]
 +LabyJeu()
 +update(seconde : Double, clavier : Clavier)
 +init()
