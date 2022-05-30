@@ -8,8 +8,14 @@ import java.io.IOException;
 class LabyrintheTest {
 
     @Test
-    void deplacerMonstre() {
-        throw new Error("TO DO");
+    void deplacerMonstre() throws IOException {
+        Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
+
+        laby.deplacerMonstre(Labyrinthe.DROITE);
+        Perso m = laby.getMonstre();
+
+        assertEquals(1,m.getX());
+        assertEquals(2,m.getY());
     }
 
     @Test
