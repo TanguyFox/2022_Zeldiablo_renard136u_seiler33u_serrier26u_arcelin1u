@@ -68,4 +68,21 @@ class LabyrintheTest {
         assertEquals(3,p.getY());
     }
 
+    @Test
+    void test_deplacerPersoSurMonstre() throws IOException {
+        Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/labyTestMonstre.txt");
+
+        laby.deplacerPerso(Labyrinthe.GAUCHE);
+
+        Perso p = laby.getPj();
+
+        assertEquals(1,p.getX());
+        assertEquals(2,p.getY());
+
+        laby.deplacerPerso(Labyrinthe.GAUCHE);
+        assertEquals(1,p.getX());
+        assertEquals(2,p.getY());
+
+    }
+
 }
