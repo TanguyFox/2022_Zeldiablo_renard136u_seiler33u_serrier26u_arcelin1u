@@ -31,6 +31,14 @@ class LabyrintheTest {
     }
 
     @Test
+    void getPj() throws IOException{
+        Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
+
+        Perso pj = laby.getPj();
+
+    }
+
+    @Test
     void test_deplacerPersoGauche() throws IOException {
         Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
 
