@@ -129,7 +129,6 @@ public class Labyrinthe {
                     case MONSTRE:
                         this.murs[numeroLigne][colonne] = false;
                         this.monstre = new Perso(numeroLigne, colonne);
-                        System.out.println(monstre.getX()+" "+monstre.getY());
                         break;
                     case AMULETTE:
                         this.murs[numeroLigne][colonne] = false;

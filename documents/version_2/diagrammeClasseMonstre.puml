@@ -9,6 +9,7 @@ skinparam classAttributeIconSize 0
 class Labyrinthe{
 + {static} MUR : char
 + {static} PJ : char
++ {static} MONSTRE : char
 + {static} VIDE : char
 + {static} HAUT : String
 + {static} BAS : String
@@ -18,12 +19,12 @@ class Labyrinthe{
 + {static} getSuivant (x : int, y : int, action : String) : int []
 + Labyrinthe (nom : String)
 + deplacerPerso(action : String)
-+ deplacerMonstre((action : String)
++ deplacerMonstre(action : String)
 + etreFini() : boolean
 + getLengthY() : int
 + getLength() : int
 + getMur(x : int, y : int) : boolean
-+ getPerso() : Perso
++ getPj() : Perso
 + getMonstre() : Perso
 }
 
