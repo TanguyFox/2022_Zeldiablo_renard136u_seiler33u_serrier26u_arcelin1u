@@ -2,7 +2,7 @@ Bilan de la version 2 :
 
 -Implémentation d'un objet de type personnage correspondant au monstre représenté par un cercle violet dans l'affichage graphique.
 -Implémentation d'un système de déplacement aléatoire pour le monstre, réagissant aux déplacements du joueur.
--Ajout de classe de tests correspondante, tout les tests sont validés.
--les fonctionnalitées de la liste fourni pour la v2.0 ont toutes été implémentés avec succès.
+-Ajout de la classe de tests correspondante, tous les tests sont validés.
+-les fonctionnalités de la liste fournie pour la v2.0 ont toutes été implémentées avec succès.
 -le jeu fonctionne donc correctement.
 
