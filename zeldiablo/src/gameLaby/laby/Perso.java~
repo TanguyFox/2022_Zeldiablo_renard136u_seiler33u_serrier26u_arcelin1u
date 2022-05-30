@@ -60,14 +60,6 @@ public class Perso {
         return this.y;
     }
 
-    /**
-     * @return si le personnage possede l'amulette
-     */
-
-    public boolean getPossedeAmulette(){
-        return this.possedeAmulette;
-    }
-
     public void setX(int x) {
         this.x = x;
     }

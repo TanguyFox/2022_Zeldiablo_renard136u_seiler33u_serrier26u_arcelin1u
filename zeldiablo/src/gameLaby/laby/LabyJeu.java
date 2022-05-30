@@ -46,6 +46,10 @@ public class LabyJeu implements Jeu {
             this.laby.deplacerPerso(HAUT);
             laby.deplacerMonstre(DEPLACEMENT_MONSTRE[i]);
         }
+        if (laby.pj.getPossedeAmulette()==true){
+            laby.pj.
+
+        }
 
 
     }

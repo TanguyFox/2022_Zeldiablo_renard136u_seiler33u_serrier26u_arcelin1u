@@ -18,6 +18,8 @@ public class Labyrinthe {
     public static final char PJ = 'P';
     public static final char VIDE = '.';
     public static final char MONSTRE = 'M';
+    public static final char AMULETTE = 'A';
+
 
     /**
      * constantes actions possibles
@@ -34,6 +36,8 @@ public class Labyrinthe {
 
     //passer par une liste pour en ajouter plusieurs
     public Perso monstre;
+
+    public Amulette amulette;
 
     /**
      * les murs du labyrinthe
@@ -95,6 +99,7 @@ public class Labyrinthe {
         this.murs = new boolean[nbLignes][nbColonnes];
         this.pj = null;
         this.monstre = null;
+        this.amulette = null;
 
         // lecture des cases
         String ligne = bfRead.readLine();
@@ -126,6 +131,12 @@ public class Labyrinthe {
                         this.monstre = new Perso(numeroLigne, colonne);
                         System.out.println(monstre.getX()+" "+monstre.getY());
                         break;
+                    case AMULETTE:
+                        this.murs[numeroLigne][colonne] = false;
+                        this.amulette = new Amulette(numeroLigne, colonne);
+                        System.out.println(amulette.getX()+" "+ amulette.getY());
+                        break;
+
 
                     default:
                         throw new Error("caractere inconnu " + c);
@@ -166,6 +177,10 @@ public class Labyrinthe {
                 // on met a jour personnage
                 this.pj.setX(suivante[0]);
                 this.pj.setY(suivante[1]);
+            }
+            if(suivante[0]== amulette.getX() && suivante[1]== amulette.getY()){
+                System.out.println("Vous avez récupérez l'amulette !");
+                pj.setPossedeAmulette(true);
             }
         }
     }
