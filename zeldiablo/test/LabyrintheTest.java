@@ -13,8 +13,15 @@ class LabyrintheTest {
     }
 
     @Test
-    void getMonstre() {
-        throw new Error("TO DO");
+    void getMonstre() throws IOException {
+        Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
+
+        Perso m = laby.getMonstre();
+        int mx = m.getX();
+        int my = m.getY();
+
+        assertEquals(1,mx);
+        assertEquals(1,my);
     }
 
     @Test
@@ -35,6 +42,8 @@ class LabyrintheTest {
         laby.deplacerPerso(Labyrinthe.DROITE);
         Perso p = laby.getPj();
 
+        assertEquals(2,p.getX());
+        assertEquals(4,p.getY());
     }
 
     @Test
@@ -43,6 +52,9 @@ class LabyrintheTest {
 
         laby.deplacerPerso(Labyrinthe.HAUT);
         Perso p = laby.getPj();
+
+        assertEquals(1,p.getX());
+        assertEquals(3,p.getY());
     }
 
     @Test
@@ -51,6 +63,9 @@ class LabyrintheTest {
 
         laby.deplacerPerso(Labyrinthe.BAS);
         Perso p = laby.getPj();
+
+        assertEquals(3,p.getX());
+        assertEquals(3,p.getY());
     }
 
 }

@@ -50,6 +50,9 @@ class Perso {
 }
 
 package Moteurjeu{
+interface DessinJeu{
++ dessinerJeu(jeu : Jeu, canvas : Canvas)
+}
 interface Jeu{
 + init()
 +update(seconds:double, clavier: Clavier)

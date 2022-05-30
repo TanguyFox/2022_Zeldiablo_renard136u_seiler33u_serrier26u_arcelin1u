@@ -31,6 +31,8 @@ public class Labyrinthe {
      * attribut du personnage
      */
     public Perso pj;
+
+    //passer par une liste pour en ajouter plusieurs
     public Perso monstre;
 
     /**
@@ -233,4 +235,6 @@ public class Labyrinthe {
     public Perso getMonstre(){
         return this.monstre;
     }
+
+    public Perso getPj() {return this.pj;}
 }
