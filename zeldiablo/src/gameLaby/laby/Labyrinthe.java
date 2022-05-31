@@ -3,6 +3,7 @@ package gameLaby.laby;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * classe labyrinthe. represente un labyrinthe avecW
@@ -102,7 +103,7 @@ public class Labyrinthe {
         this.murs = new boolean[nbLignes][nbColonnes];
         this.pj = null;
         this.monstre = null;
-        this.amulette = null;
+        //this.amulette = null;
         this.sortie = null;
 
         // lecture des cases
@@ -185,12 +186,7 @@ public class Labyrinthe {
                 this.pj.setX(suivante[0]);
                 this.pj.setY(suivante[1]);
             }
-            if(suivante[0]== amulette.getX() && suivante[1]== amulette.getY()){
-                if(!pj.getPossedeAmulette()){
-                    System.out.println("Vous avez récupérez l'amulette !");
-                    pj.setPossedeAmulette(true);
-                }
-            }
+            pj.recupererObjet(amulette);
         }
     }
 
@@ -261,4 +257,12 @@ public class Labyrinthe {
     }
 
     public Perso getPj() {return this.pj;}
+
+    public Amulette getAmulette(){
+        return this.amulette;
+    }
+
+    public Sortie getSortie() {
+        return sortie;
+    }
 }

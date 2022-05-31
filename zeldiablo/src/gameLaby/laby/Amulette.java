@@ -53,6 +53,11 @@ public class Amulette implements Objet{
     }
 
     @Override
+    public Objet getObjet() {
+        return this;
+    }
+
+    @Override
     public void setX(int x) {
         this.x=x;
     }
@@ -60,5 +65,10 @@ public class Amulette implements Objet{
     @Override
     public void setY(int y) {
         this.y=y;
+    }
+
+    @Override
+    public boolean estPossede(Perso p) {
+        return p.getInventaire().contains(this);
     }
 }

@@ -1,3 +1,4 @@
+import gameLaby.laby.Amulette;
 import gameLaby.laby.Labyrinthe;
 import gameLaby.laby.Perso;
 import org.junit.jupiter.api.Test;
@@ -98,5 +99,31 @@ class LabyrintheTest {
         assertEquals(2,p.getY());
 
     }
+
+    @Test
+    void test_recupererObjet_OK() throws IOException {
+        Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
+
+        Perso p = laby.getPj();
+        Amulette amulette = laby.getAmulette();
+        p.setX(amulette.getX());
+        p.setY(amulette.getY());
+
+        p.recupererObjet(amulette);
+        assertEquals(amulette,p.getInventaire().get(0));
+    }
+
+    @Test
+    void test_recupererObjet_PositionIncorrect() throws IOException {
+        Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
+
+        Perso p = laby.getPj();
+        Amulette amulette = laby.getAmulette();
+
+        p.recupererObjet(amulette);
+        assertFalse(p.isAmulettePossedee());
+    }
+
+
 
 }

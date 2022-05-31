@@ -19,7 +19,7 @@ public class LabyJeu implements Jeu {
     */
     public LabyJeu(){
         try {
-            this.laby=new Labyrinthe("zeldiablo/labySimple/laby3.txt");
+            this.laby=new Labyrinthe("zeldiablo/labySimple/laby0.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -46,10 +46,6 @@ public class LabyJeu implements Jeu {
             this.laby.deplacerPerso(HAUT);
             laby.deplacerMonstre(DEPLACEMENT_MONSTRE[i]);
         }
-        if (laby.pj.getPossedeAmulette()){
-            //a faire une fois que les modifications seront apportées
-        }
-
 
     }
     @Override

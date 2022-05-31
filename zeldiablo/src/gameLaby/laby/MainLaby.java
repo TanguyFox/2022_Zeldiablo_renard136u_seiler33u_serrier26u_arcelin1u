@@ -9,7 +9,11 @@ public class MainLaby {
     public static void main(String[] args) {
         int width = 810;
         int height = 618;
+<<<<<<< HEAD
         int pFPS = 5;
+=======
+        int pFPS = 60;
+>>>>>>> a12e87fa928e950824d3cc2c07cb44ed4ab3e85c
 
         // creation des objets
         LabyJeu jeuLaby = new LabyJeu();

@@ -1,6 +1,9 @@
 package gameLaby.laby;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * gere un personnage situe en x,y
  */
@@ -10,6 +13,7 @@ public class Perso {
      * position du personnage
      */
     private int x, y;
+    private List<Objet> inventaire;
 
     /**
      * Si le personnage possède l'amulette alors true sinon false
@@ -25,6 +29,7 @@ public class Perso {
     public Perso(int dx, int dy) {
         this.x = dx;
         this.y = dy;
+        this.inventaire = new ArrayList<>();
         this.possedeAmulette=false;
     }
 
@@ -60,11 +65,15 @@ public class Perso {
         return this.y;
     }
 
+    public List<Objet> getInventaire() {
+        return inventaire;
+    }
+
     /**
      * @return si le personnage possede l'amulette
      */
 
-    public boolean getPossedeAmulette(){
+    public boolean isAmulettePossedee(){
         return this.possedeAmulette;
     }
 
@@ -78,6 +87,28 @@ public class Perso {
 
     public void setPossedeAmulette(boolean b){
         this.possedeAmulette = b;
+    }
+
+    public boolean inventairePlein(){
+        boolean plein = false;
+        if(inventaire.size()==5){
+            return true;
+        }
+        return plein;
+    }
+
+    public void recupererObjet(Objet objet) {
+        if (this.etrePresent(objet.getX(), objet.getY())){
+            if (!this.isAmulettePossedee()) {
+                if (!inventairePlein()) {
+                    inventaire.add(objet);
+                    this.setPossedeAmulette(true);
+                    System.out.println("Vous avez récupérez l'amulette !");
+                } else {
+                    System.out.println("Inventaire plein !");
+                }
+            }
+        }
     }
 
     @Override

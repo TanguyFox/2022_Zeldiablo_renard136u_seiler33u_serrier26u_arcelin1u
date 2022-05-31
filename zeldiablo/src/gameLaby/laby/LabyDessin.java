@@ -52,7 +52,7 @@ public class LabyDessin implements DessinJeu {
 
 
         //dessin amulette
-        if(labyrinthe.pj.getPossedeAmulette()==false) {
+        if(!labyrinthe.pj.isAmulettePossedee()) {
             gc.setFill(Color.YELLOW);
             Amulette amulette = labyrinthe.amulette;
             int amuletteX = amulette.getX();
@@ -62,6 +62,10 @@ public class LabyDessin implements DessinJeu {
             gc.drawImage(joyaux,amuletteY*30,amuletteX*30,30,30);
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> a12e87fa928e950824d3cc2c07cb44ed4ab3e85c
 
         //dessin monstre
         Perso monstre = labyrinthe.monstre;
@@ -82,13 +86,20 @@ public class LabyDessin implements DessinJeu {
         // dessin Perso
         gc.setFill(Color.RED);
         Perso perso = labyrinthe.pj;
+<<<<<<< HEAD
         FileInputStream inputStream3 = new FileInputStream("zeldiablo/images/personnage2.png");
+=======
+        FileInputStream inputStream3 = new FileInputStream("zeldiablo/images/personnage.jpg");
+>>>>>>> a12e87fa928e950824d3cc2c07cb44ed4ab3e85c
         Image personnage = new Image(inputStream3);
         int px = perso.getX();
         int py = perso.getY();
         gc.drawImage(personnage,py*30,px*30,30,30);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> a12e87fa928e950824d3cc2c07cb44ed4ab3e85c
     }
 
 }
