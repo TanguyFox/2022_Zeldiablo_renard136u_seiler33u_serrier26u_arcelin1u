@@ -19,6 +19,7 @@ public class Labyrinthe {
     public static final char VIDE = '.';
     public static final char MONSTRE = 'M';
     public static final char AMULETTE = 'A';
+    public static final char SORTIE = 'S';
 
 
     /**
@@ -38,6 +39,8 @@ public class Labyrinthe {
     public Perso monstre;
 
     public Amulette amulette;
+
+    public Sortie sortie;
 
     /**
      * les murs du labyrinthe
@@ -100,6 +103,7 @@ public class Labyrinthe {
         this.pj = null;
         this.monstre = null;
         this.amulette = null;
+        this.sortie = null;
 
         // lecture des cases
         String ligne = bfRead.readLine();
@@ -135,7 +139,11 @@ public class Labyrinthe {
                         this.amulette = new Amulette(numeroLigne, colonne);
                         System.out.println(amulette.getX()+" "+ amulette.getY());
                         break;
-
+                    case SORTIE:
+                        this.murs[numeroLigne][colonne] = false;
+                        this.sortie = new Sortie(numeroLigne, colonne);
+                        System.out.println(sortie.getX()+" "+sortie.getY());
+                        break;
 
                     default:
                         throw new Error("caractere inconnu " + c);

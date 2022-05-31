@@ -67,7 +67,6 @@ public class LabyDessin implements DessinJeu {
         gc.drawImage(personnage,py*30,px*30,30,30);
 
         //dessin monstre
-        gc.setFill(Color.PURPLE);
         Perso monstre = labyrinthe.monstre;
         FileInputStream inputstream2 = new FileInputStream("zeldiablo/images/monstre.gif");
         Image mechant = new Image(inputstream2);
@@ -75,8 +74,13 @@ public class LabyDessin implements DessinJeu {
         int monstreY = monstre.getY();
         gc.drawImage(mechant,monstreY*30,monstreX*30,30,30);
 
-
-
+        //dessin sortie
+        Sortie sortie = labyrinthe.sortie;
+        int sortieX = sortie.getX();
+        int sortieY = sortie.getY();
+        FileInputStream inputstream5 = new FileInputStream("zeldiablo/images/portail.png");
+        Image porte = new Image(inputstream5);
+        gc.drawImage(porte,sortieY*30,sortieX*30,30,30);
 
 
     }
