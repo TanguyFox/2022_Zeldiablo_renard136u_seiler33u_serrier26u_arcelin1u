@@ -1,0 +1,60 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title Le personnage se déplace sur l'amulette avec un inventaire non plein
+participant "main" as MAIN
+participant "labyrinthe : Labyrinthe" as L
+participant "amulette : Amulette" as A
+participant "pj : Perso" as P
+participant "inventaire : List<Objet>" as I
+
+activate MAIN
+
+MAIN -> L : deplacerPerso(DROITE)
+activate L
+L --> MAIN
+deactivate L
+
+
+
+MAIN -> L : deplacerPerso(HAUT)
+activate L
+L --> MAIN
+deactivate L
+
+
+L -> A : getAmulette()
+activate A
+A --> L : 1 , 5
+deactivate A
+
+
+L -> P : getPj()
+activate P
+P --> L: 1 , 5
+deactivate P
+
+
+L ->P : recupererObjet(amulette)
+activate L
+
+P -> P : inventairePlein()
+activate P
+
+P --> P : false
+deactivate P
+
+P -> I : add(amulette)
+activate I
+I --> P
+deactivate I
+P --> L
+deactivate L
+
+L --> MAIN
+deactivate MAIN
+
+
+
+
+@enduml
