@@ -1,13 +1,13 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
-title Le personnage se déplace sur l'amulette avec un inventaire non plein
+title Le personnage se déplace sur l'amulette avec un inventaire plein
 participant "main" as MAIN
 participant "labyrinthe : Labyrinthe" as L
 participant "amulette : Amulette" as A
 participant "pj : Perso" as P
 
-activate MAIN
+
 
 MAIN -> L : deplacerPerso(DROITE)
 activate L
@@ -48,6 +48,6 @@ deactivate P
 
 L --> MAIN
 deactivate L
-deactivate MAIN
+
 
 @enduml

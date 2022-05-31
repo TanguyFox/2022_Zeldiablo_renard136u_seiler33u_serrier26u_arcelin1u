@@ -1,0 +1,50 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title Fin du jeu
+
+participant "main" as MAIN
+participant "labyrinthe : Labyrinthe" as L
+participant "sortie : Sortie" as S
+participant "pj : Perso" as P
+
+
+MAIN -> L : etreFini()
+
+activate L
+L -> S : getX()
+activate S
+S --> L : 1
+deactivate S
+
+
+L -> S : getY()
+activate S
+S --> L : 5
+deactivate S
+
+L -> P : getX()
+activate P
+P --> L : 1
+deactivate P
+
+L -> P : getY()
+activate P
+P --> L : 5
+deactivate P
+
+L -> P : isAmulettePossedee()
+activate P
+P --> L : true
+deactivate P
+
+
+L --> MAIN : true
+deactivate L
+
+
+
+
+
+
+@enduml

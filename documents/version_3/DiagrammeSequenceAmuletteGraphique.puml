@@ -4,7 +4,7 @@ participant "main" as MAIN
 participant "dessinLaby : LabyDessin" as LD
 participant "labyrinthe : Labyrinthe" as L
 participant "amulette : Amulette" as A
-activate MAIN
+
 MAIN -> LD : dessinerJeu(jeu,canvas)
 activate LD
 LD -> L : getAmulette()
@@ -24,5 +24,5 @@ activate LD
 LD --> LD
 deactivate LD
 LD --> MAIN
-deactivate MAIN
+
 @enduml

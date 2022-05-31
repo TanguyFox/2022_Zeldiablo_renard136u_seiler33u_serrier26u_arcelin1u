@@ -12,7 +12,7 @@ participant "monstre : Perso " as M
 
 
 MAIN ->LD : dessinerJeu(labyjeu,gc)
-activate MAIN
+
 
 activate LD
 LD -> L : getMonstre()
