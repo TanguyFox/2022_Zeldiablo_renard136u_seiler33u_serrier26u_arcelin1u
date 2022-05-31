@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+title "Affichage des éléments du Monstre"
+
+participant "main : Main" as MAIN
+participant "dessinlaby : LabyDessin" as LD
+participant "laby : Labyrinthe" as L
+participant "monstre : Perso " as M
+
+
+
+MAIN ->LD : dessinerJeu(labyjeu,gc)
+activate MAIN
+
+activate LD
+LD -> L : getMonstre()
+
+activate L
+L --> LD : monstre
+deactivate L
+
+
+L -> M : getX()
+activate M
+M --> L : 2
+deactivate M
+
+L -> M : getY()
+activate M
+M --> L : 3
+deactivate M
+activate LD
+LD -> LD : dessinerMonstre()
+LD --> LD
+deactivate LD
+LD --> MAIN
+deactivate LD
+@enduml

@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+participant "main" as MAIN
+participant "dessinLaby : LabyDessin" as LD
+participant "labyrinthe : Labyrinthe" as L
+participant "amulette : Amulette" as A
+activate MAIN
+MAIN -> LD : dessinerJeu(jeu,canvas)
+activate LD
+LD -> L : getAmulette()
+activate L
+L --> LD : amulette
+deactivate L
+LD -> A : getX()
+activate A
+A --> LD : 4
+deactivate A
+LD -> A : getY()
+activate A
+A --> LD : 1
+deactivate A
+LD -> LD : dessinerAmulette()
+activate LD
+LD --> LD
+deactivate LD
+LD --> MAIN
+deactivate MAIN
+@enduml
