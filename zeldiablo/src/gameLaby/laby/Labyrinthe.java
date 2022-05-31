@@ -190,6 +190,9 @@ public class Labyrinthe {
                 pj.recupererObjet(amulette);
             }
         }
+        if (etreFini()){
+            System.out.println("vous avez gagné");
+        }
     }
 
     public void deplacerMonstre(String action) {
@@ -218,7 +221,11 @@ public class Labyrinthe {
      * @return fin du jeu
      */
     public boolean etreFini() {
-        return false;
+        if((pj.etrePresent(sortie.getX(),sortie.getY()) && pj.isAmulettePossedee())){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     // ##################################
