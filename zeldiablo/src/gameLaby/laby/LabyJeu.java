@@ -19,7 +19,7 @@ public class LabyJeu implements Jeu {
     */
     public LabyJeu(){
         try {
-            this.laby=new Labyrinthe("zeldiablo/labySimple/laby0.txt");
+            this.laby=new Labyrinthe("zeldiablo/labySimple/laby1.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
