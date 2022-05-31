@@ -32,14 +32,13 @@ public class LabyDessin implements DessinJeu {
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         // dessin laby
         Labyrinthe labyrinthe = labyJeu.getLabyrinthe();
-
+        FileInputStream inputstream = new FileInputStream("zeldiablo/images/mur.png");
+        Image mur = new Image(inputstream);
         for (int y = 0; y < labyrinthe.getLengthY(); y++) {
             // affiche la ligne
             for (int x = 0; x < labyrinthe.getLength(); x++) {
                 if (labyrinthe.getMur(x, y)) {
-                    FileInputStream inputstream = new FileInputStream("zeldiablo/images/mur.png");
-                    Image image = new Image(inputstream);
-                    gc.drawImage(image,y*30,x*30,30,30);
+                    gc.drawImage(mur,y*30,x*30,30,30);
                 } else {
                     gc.setFill(Color.WHITE);
                     gc.fillRect(y*30, x*30, 30, 30);
@@ -47,29 +46,37 @@ public class LabyDessin implements DessinJeu {
             }
         }
 
+        //dessin amulette
+        if(labyrinthe.pj.getPossedeAmulette()==false) {
+            gc.setFill(Color.YELLOW);
+            Amulette amulette = labyrinthe.amulette;
+            int amuletteX = amulette.getX();
+            int amuletteY = amulette.getY();
+            FileInputStream inputStream4 = new FileInputStream("zeldiablo/images/joyaux.png");
+            Image joyaux = new Image(inputStream4);
+            gc.drawImage(joyaux,amuletteY*30,amuletteX*30,30,30);
+        }
+
         // dessin Perso
         gc.setFill(Color.RED);
         Perso perso = labyrinthe.pj;
+        FileInputStream inputStream3 = new FileInputStream("zeldiablo/images/personnage.jpg");
+        Image personnage = new Image(inputStream3);
         int px = perso.getX();
         int py = perso.getY();
-        gc.fillOval(py*30, px*30, 30, 30);
+        gc.drawImage(personnage,py*30,px*30,30,30);
 
         //dessin monstre
         gc.setFill(Color.PURPLE);
         Perso monstre = labyrinthe.monstre;
-        FileInputStream inputstream = new FileInputStream("zeldiablo/images/monstre.gif");
-        Image image = new Image(inputstream);
+        FileInputStream inputstream2 = new FileInputStream("zeldiablo/images/monstre.gif");
+        Image mechant = new Image(inputstream2);
         int monstreX = monstre.getX();
         int monstreY = monstre.getY();
-        gc.drawImage(image,monstreY*30,monstreX*30,30,30);
+        gc.drawImage(mechant,monstreY*30,monstreX*30,30,30);
 
 
-        //dessin amulette
-        gc.setFill(Color.YELLOW);
-        Amulette amulette = labyrinthe.amulette;
-        int amuletteX = amulette.getX();
-        int amuletteY = amulette.getY();
-        gc.fillOval(amuletteY*30,amuletteX*30,30,30);
+
 
 
     }
