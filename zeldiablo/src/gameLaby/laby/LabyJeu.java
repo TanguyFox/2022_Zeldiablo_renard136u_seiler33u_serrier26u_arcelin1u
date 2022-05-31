@@ -19,7 +19,7 @@ public class LabyJeu implements Jeu {
     */
     public LabyJeu(){
         try {
-            this.laby=new Labyrinthe("zeldiablo/labySimple/laby1.txt");
+            this.laby=new Labyrinthe("zeldiablo/labySimple/laby0.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -46,6 +46,9 @@ public class LabyJeu implements Jeu {
             this.laby.deplacerPerso(HAUT);
             laby.deplacerMonstre(DEPLACEMENT_MONSTRE[i]);
         }
+        if(etreFini()){
+            System.exit(0);
+        }
 
     }
     @Override
@@ -53,7 +56,11 @@ public class LabyJeu implements Jeu {
     }
     @Override
     public boolean etreFini() {
-        return false;
+        if(laby.etreFini()){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 
