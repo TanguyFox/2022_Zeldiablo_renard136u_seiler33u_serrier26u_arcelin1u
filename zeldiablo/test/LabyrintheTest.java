@@ -99,7 +99,7 @@ class LabyrintheTest {
         assertEquals(2,p.getY());
 
     }
-
+//-----------------------------------------------------V3------------------------------------------------------------------
     @Test
     void test_recupererObjet_OK() throws IOException {
         Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
@@ -122,6 +122,23 @@ class LabyrintheTest {
 
         p.recupererObjet(amulette);
         assertFalse(p.isAmulettePossedee());
+    }
+
+    @Test
+    void test_recupererObjet_InventairePlein() throws IOException {
+        Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
+
+        Perso p = laby.getPj();
+        Amulette amulette = laby.getAmulette();
+
+        for(int i = 0;i<5;i++){
+            Amulette a = new Amulette(p.getX(),p.getY());
+            p.recupererObjet(a);
+        }
+
+        p.recupererObjet(amulette);
+        assertTrue(p.inventairePlein());
+
     }
 
 

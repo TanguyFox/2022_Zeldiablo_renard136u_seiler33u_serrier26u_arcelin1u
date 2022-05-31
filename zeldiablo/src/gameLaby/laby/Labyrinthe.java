@@ -186,7 +186,9 @@ public class Labyrinthe {
                 this.pj.setX(suivante[0]);
                 this.pj.setY(suivante[1]);
             }
-            pj.recupererObjet(amulette);
+            if (!this.pj.isAmulettePossedee()) {
+                pj.recupererObjet(amulette);
+            }
         }
     }
 
