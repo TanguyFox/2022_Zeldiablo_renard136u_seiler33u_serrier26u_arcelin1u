@@ -3,9 +3,14 @@ package gameLaby.laby;
 import gameArkanoid.Raquette;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import moteurJeu.DessinJeu;
 import moteurJeu.Jeu;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 
 public class LabyDessin implements DessinJeu {
 
@@ -16,7 +21,7 @@ public class LabyDessin implements DessinJeu {
      * @param canvas dessin dans lequel dessin
      */
     @Override
-    public void dessinerJeu(Jeu jeu, Canvas canvas) {
+    public void dessinerJeu(Jeu jeu, Canvas canvas) throws FileNotFoundException {
         LabyJeu labyJeu = (LabyJeu) jeu;
 
         // recupere un pinceau pour dessiner
@@ -32,8 +37,9 @@ public class LabyDessin implements DessinJeu {
             // affiche la ligne
             for (int x = 0; x < labyrinthe.getLength(); x++) {
                 if (labyrinthe.getMur(x, y)) {
-                    gc.setFill(Color.BLACK);
-                    gc.fillRect(y*30,x*30,30, 30);
+                    FileInputStream inputstream = new FileInputStream("zeldiablo/images/mur.png");
+                    Image image = new Image(inputstream);
+                    gc.drawImage(image,y*30,x*30,30,30);
                 } else {
                     gc.setFill(Color.WHITE);
                     gc.fillRect(y*30, x*30, 30, 30);
@@ -51,9 +57,12 @@ public class LabyDessin implements DessinJeu {
         //dessin monstre
         gc.setFill(Color.PURPLE);
         Perso monstre = labyrinthe.monstre;
+        FileInputStream inputstream = new FileInputStream("zeldiablo/images/monstre.gif");
+        Image image = new Image(inputstream);
         int monstreX = monstre.getX();
         int monstreY = monstre.getY();
-        gc.fillOval(monstreY*30,monstreX*30,30,30);
+        gc.drawImage(image,monstreY*30,monstreX*30,30,30);
+
 
         //dessin amulette
         gc.setFill(Color.YELLOW);
