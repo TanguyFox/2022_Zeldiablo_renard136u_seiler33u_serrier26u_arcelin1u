@@ -37,7 +37,7 @@ public class LabyDessin implements DessinJeu {
             // affiche la ligne
             for (int x = 0; x < labyrinthe.getLength(); x++) {
                 if (labyrinthe.getMur(x, y)) {
-                    FileInputStream inputstream = new FileInputStream("C://Users//Elève//Desktop//mur.png");
+                    FileInputStream inputstream = new FileInputStream("zeldiablo/images/mur.png");
                     Image image = new Image(inputstream);
                     gc.drawImage(image,y*30,x*30,30,30);
                 } else {
@@ -57,7 +57,7 @@ public class LabyDessin implements DessinJeu {
         //dessin monstre
         gc.setFill(Color.PURPLE);
         Perso monstre = labyrinthe.monstre;
-        FileInputStream inputstream = new FileInputStream("C://Users//Elève//Desktop//monstre.gif");
+        FileInputStream inputstream = new FileInputStream("zeldiablo/images/monstre.gif");
         Image image = new Image(inputstream);
         int monstreX = monstre.getX();
         int monstreY = monstre.getY();
