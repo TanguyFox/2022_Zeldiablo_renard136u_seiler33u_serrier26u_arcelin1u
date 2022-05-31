@@ -27,24 +27,29 @@ public class LabyDessin implements DessinJeu {
         // recupere un pinceau pour dessiner
         final GraphicsContext gc = canvas.getGraphicsContext2D();
 
+
+
         // dessin fond
         gc.setFill(Color.LIGHTGRAY);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         // dessin laby
         Labyrinthe labyrinthe = labyJeu.getLabyrinthe();
-        FileInputStream inputstream = new FileInputStream("zeldiablo/images/mur.png");
+        FileInputStream inputstream = new FileInputStream("zeldiablo/images/mur2.png");
         Image mur = new Image(inputstream);
+        FileInputStream inputstream6 = new FileInputStream("zeldiablo/images/sol2.png");
+        Image sol = new Image(inputstream6);
         for (int y = 0; y < labyrinthe.getLengthY(); y++) {
             // affiche la ligne
             for (int x = 0; x < labyrinthe.getLength(); x++) {
                 if (labyrinthe.getMur(x, y)) {
                     gc.drawImage(mur,y*30,x*30,30,30);
                 } else {
-                    gc.setFill(Color.WHITE);
-                    gc.fillRect(y*30, x*30, 30, 30);
+
+                    gc.drawImage(sol,y*30,x*30,30,30);
                 }
             }
         }
+
 
         //dessin amulette
         if(labyrinthe.pj.getPossedeAmulette()==false) {
@@ -52,19 +57,11 @@ public class LabyDessin implements DessinJeu {
             Amulette amulette = labyrinthe.amulette;
             int amuletteX = amulette.getX();
             int amuletteY = amulette.getY();
-            FileInputStream inputStream4 = new FileInputStream("zeldiablo/images/joyaux.png");
+            FileInputStream inputStream4 = new FileInputStream("zeldiablo/images/amulette2.png");
             Image joyaux = new Image(inputStream4);
             gc.drawImage(joyaux,amuletteY*30,amuletteX*30,30,30);
         }
 
-        // dessin Perso
-        gc.setFill(Color.RED);
-        Perso perso = labyrinthe.pj;
-        FileInputStream inputStream3 = new FileInputStream("zeldiablo/images/personnage.jpg");
-        Image personnage = new Image(inputStream3);
-        int px = perso.getX();
-        int py = perso.getY();
-        gc.drawImage(personnage,py*30,px*30,30,30);
 
         //dessin monstre
         Perso monstre = labyrinthe.monstre;
@@ -78,9 +75,18 @@ public class LabyDessin implements DessinJeu {
         Sortie sortie = labyrinthe.sortie;
         int sortieX = sortie.getX();
         int sortieY = sortie.getY();
-        FileInputStream inputstream5 = new FileInputStream("zeldiablo/images/portail.png");
+        FileInputStream inputstream5 = new FileInputStream("zeldiablo/images/portail2.png");
         Image porte = new Image(inputstream5);
         gc.drawImage(porte,sortieY*30,sortieX*30,30,30);
+
+        // dessin Perso
+        gc.setFill(Color.RED);
+        Perso perso = labyrinthe.pj;
+        FileInputStream inputStream3 = new FileInputStream("zeldiablo/images/personnage2.png");
+        Image personnage = new Image(inputStream3);
+        int px = perso.getX();
+        int py = perso.getY();
+        gc.drawImage(personnage,py*30,px*30,30,30);
 
 
     }
