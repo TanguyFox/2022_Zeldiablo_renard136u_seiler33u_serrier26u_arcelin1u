@@ -30,6 +30,10 @@ public interface Objet {
 
     public void setY(int y);
 
+    public boolean estPossede(Perso p);
+
+    public Objet getObjet();
+
     public String toString();
 
 }
