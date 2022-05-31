@@ -133,7 +133,7 @@ class LabyrintheTest {
 
         p.setX(amulette.getX());
         p.setY(amulette.getY());
-        
+
         p.recupererObjet(amulette);
 
         assertTrue( p.isAmulettePossedee());
