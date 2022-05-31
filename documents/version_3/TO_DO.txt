@@ -1,4 +1,4 @@
-1. Transformer Perso en Interface qui serait implémenter par une classe abstraite Monstre et une classe concrète Joueur.
+1. (Quand ajout de monstre Transformer Perso en Interface qui serait implémenter par une classe abstraite Monstre et une classe concrète Joueur.
 
 2. Dans Perso :
 
@@ -25,4 +25,6 @@ dessinerElement(Jeu jeu, Canvas canvas); OU une méthode par élément //pour de
 Objet : methode boolean estPossedee(Perso p, Objet objet) //vérifie que l'objet objet se trouve dans l'inventaire de p;
         getObjet();
         setter x et y;
+
+Gérer attaque // découper le dessin // inventaire graphique
 
