@@ -97,12 +97,17 @@ public class Perso {
         return plein;
     }
 
-    public void recupererObjet(Objet objet){
-        if(!inventairePlein()){
-            inventaire.add(objet);
-            this.setPossedeAmulette(true);
-        }else{
-            System.out.println("Inventaire plein !");
+    public void recupererObjet(Objet objet) {
+        if (this.etrePresent(objet.getX(), objet.getY())){
+            if (!this.isAmulettePossedee()) {
+                if (!inventairePlein()) {
+                    inventaire.add(objet);
+                    this.setPossedeAmulette(true);
+                    System.out.println("Vous avez récupérez l'amulette !");
+                } else {
+                    System.out.println("Inventaire plein !");
+                }
+            }
         }
     }
 

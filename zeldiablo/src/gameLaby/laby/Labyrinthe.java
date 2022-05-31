@@ -186,12 +186,7 @@ public class Labyrinthe {
                 this.pj.setX(suivante[0]);
                 this.pj.setY(suivante[1]);
             }
-            if(suivante[0]== amulette.getX() && suivante[1]== amulette.getY()){
-                if(!pj.isAmulettePossedee()){
-                    System.out.println("Vous avez récupérez l'amulette !");
-                    pj.recupererObjet(amulette);
-                }
-            }
+            pj.recupererObjet(amulette);
         }
     }
 
