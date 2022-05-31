@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * classe labyrinthe. represente un labyrinthe avec
+ * classe labyrinthe. represente un labyrinthe avecW
  * <ul> des murs </ul>
  * <ul> un personnage (x,y) </ul>
  */
