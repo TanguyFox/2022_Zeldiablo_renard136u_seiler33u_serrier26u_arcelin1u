@@ -47,7 +47,7 @@ public class LabyDessin implements DessinJeu {
         }
 
         //dessin amulette
-        if(labyrinthe.pj.getPossedeAmulette()==false) {
+        if(labyrinthe.pj.isAmulettePossedee()==false) {
             gc.setFill(Color.YELLOW);
             Amulette amulette = labyrinthe.amulette;
             int amuletteX = amulette.getX();
