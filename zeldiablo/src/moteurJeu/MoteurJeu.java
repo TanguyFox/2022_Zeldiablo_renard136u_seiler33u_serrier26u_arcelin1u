@@ -32,8 +32,8 @@ public class MoteurJeu extends Application {
     /**
      * taille par defaut
      */
-    private static double WIDTH = 800;
-    private static double HEIGHT = 600;
+    private static double WIDTH = 1800;
+    private static double HEIGHT = 1600;
 
     /**
      * statistiques sur les frames

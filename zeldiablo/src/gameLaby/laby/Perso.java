@@ -100,6 +100,7 @@ public class Perso {
     public void recupererObjet(Objet objet){
         if(!inventairePlein()){
             inventaire.add(objet);
+            this.setPossedeAmulette(true);
         }else{
             System.out.println("Inventaire plein !");
         }
