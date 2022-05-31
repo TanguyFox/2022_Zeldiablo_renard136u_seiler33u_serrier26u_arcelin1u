@@ -178,8 +178,10 @@ public class Labyrinthe {
                 this.pj.setY(suivante[1]);
             }
             if(suivante[0]== amulette.getX() && suivante[1]== amulette.getY()){
-                System.out.println("Vous avez récupérez l'amulette !");
-                pj.setPossedeAmulette(true);
+                if(!pj.getPossedeAmulette()){
+                    System.out.println("Vous avez récupérez l'amulette !");
+                    pj.setPossedeAmulette(true);
+                }
             }
         }
     }

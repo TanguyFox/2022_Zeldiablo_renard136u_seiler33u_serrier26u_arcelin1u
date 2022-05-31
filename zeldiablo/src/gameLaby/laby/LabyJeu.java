@@ -47,7 +47,6 @@ public class LabyJeu implements Jeu {
             laby.deplacerMonstre(DEPLACEMENT_MONSTRE[i]);
         }
         if (laby.pj.getPossedeAmulette()==true){
-            laby.pj.
 
         }
 
