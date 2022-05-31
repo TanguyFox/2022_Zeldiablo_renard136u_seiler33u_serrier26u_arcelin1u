@@ -124,6 +124,21 @@ class LabyrintheTest {
         assertFalse(p.isAmulettePossedee());
     }
 
+    @Test
+    void test_recupererObjet_AmulettePossede() throws IOException {
+        Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
+
+        Perso p = laby.getPj();
+        Amulette amulette = laby.getAmulette();
+
+        p.setX(amulette.getX());
+        p.setY(amulette.getY());
+        
+        p.recupererObjet(amulette);
+
+        assertTrue( p.isAmulettePossedee());
+    }
+
 
 
 }
