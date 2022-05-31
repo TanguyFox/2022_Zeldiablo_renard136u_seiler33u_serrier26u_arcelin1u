@@ -1,0 +1,127 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title Structure Jeu Labyrinthe
+
+
+package gameLaby.laby{
+skinparam classAttributeIconSize 0
+class Labyrinthe{
++ {static} MUR : char
++ {static} PJ : char
++ {static} MONSTRE : char
++ {static} VIDE : char
++ {static} AMULETTE : char
++ {static} SORTIE : char
++ {static} HAUT : String
++ {static} BAS : String
++ {static} GAUCHE : String
++ {static} DROITE : String
++ murs : boolean[][]
++ {static} getSuivant (x : int, y : int, action : String) : int []
++ Labyrinthe (nom : String)
++ deplacerPerso(action : String)
++ deplacerMonstre(action : String)
++ etreFini() : boolean
++ getLengthY() : int
++ getLength() : int
++ getMur(x : int, y : int) : boolean
++ getPj() : Perso
++ getMonstre() : Perso
++ getAmulette() : Amulette
++ getSortie() : Sortie
+}
+
+class LabyJeu{
++DEPLACEMENT_MONSTRE : String[]
++LabyJeu()
++update(seconde : Double, clavier : Clavier)
++init()
++etreFini() : boolean
++getLabyrinthe() : Labyrinthe
+}
+class LabyDessin{
++dessinerJeu(jeu : Jeu, canvas: Canvas)
++dessinerAmulette()
++dessinerMonstre()
++dessinerSortie()
++dessinerPerso()
+}
+
+class Perso{
++ x : int
++ y : int
++ inventaire : List<Objet>
++ Personnage(dx : int, dy : int)
++ etrePresent(dx : int, dy : int) : boolean
++ inventairePlein(): boolean
++ isAmulettePossedee(): boolean
++ recupererObjet(objet : Objet)
++ getX() : int
++ getY() : int
++ getInventaire() : List<Objet>
++ setX(x : int)
++ setY(y : int)
++ toString() : String
+}
+
+class Amulette{
++ x : int
++ y : int
++ Amulette(dx : int, dy : int)
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ estPossede(p : Perso) : boolean
++ toString() : String
+}
+
+interface Objet{
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ estPossede(p : Perso) : boolean
++ getObjet() : Objet
++ toString() : String
+}
+
+class Sortie{
++ x : int
++ y : int
++ Sortie(dx : int, dy : int)
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ toString() : String
+}
+}
+
+package Moteurjeu{
+interface Jeu{
++ init()
++update(seconds:double, clavier: Clavier)
++etreFini() : boolean
+}
+
+interface DessinJeu{
++ dessinerJeu(jeu : Jeu, canvas : Canvas)
+}
+}
+
+
+LabyJeu .|> Jeu
+LabyDessin ...|> DessinJeu
+LabyJeu "1" --> "1 " Labyrinthe : labyrinthe
+Labyrinthe "1" ---> "1..*" Perso : perso,monstre
+Labyrinthe "1" ---> "1" Sortie : sortie
+Labyrinthe "1" ---> "1" Amulette : amulette
+Amulette  ..|>  Objet
+LabyDessin ..> LabyJeu : uses
+
+@enduml
