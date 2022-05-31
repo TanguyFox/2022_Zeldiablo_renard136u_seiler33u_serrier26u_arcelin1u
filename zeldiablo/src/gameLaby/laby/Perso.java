@@ -65,6 +65,10 @@ public class Perso {
         return this.y;
     }
 
+    public List<Objet> getInventaire() {
+        return inventaire;
+    }
+
     /**
      * @return si le personnage possede l'amulette
      */
