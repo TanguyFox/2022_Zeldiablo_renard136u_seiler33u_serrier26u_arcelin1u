@@ -21,3 +21,13 @@
  -Descrptif :
   Une fois que le héros a pris l'amulette, il peut retourner à l'entrée du labyrinthe et
   remporter le jeu.
+
+
+  4. Affichage des sprites
+  -Descriptif :
+     -La fenêtre n'affche plus des figures de base (rond, ...) mais des sprites représentant
+      les personnages et les objets
+     -Critères de validation :
+      _ Les sprites concernent les murs, les monstres et le héros.
+      _ Ils sont chargés une fois pour toute au lancement de l'application et ils peuvent
+        être affichés.
