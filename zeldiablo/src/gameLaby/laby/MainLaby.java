@@ -10,7 +10,7 @@ public class MainLaby {
         int width = 810;
         int height = 618;
 
-        int pFPS = 5;
+        int pFPS = 30;
 
 
         // creation des objets

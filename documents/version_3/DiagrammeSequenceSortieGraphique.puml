@@ -5,7 +5,7 @@ participant "main" as MAIN
 participant "dessinLaby : LabyDessin" as LD
 participant "labyrinthe : Labyrinthe" as L
 participant "sortie : Sortie" as S
-activate MAIN
+
 activate LD
 LD -> L : getAmulette()
 activate L
@@ -24,6 +24,6 @@ activate LD
 LD --> LD
 deactivate LD
 LD --> MAIN
-deactivate MAIN
+
 
 @enduml

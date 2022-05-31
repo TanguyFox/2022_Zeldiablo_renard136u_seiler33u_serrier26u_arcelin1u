@@ -13,6 +13,8 @@ public class Perso {
      * position du personnage
      */
     private int x, y;
+
+
     private List<Objet> inventaire;
 
     /**
@@ -91,7 +93,7 @@ public class Perso {
 
     public boolean inventairePlein(){
         boolean plein = false;
-        if(inventaire.size()==5){
+        if(inventaire.size()>=5){
             return true;
         }
         return plein;
@@ -99,7 +101,6 @@ public class Perso {
 
     public void recupererObjet(Objet objet) {
         if (this.etrePresent(objet.getX(), objet.getY())){
-            if (!this.isAmulettePossedee()) {
                 if (!inventairePlein()) {
                     inventaire.add(objet);
                     this.setPossedeAmulette(true);
@@ -107,7 +108,6 @@ public class Perso {
                 } else {
                     System.out.println("Inventaire plein !");
                 }
-            }
         }
     }
 
