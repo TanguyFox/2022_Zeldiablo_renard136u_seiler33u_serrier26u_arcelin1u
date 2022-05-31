@@ -6,7 +6,6 @@ participant "main" as MAIN
 participant "labyrinthe : Labyrinthe" as L
 participant "amulette : Amulette" as A
 participant "pj : Perso" as P
-participant "inventaire : List<Objet>" as I
 
 activate MAIN
 
@@ -40,13 +39,9 @@ activate P
 P -> P : inventairePlein()
 activate P
 
-P --> P : false
+P --> P : true
 deactivate P
 
-P -> I : add(amulette)
-activate I
-I --> P
-deactivate I
 P --> L
 deactivate P
 
@@ -54,8 +49,5 @@ deactivate P
 L --> MAIN
 deactivate L
 deactivate MAIN
-
-
-
 
 @enduml
