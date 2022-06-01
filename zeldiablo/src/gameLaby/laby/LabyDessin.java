@@ -1,13 +1,10 @@
 package gameLaby.laby;
 
-import gameArkanoid.Raquette;
-import javafx.animation.RotateTransition;
-import javafx.animation.Transition;
+
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import moteurJeu.DessinJeu;
 import moteurJeu.Jeu;
 
@@ -55,12 +52,17 @@ public class LabyDessin implements DessinJeu {
         dessinerAmulette(gc,labyrinthe);
         dessinerMonstre(gc,labyrinthe);
         dessinerPerso(gc,labyrinthe);
+
+        if(labyrinthe.etreFini()){
+            FileInputStream ipWin = new FileInputStream("zeldiablo/images/win.png");
+            Image win = new Image(ipWin);
+            int x = labyrinthe.getLength();
+            int y = labyrinthe.getLengthY();
+            gc.drawImage(win,x*7,y*2,200,200);
+        }
     }
 
-
-<<<<<<< HEAD
-        //dessin amulette
-=======
+    //dessin amulette
     public void dessinerSortie(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
         if((!labyrinthe.pj.etrePresent(labyrinthe.sortie.getX(),labyrinthe.sortie.getY()))){
             Sortie sortie = labyrinthe.sortie;
@@ -73,9 +75,7 @@ public class LabyDessin implements DessinJeu {
     }
 
     public void dessinerAmulette(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
->>>>>>> bb819c9e5df370884cec8cf0b0c5be77815039f1
         if(!labyrinthe.pj.isAmulettePossedee()) {
-            gc.setFill(Color.YELLOW);
             Amulette amulette = labyrinthe.amulette;
             int amuletteX = amulette.getX();
             int amuletteY = amulette.getY();
@@ -103,18 +103,9 @@ public class LabyDessin implements DessinJeu {
         int px = perso.getX();
         int py = perso.getY();
         gc.drawImage(personnage,py*30,px*30,30,30);
-<<<<<<< HEAD
 
-        if(labyrinthe.etreFini() == true){
-            FileInputStream ipWin = new FileInputStream("zeldiablo/images/win.png");
-            Image win = new Image(ipWin);
-            int x = labyrinthe.getLength();
-            int y = labyrinthe.getLengthY();
-            gc.drawImage(win,x*7,y*2,200,200);
-        }
 
-=======
->>>>>>> bb819c9e5df370884cec8cf0b0c5be77815039f1
+
     }
 
 }

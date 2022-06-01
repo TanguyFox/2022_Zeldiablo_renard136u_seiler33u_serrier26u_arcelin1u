@@ -1,0 +1,9 @@
+-Ajouter une interface arme qui implémente objet
+-ajouter des classe d'armes qui implement arme : attribut degat et methode faireDegats() --> une seule amre pour v4
+
+-Ajouter methode attaquer(Arme arme, Perso cible) à perso
+-mettre barre de vie et arme dans le terminal
+
+-Ajouter une interface monstre
+-créer des classes de monstre différent (3 monstres)
+
