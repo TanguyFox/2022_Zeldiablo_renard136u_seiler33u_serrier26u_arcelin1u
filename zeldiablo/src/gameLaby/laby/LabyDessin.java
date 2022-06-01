@@ -1,10 +1,13 @@
 package gameLaby.laby;
 
 import gameArkanoid.Raquette;
+import javafx.animation.RotateTransition;
+import javafx.animation.Transition;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import moteurJeu.DessinJeu;
 import moteurJeu.Jeu;
 
@@ -51,6 +54,7 @@ public class LabyDessin implements DessinJeu {
         }
 
 
+
         //dessin amulette
         if(!labyrinthe.pj.isAmulettePossedee()) {
             gc.setFill(Color.YELLOW);
@@ -92,6 +96,14 @@ public class LabyDessin implements DessinJeu {
         int px = perso.getX();
         int py = perso.getY();
         gc.drawImage(personnage,py*30,px*30,30,30);
+
+        if(labyrinthe.etreFini() == true){
+            FileInputStream ipWin = new FileInputStream("zeldiablo/images/win.png");
+            Image win = new Image(ipWin);
+            int x = labyrinthe.getLength();
+            int y = labyrinthe.getLengthY();
+            gc.drawImage(win,x*7,y*2,200,200);
+        }
 
     }
 

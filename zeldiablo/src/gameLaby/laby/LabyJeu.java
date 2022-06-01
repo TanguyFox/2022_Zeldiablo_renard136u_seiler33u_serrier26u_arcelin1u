@@ -19,7 +19,7 @@ public class LabyJeu implements Jeu {
     */
     public LabyJeu(){
         try {
-            this.laby=new Labyrinthe("zeldiablo/labySimple/laby0.txt");
+            this.laby=new Labyrinthe("zeldiablo/labySimple/laby3.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -29,6 +29,7 @@ public class LabyJeu implements Jeu {
     public void update(double secondes, Clavier clavier) {
         Random rand = new Random();
         int i = rand.nextInt(4);
+
         // deplace le perso en fonction des touches
         if (clavier.droite) {
             laby.deplacerPerso(DROITE);
