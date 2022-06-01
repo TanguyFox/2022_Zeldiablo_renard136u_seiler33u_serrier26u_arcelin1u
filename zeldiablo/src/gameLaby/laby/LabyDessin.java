@@ -72,12 +72,15 @@ public class LabyDessin implements DessinJeu {
         gc.drawImage(mechant,monstreY*30,monstreX*30,30,30);
 
         //dessin sortie
-        Sortie sortie = labyrinthe.sortie;
-        int sortieX = sortie.getX();
-        int sortieY = sortie.getY();
-        FileInputStream inputstream5 = new FileInputStream("zeldiablo/images/portail2.png");
-        Image porte = new Image(inputstream5);
-        gc.drawImage(porte,sortieY*30,sortieX*30,30,30);
+        if((!labyrinthe.pj.etrePresent(labyrinthe.sortie.getX(),labyrinthe.sortie.getY()))){
+            Sortie sortie = labyrinthe.sortie;
+            int sortieX = sortie.getX();
+            int sortieY = sortie.getY();
+            FileInputStream inputstream5 = new FileInputStream("zeldiablo/images/portail2.png");
+            Image porte = new Image(inputstream5);
+            gc.drawImage(porte,sortieY*30,sortieX*30,30,30);
+        }
+
 
         // dessin Perso
         gc.setFill(Color.RED);
