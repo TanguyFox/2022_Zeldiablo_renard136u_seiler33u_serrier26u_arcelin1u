@@ -138,12 +138,12 @@ public class Labyrinthe {
                     case AMULETTE:
                         this.murs[numeroLigne][colonne] = false;
                         this.amulette = new Amulette(numeroLigne, colonne);
-                        System.out.println(amulette.getX()+" "+ amulette.getY());
+                        System.out.println(amulette.getX() + " " + amulette.getY());
                         break;
                     case SORTIE:
                         this.murs[numeroLigne][colonne] = false;
                         this.sortie = new Sortie(numeroLigne, colonne);
-                        System.out.println(sortie.getX()+" "+sortie.getY());
+                        System.out.println(sortie.getX() + " " + sortie.getY());
                         break;
 
                     default:
@@ -159,8 +159,6 @@ public class Labyrinthe {
         // ferme fichier
         bfRead.close();
     }
-
-
 
 
     /**
@@ -179,27 +177,27 @@ public class Labyrinthe {
         // si c'est pas un mur, on effectue le deplacement
         if (!this.murs[suivante[0]][suivante[1]] && !etreFini()) {
             // si c'est un monstre, on reste aux mêmes coordonnées
-            if(suivante[0]==monstre.getX() && suivante[1]==monstre.getY()){
+            if (suivante[0] == monstre.getX() && suivante[1] == monstre.getY()) {
                 System.out.println("ATTENTION, il y a un monstre ici");
-            }else{
+            } else {
                 // on met a jour personnage
                 this.pj.setX(suivante[0]);
                 this.pj.setY(suivante[1]);
             }
-<<<<<<< HEAD
+
             if (!this.pj.isAmulettePossedee()) {
                 pj.recupererObjet(amulette);
             }
         }
-        if (etreFini()){
+        if (etreFini()) {
             System.out.println("vous avez gagné");
         }
-=======
-            if(etreFini()){
-                System.out.println("victoire");
-                System.exit(0);
-            }
->>>>>>> bb819c9e5df370884cec8cf0b0c5be77815039f1
+
+        if (etreFini()) {
+            System.out.println("victoire");
+            System.exit(0);
+        }
+
     }
 
     public void deplacerMonstre(String action) {
@@ -210,79 +208,85 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
-<<<<<<< HEAD
+
         if (!this.murs[suivante[0]][suivante[1]] && !etreFini()) {
-=======
-        if ((!this.murs[suivante[0]][suivante[1]]) && (!etreFini())) {
->>>>>>> bb819c9e5df370884cec8cf0b0c5be77815039f1
-            // si c'est un monstre, on reste aux mêmes coordonnées
-            if(suivante[0]==pj.getX() && suivante[1]==pj.getY()){
-                System.out.println("Le Monstre attaque !");
-            }else{
-                // on met a jour personnage
-                this.monstre.setX(suivante[0]);
-                this.monstre.setY(suivante[1]);
+
+            if ((!this.murs[suivante[0]][suivante[1]]) && (!etreFini())) {
+
+                // si c'est un monstre, on reste aux mêmes coordonnées
+                if (suivante[0] == pj.getX() && suivante[1] == pj.getY()) {
+                    System.out.println("Le Monstre attaque !");
+                } else {
+                    // on met a jour personnage
+                    this.monstre.setX(suivante[0]);
+                    this.monstre.setY(suivante[1]);
+                }
             }
         }
     }
 
-    /**
-     * jamais fini
-     *
-     * @return fin du jeu
-     */
-    public boolean etreFini() {
-        if((pj.etrePresent(sortie.getX(),sortie.getY()) && pj.isAmulettePossedee())){
-            return true;
-        }else{
-            return false;
+        /**
+         * jamais fini
+         *
+         * @return fin du jeu
+         */
+        public boolean etreFini () {
+            if ((pj.etrePresent(sortie.getX(), sortie.getY()) && pj.isAmulettePossedee())) {
+                return true;
+            } else {
+                return false;
+            }
         }
+
+        // ##################################
+        // GETTER
+        // ##################################
+
+        /**
+         * return taille selon Y
+         *
+         * @return
+         */
+        public int getLengthY () {
+            return murs[0].length;
+        }
+
+        /**
+         * return taille selon X
+         *
+         * @return
+         */
+        public int getLength () {
+            return murs.length;
+        }
+
+        /**
+         * return mur en (i,j)
+         * @param x
+         * @param y
+         * @return
+         */
+        public boolean getMur ( int x, int y){
+            // utilise le tableau de boolean
+            return this.murs[x][y];
+        }
+
+        public Perso getMonstre () {
+            return this.monstre;
+        }
+
+        public Perso getPj () {
+            return this.pj;
+        }
+
+        public Amulette getAmulette () {
+            return this.amulette;
+        }
+
+        public Sortie getSortie () {
+            return sortie;
+        }
+
     }
 
-    // ##################################
-    // GETTER
-    // ##################################
 
-    /**
-     * return taille selon Y
-     *
-     * @return
-     */
-    public int getLengthY() {
-        return murs[0].length;
-    }
-
-    /**
-     * return taille selon X
-     *
-     * @return
-     */
-    public int getLength() {
-        return murs.length;
-    }
-
-    /**
-     * return mur en (i,j)
-     * @param x
-     * @param y
-     * @return
-     */
-    public boolean getMur(int x, int y) {
-        // utilise le tableau de boolean
-        return this.murs[x][y];
-    }
-
-    public Perso getMonstre(){
-        return this.monstre;
-    }
-
-    public Perso getPj() {return this.pj;}
-
-    public Amulette getAmulette(){
-        return this.amulette;
-    }
-
-    public Sortie getSortie() {
-        return sortie;
-    }
-}

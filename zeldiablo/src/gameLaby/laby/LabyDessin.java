@@ -57,10 +57,7 @@ public class LabyDessin implements DessinJeu {
         dessinerPerso(gc,labyrinthe);
     }
 
-
-<<<<<<< HEAD
-        //dessin amulette
-=======
+    //dessin amulette
     public void dessinerSortie(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
         if((!labyrinthe.pj.etrePresent(labyrinthe.sortie.getX(),labyrinthe.sortie.getY()))){
             Sortie sortie = labyrinthe.sortie;
@@ -73,7 +70,6 @@ public class LabyDessin implements DessinJeu {
     }
 
     public void dessinerAmulette(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
->>>>>>> bb819c9e5df370884cec8cf0b0c5be77815039f1
         if(!labyrinthe.pj.isAmulettePossedee()) {
             gc.setFill(Color.YELLOW);
             Amulette amulette = labyrinthe.amulette;
@@ -103,7 +99,6 @@ public class LabyDessin implements DessinJeu {
         int px = perso.getX();
         int py = perso.getY();
         gc.drawImage(personnage,py*30,px*30,30,30);
-<<<<<<< HEAD
 
         if(labyrinthe.etreFini() == true){
             FileInputStream ipWin = new FileInputStream("zeldiablo/images/win.png");
@@ -113,8 +108,6 @@ public class LabyDessin implements DessinJeu {
             gc.drawImage(win,x*7,y*2,200,200);
         }
 
-=======
->>>>>>> bb819c9e5df370884cec8cf0b0c5be77815039f1
     }
 
 }
