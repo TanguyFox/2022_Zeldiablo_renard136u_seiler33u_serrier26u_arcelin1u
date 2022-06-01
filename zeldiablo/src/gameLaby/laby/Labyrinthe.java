@@ -189,14 +189,6 @@ public class Labyrinthe {
                 pj.recupererObjet(amulette);
             }
         }
-        if (etreFini()) {
-            System.out.println("vous avez gagné");
-        }
-
-        if (etreFini()) {
-            System.out.println("victoire");
-            System.exit(0);
-        }
 
     }
 
