@@ -28,5 +28,7 @@ Objet : methode boolean estPossedee(Perso p, Objet objet) //vérifie que l'objet
 
 Gérer attaque // découper le dessin // inventaire graphique
 
+tests: etrefini() + inventairePlein
+
 Demander comment afficher message victoire javafx
 

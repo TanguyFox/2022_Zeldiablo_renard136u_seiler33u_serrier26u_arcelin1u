@@ -1,6 +1,7 @@
 import gameLaby.laby.Amulette;
 import gameLaby.laby.Labyrinthe;
 import gameLaby.laby.Perso;
+import gameLaby.laby.Sortie;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -139,7 +140,33 @@ class LabyrintheTest {
         assertTrue( p.isAmulettePossedee());
     }
 
+    @Test
+    void test_etreFini() throws IOException {
+        Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
 
+        Perso p = laby.getPj();
+        Amulette amulette = laby.getAmulette();
+        p.setX(amulette.getX());
+        p.setY(amulette.getY());
+        p.recupererObjet(amulette);
+        Sortie sortie = laby.getSortie();
+        p.setX(sortie.getX());
+        p.setY(sortie.getY());
 
+        assertTrue(laby.etreFini());
+    }
+
+    @Test
+    void test_inventairePlein() throws IOException {
+        Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
+
+        Perso p = laby.getPj();
+        for(int i = 0;i<5;i++){
+            Amulette a = new Amulette(p.getX(),p.getY());
+            p.recupererObjet(a);
+        }
+
+        assertTrue(p.inventairePlein());
+    }
 
 }
