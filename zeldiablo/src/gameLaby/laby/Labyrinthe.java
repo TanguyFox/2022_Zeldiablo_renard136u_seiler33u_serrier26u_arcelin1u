@@ -170,31 +170,36 @@ public class Labyrinthe {
      * @param action une des actions possibles
      */
     public void deplacerPerso(String action) {
+        // case courante
+        int[] courante = {this.pj.getX(), this.pj.getY()};
 
-            // case courante
-            int[] courante = {this.pj.getX(), this.pj.getY()};
+        // calcule case suivante
+        int[] suivante = getSuivant(courante[0], courante[1], action);
 
-            // calcule case suivante
-            int[] suivante = getSuivant(courante[0], courante[1], action);
-
-            // si c'est pas un mur, on effectue le deplacement
-            if ((!this.murs[suivante[0]][suivante[1]]) && (!etreFini())) {
-                // si c'est un monstre, on reste aux mêmes coordonnées
-                if (suivante[0] == monstre.getX() && suivante[1] == monstre.getY()) {
-                    System.out.println("ATTENTION, il y a un monstre ici");
-                } else {
-                    // on met a jour personnage
-                    this.pj.setX(suivante[0]);
-                    this.pj.setY(suivante[1]);
-                }
-                if (!this.pj.isAmulettePossedee()) {
-                    pj.recupererObjet(amulette);
-                }
+        // si c'est pas un mur, on effectue le deplacement
+        if (!this.murs[suivante[0]][suivante[1]] && !etreFini()) {
+            // si c'est un monstre, on reste aux mêmes coordonnées
+            if(suivante[0]==monstre.getX() && suivante[1]==monstre.getY()){
+                System.out.println("ATTENTION, il y a un monstre ici");
+            }else{
+                // on met a jour personnage
+                this.pj.setX(suivante[0]);
+                this.pj.setY(suivante[1]);
             }
+<<<<<<< HEAD
+            if (!this.pj.isAmulettePossedee()) {
+                pj.recupererObjet(amulette);
+            }
+        }
+        if (etreFini()){
+            System.out.println("vous avez gagné");
+        }
+=======
             if(etreFini()){
                 System.out.println("victoire");
                 System.exit(0);
             }
+>>>>>>> bb819c9e5df370884cec8cf0b0c5be77815039f1
     }
 
     public void deplacerMonstre(String action) {
@@ -205,7 +210,11 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
+<<<<<<< HEAD
+        if (!this.murs[suivante[0]][suivante[1]] && !etreFini()) {
+=======
         if ((!this.murs[suivante[0]][suivante[1]]) && (!etreFini())) {
+>>>>>>> bb819c9e5df370884cec8cf0b0c5be77815039f1
             // si c'est un monstre, on reste aux mêmes coordonnées
             if(suivante[0]==pj.getX() && suivante[1]==pj.getY()){
                 System.out.println("Le Monstre attaque !");
