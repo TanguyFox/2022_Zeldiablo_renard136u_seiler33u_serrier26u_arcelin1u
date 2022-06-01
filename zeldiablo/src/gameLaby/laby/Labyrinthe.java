@@ -191,6 +191,10 @@ public class Labyrinthe {
                     pj.recupererObjet(amulette);
                 }
             }
+            if(etreFini()){
+                System.out.println("victoire");
+                System.exit(0);
+            }
     }
 
     public void deplacerMonstre(String action) {
@@ -201,7 +205,7 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]]) {
+        if ((!this.murs[suivante[0]][suivante[1]]) && (!etreFini())) {
             // si c'est un monstre, on reste aux mêmes coordonnées
             if(suivante[0]==pj.getX() && suivante[1]==pj.getY()){
                 System.out.println("Le Monstre attaque !");

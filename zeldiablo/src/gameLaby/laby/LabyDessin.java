@@ -27,8 +27,6 @@ public class LabyDessin implements DessinJeu {
         // recupere un pinceau pour dessiner
         final GraphicsContext gc = canvas.getGraphicsContext2D();
 
-
-
         // dessin fond
         gc.setFill(Color.LIGHTGRAY);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -50,8 +48,25 @@ public class LabyDessin implements DessinJeu {
             }
         }
 
+        dessinerSortie(gc,labyrinthe);
+        dessinerAmulette(gc,labyrinthe);
+        dessinerMonstre(gc,labyrinthe);
+        dessinerPerso(gc,labyrinthe);
+    }
 
-        //dessin amulette
+
+    public void dessinerSortie(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
+        if((!labyrinthe.pj.etrePresent(labyrinthe.sortie.getX(),labyrinthe.sortie.getY()))){
+            Sortie sortie = labyrinthe.sortie;
+            int sortieX = sortie.getX();
+            int sortieY = sortie.getY();
+            FileInputStream inputstream5 = new FileInputStream("zeldiablo/images/portail2.png");
+            Image porte = new Image(inputstream5);
+            gc.drawImage(porte,sortieY*30,sortieX*30,30,30);
+        }
+    }
+
+    public void dessinerAmulette(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
         if(!labyrinthe.pj.isAmulettePossedee()) {
             gc.setFill(Color.YELLOW);
             Amulette amulette = labyrinthe.amulette;
@@ -61,29 +76,18 @@ public class LabyDessin implements DessinJeu {
             Image joyaux = new Image(inputStream4);
             gc.drawImage(joyaux,amuletteY*30,amuletteX*30,30,30);
         }
+    }
 
-
-        //dessin monstre
+    public void dessinerMonstre(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
         Perso monstre = labyrinthe.monstre;
         FileInputStream inputstream2 = new FileInputStream("zeldiablo/images/monstre.gif");
         Image mechant = new Image(inputstream2);
         int monstreX = monstre.getX();
         int monstreY = monstre.getY();
-        gc.drawImage(mechant,monstreY*30,monstreX*30,30,30);
+        gc.drawImage(mechant, monstreY * 30, monstreX * 30, 30, 30);
+    }
 
-        //dessin sortie
-        if((!labyrinthe.pj.etrePresent(labyrinthe.sortie.getX(),labyrinthe.sortie.getY()))){
-            Sortie sortie = labyrinthe.sortie;
-            int sortieX = sortie.getX();
-            int sortieY = sortie.getY();
-            FileInputStream inputstream5 = new FileInputStream("zeldiablo/images/portail2.png");
-            Image porte = new Image(inputstream5);
-            gc.drawImage(porte,sortieY*30,sortieX*30,30,30);
-        }
-
-
-        // dessin Perso
-        gc.setFill(Color.RED);
+    public void dessinerPerso(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
         Perso perso = labyrinthe.pj;
 
         FileInputStream inputStream3 = new FileInputStream("zeldiablo/images/personnage2.png");
@@ -92,7 +96,6 @@ public class LabyDessin implements DessinJeu {
         int px = perso.getX();
         int py = perso.getY();
         gc.drawImage(personnage,py*30,px*30,30,30);
-
     }
 
 }

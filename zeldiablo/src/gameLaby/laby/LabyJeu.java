@@ -47,6 +47,7 @@ public class LabyJeu implements Jeu {
             laby.deplacerMonstre(DEPLACEMENT_MONSTRE[i]);
         }
 
+
     }
     @Override
     public void init() {
