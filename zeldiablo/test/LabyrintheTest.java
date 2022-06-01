@@ -1,7 +1,5 @@
-import gameLaby.laby.Amulette;
-import gameLaby.laby.Labyrinthe;
-import gameLaby.laby.Perso;
-import gameLaby.laby.Sortie;
+import gameLaby.laby.*;
+import gameLaby.laby.Cancel.Perso;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,7 +34,7 @@ class LabyrintheTest {
     void getPj() throws IOException{
         Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
 
-        Perso pj = laby.getPj();
+        Joueur pj = laby.getPj();
 
     }
 
@@ -45,7 +43,7 @@ class LabyrintheTest {
         Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
 
         laby.deplacerPerso(Labyrinthe.GAUCHE);
-        Perso p = laby.getPj();
+        Joueur p = laby.getPj();
 
         assertEquals(2,p.getX());
         assertEquals(2,p.getY());
@@ -56,7 +54,7 @@ class LabyrintheTest {
         Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
 
         laby.deplacerPerso(Labyrinthe.DROITE);
-        Perso p = laby.getPj();
+        Joueur p = laby.getPj();
 
         assertEquals(2,p.getX());
         assertEquals(4,p.getY());
@@ -67,7 +65,7 @@ class LabyrintheTest {
         Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
 
         laby.deplacerPerso(Labyrinthe.HAUT);
-        Perso p = laby.getPj();
+        Joueur p = laby.getPj();
 
         assertEquals(1,p.getX());
         assertEquals(3,p.getY());
@@ -78,7 +76,7 @@ class LabyrintheTest {
         Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
 
         laby.deplacerPerso(Labyrinthe.BAS);
-        Perso p = laby.getPj();
+        Joueur p = laby.getPj();
 
         assertEquals(3,p.getX());
         assertEquals(3,p.getY());
@@ -90,7 +88,7 @@ class LabyrintheTest {
 
         laby.deplacerPerso(Labyrinthe.GAUCHE);
 
-        Perso p = laby.getPj();
+        Joueur p = laby.getPj();
 
         assertEquals(1,p.getX());
         assertEquals(2,p.getY());
@@ -105,7 +103,7 @@ class LabyrintheTest {
     void test_recupererObjet_OK() throws IOException {
         Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
 
-        Perso p = laby.getPj();
+        Joueur p = laby.getPj();
         Amulette amulette = laby.getAmulette();
         p.setX(amulette.getX());
         p.setY(amulette.getY());
@@ -118,7 +116,7 @@ class LabyrintheTest {
     void test_recupererObjet_PositionIncorrect() throws IOException {
         Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
 
-        Perso p = laby.getPj();
+        Joueur p = laby.getPj();
         Amulette amulette = laby.getAmulette();
 
         p.recupererObjet(amulette);
@@ -129,7 +127,7 @@ class LabyrintheTest {
     void test_recupererObjet_AmulettePossede() throws IOException {
         Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
 
-        Perso p = laby.getPj();
+        Joueur p = laby.getPj();
         Amulette amulette = laby.getAmulette();
 
         p.setX(amulette.getX());
@@ -144,7 +142,7 @@ class LabyrintheTest {
     void test_etreFini() throws IOException {
         Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
 
-        Perso p = laby.getPj();
+        Joueur p = laby.getPj();
         Amulette amulette = laby.getAmulette();
         p.setX(amulette.getX());
         p.setY(amulette.getY());
@@ -160,7 +158,7 @@ class LabyrintheTest {
     void test_inventairePlein() throws IOException {
         Labyrinthe laby = new Labyrinthe("zeldiablo/labySimple/laby0.txt");
 
-        Perso p = laby.getPj();
+        Joueur p = laby.getPj();
         for(int i = 0;i<5;i++){
             Amulette a = new Amulette(p.getX(),p.getY());
             p.recupererObjet(a);

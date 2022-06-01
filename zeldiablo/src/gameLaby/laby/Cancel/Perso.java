@@ -1,5 +1,7 @@
-package gameLaby.laby;
+package gameLaby.laby.Cancel;
 
+
+import gameLaby.laby.Objet;
 
 import java.util.ArrayList;
 import java.util.List;

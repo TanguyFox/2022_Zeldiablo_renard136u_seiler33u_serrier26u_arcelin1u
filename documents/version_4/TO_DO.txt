@@ -7,3 +7,11 @@
 -Ajouter une interface monstre
 -créer des classes de monstre différent (3 monstres) (éventuellement à intelligence variable)
 
+
+----------------------------------------------------------------------------------------------
+
+-CLASSE EPEE :
+    - faire la methode faireDegat
+
+-CLASSE Monstre :
+    -faire la

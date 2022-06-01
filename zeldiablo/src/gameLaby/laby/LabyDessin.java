@@ -1,6 +1,7 @@
 package gameLaby.laby;
 
 
+import gameLaby.laby.Cancel.Perso;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -95,13 +96,13 @@ public class LabyDessin implements DessinJeu {
     }
 
     public void dessinerPerso(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
-        Perso perso = labyrinthe.pj;
+        Joueur joueur = labyrinthe.pj;
 
         FileInputStream inputStream3 = new FileInputStream("zeldiablo/images/personnage2.png");
 
         Image personnage = new Image(inputStream3);
-        int px = perso.getX();
-        int py = perso.getY();
+        int px = joueur.getX();
+        int py = joueur.getY();
         gc.drawImage(personnage,py*30,px*30,30,30);
 
 

@@ -1,5 +1,7 @@
 package gameLaby.laby;
 
+import gameLaby.laby.Cancel.Perso;
+
 public interface Objet {
 
     /**

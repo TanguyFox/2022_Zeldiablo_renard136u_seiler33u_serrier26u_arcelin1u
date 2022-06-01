@@ -1,9 +1,10 @@
 package gameLaby.laby;
 
+import gameLaby.laby.Cancel.Perso;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 
 /**
  * classe labyrinthe. represente un labyrinthe avecW
@@ -34,7 +35,7 @@ public class Labyrinthe {
     /**
      * attribut du personnage
      */
-    public Perso pj;
+    public Joueur pj;
 
     //passer par une liste pour en ajouter plusieurs
     public Perso monstre;
@@ -77,8 +78,7 @@ public class Labyrinthe {
             default:
                 throw new Error("action inconnue");
         }
-        int[] res = {x, y};
-        return res;
+        return new int[]{x, y};
     }
 
     /**
@@ -129,7 +129,7 @@ public class Labyrinthe {
                         // pas de mur
                         this.murs[numeroLigne][colonne] = false;
                         // ajoute PJ
-                        this.pj = new Perso(numeroLigne, colonne);
+                        this.pj = new Joueur(numeroLigne, colonne);
                         break;
                     case MONSTRE:
                         this.murs[numeroLigne][colonne] = false;
@@ -150,7 +150,6 @@ public class Labyrinthe {
                         throw new Error("caractere inconnu " + c);
                 }
             }
-
             // lecture
             ligne = bfRead.readLine();
             numeroLigne++;
@@ -189,7 +188,6 @@ public class Labyrinthe {
                 pj.recupererObjet(amulette);
             }
         }
-
     }
 
     public void deplacerMonstre(String action) {
@@ -223,11 +221,7 @@ public class Labyrinthe {
          * @return fin du jeu
          */
         public boolean etreFini () {
-            if ((pj.etrePresent(sortie.getX(), sortie.getY()) && pj.isAmulettePossedee())) {
-                return true;
-            } else {
-                return false;
-            }
+            return pj.etrePresent(sortie.getX(), sortie.getY()) && pj.isAmulettePossedee();
         }
 
         // ##################################
@@ -267,7 +261,7 @@ public class Labyrinthe {
             return this.monstre;
         }
 
-        public Perso getPj () {
+        public Joueur getPj () {
             return this.pj;
         }
 

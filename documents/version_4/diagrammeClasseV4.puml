@@ -43,7 +43,6 @@ class LabyJeu{
 
 
 interface Perso{
-+ Perso(dx : int, dy : int)
 + etrePresent(dx : int, dy : int) : boolean
 + recupererObjet(objet : Objet)
 + getX() : int
