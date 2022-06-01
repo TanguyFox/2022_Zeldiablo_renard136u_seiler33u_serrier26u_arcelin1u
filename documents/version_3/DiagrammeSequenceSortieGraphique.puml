@@ -1,6 +1,8 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+title Affichage de la sortie
+
 participant "main" as MAIN
 participant "dessinLaby : LabyDessin" as LD
 participant "labyrinthe : Labyrinthe" as L
