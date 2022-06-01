@@ -5,5 +5,5 @@
 -mettre barre de vie et arme dans le terminal
 
 -Ajouter une interface monstre
--créer des classes de monstre différent (3 monstres)
+-créer des classes de monstre différent (3 monstres) (éventuellement à intelligence variable)
 
