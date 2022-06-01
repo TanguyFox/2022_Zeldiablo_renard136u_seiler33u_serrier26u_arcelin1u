@@ -1,0 +1,10 @@
+Bilan v3:
+
+-Le labyrinthe possède des sprites pour tout les éléments du labyrinthe.
+-Le labyrinthe possède une amulette(implémentant l'interface objet) essentiel dans la victoire du joueur.
+-Le joueur peut récupérer l'amulette, qui est stocké dans un inventaire, représenté par une liste de taille max=5.
+-Le labyrinthe possède une sortie. Si le joueur récupère l'amulette et se rend sur la case sortie, le joueur a gagné et le jeu se termine.
+-Ajout de test supplémentaires liés à cette nouvelle version(tous validé).
+-Le jeu fonctionne correctement.
+
+
