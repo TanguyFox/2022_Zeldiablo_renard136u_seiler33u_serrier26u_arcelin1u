@@ -27,8 +27,6 @@ public class LabyDessin implements DessinJeu {
         // recupere un pinceau pour dessiner
         final GraphicsContext gc = canvas.getGraphicsContext2D();
 
-
-
         // dessin fond
         gc.setFill(Color.LIGHTGRAY);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
@@ -50,21 +48,8 @@ public class LabyDessin implements DessinJeu {
             }
         }
 
-
-        //dessin amulette
-        if(!labyrinthe.pj.isAmulettePossedee()) {
-            gc.setFill(Color.YELLOW);
-            Amulette amulette = labyrinthe.amulette;
-            int amuletteX = amulette.getX();
-            int amuletteY = amulette.getY();
-            FileInputStream inputStream4 = new FileInputStream("zeldiablo/images/amulette2.png");
-            Image joyaux = new Image(inputStream4);
-            gc.drawImage(joyaux,amuletteY*30,amuletteX*30,30,30);
-        }
-
-
         dessinerSortie(gc,labyrinthe);
-
+        dessinerAmulette(gc,labyrinthe);
         dessinerMonstre(gc,labyrinthe);
         dessinerPerso(gc,labyrinthe);
     }
@@ -78,6 +63,18 @@ public class LabyDessin implements DessinJeu {
             FileInputStream inputstream5 = new FileInputStream("zeldiablo/images/portail2.png");
             Image porte = new Image(inputstream5);
             gc.drawImage(porte,sortieY*30,sortieX*30,30,30);
+        }
+    }
+
+    public void dessinerAmulette(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
+        if(!labyrinthe.pj.isAmulettePossedee()) {
+            gc.setFill(Color.YELLOW);
+            Amulette amulette = labyrinthe.amulette;
+            int amuletteX = amulette.getX();
+            int amuletteY = amulette.getY();
+            FileInputStream inputStream4 = new FileInputStream("zeldiablo/images/amulette2.png");
+            Image joyaux = new Image(inputStream4);
+            gc.drawImage(joyaux,amuletteY*30,amuletteX*30,30,30);
         }
     }
 
