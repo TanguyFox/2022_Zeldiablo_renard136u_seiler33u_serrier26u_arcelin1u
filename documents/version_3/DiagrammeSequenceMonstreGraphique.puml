@@ -2,7 +2,7 @@
 'https://plantuml.com/sequence-diagram
 
 
-title "Affichage des éléments du Monstre"
+title "Affichage du Monstre"
 
 participant "main : Main" as MAIN
 participant "dessinlaby : LabyDessin" as LD
