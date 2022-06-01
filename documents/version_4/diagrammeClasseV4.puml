@@ -1,0 +1,150 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title Structure Jeu Labyrinthe
+
+
+package gameLaby.laby{
+skinparam classAttributeIconSize 0
+class Labyrinthe{
++ {static} MUR : char
++ {static} PJ : char
++ {static} MONSTRE : char
++ {static} VIDE : char
++ {static} AMULETTE : char
++ {static} SORTIE : char
++ {static} HAUT : String
++ {static} BAS : String
++ {static} GAUCHE : String
++ {static} DROITE : String
++ murs : boolean[][]
++ {static} getSuivant (x : int, y : int, action : String) : int []
++ Labyrinthe (nom : String)
++ deplacerPerso(action : String)
++ deplacerMonstre(action : String)
++ etreFini() : boolean
++ getLengthY() : int
++ getLength() : int
++ getMur(x : int, y : int) : boolean
++ getPj() : Perso
++ getMonstre() : Perso
++ getAmulette() : Amulette
++ getSortie() : Sortie
+}
+
+class LabyJeu{
++DEPLACEMENT_MONSTRE : String[]
++LabyJeu()
++update(seconde : Double, clavier : Clavier)
++init()
++etreFini() : boolean
++getLabyrinthe() : Labyrinthe
+}
+
+
+interface Perso{
++ Perso(dx : int, dy : int)
++ etrePresent(dx : int, dy : int) : boolean
++ recupererObjet(objet : Objet)
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ toString() : String
++ attaquer(arme : Arme)
++ pertePv(degatSubis : int);
+}
+
+class Amulette{
++ x : int
++ y : int
++ Amulette(dx : int, dy : int)
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ estPossede(p : Perso) : boolean
++ toString() : String
+}
+
+interface Objet{
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ estPossede(p : Perso) : boolean
++ getObjet() : Objet
++ toString() : String
+}
+
+class Sortie{
++ x : int
++ y : int
++ Sortie(dx : int, dy : int)
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ toString() : String
+}
+class Joueur{
++ x : int
++ y : int
++ Joueur(dx : int, dy : int)
++ inventairePlein(): boolean
++ isAmulettePossedee(): boolean
++ getInventaire() : List<Objet>
+}
+
+abstract Monstre{
++ x : int
++ y : int
++ {abstract} deplacerMonstre(action : String)
++ Monstre(dx : int, dy : int)
++ etrePresent(dx : int, dy : int) : boolean
++ recupererObjet(objet : Objet)
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ toString() : String
+}
+class TasDeMorve{
++ pv : int
+}
+
+class Fantome{
++ pv : int
+}
+
+class epee{
++ degat : int
++ faireDegat()
+}
+}
+
+
+
+
+LabyJeu "1" --> "1 " Labyrinthe : labyrinthe
+Labyrinthe "1" ---> "1..*" Perso : perso,monstre
+Labyrinthe "1" ---> "1" Sortie : sortie
+Labyrinthe "1" ---> "1" Amulette : amulette
+Amulette  ..|>  Objet
+Joueur "1"--> "0..*"Objet : inventaire
+Perso  ..|>  Joueur
+
+Perso  ..|>  Monstre
+Monstre --|> TasDeMorve
+Monstre --|> Fantome
+epee ..|> Objet
+Joueur "1" --> "1" epee : "epee"
+
+
+
+
+
+@enduml
