@@ -52,19 +52,13 @@ interface Perso{
 + toString() : String
 + attaquer(arme : Arme)
 + pertePv(degatSubis : int);
++ etreMort() : boolean
 }
 
 class Amulette{
 + x : int
 + y : int
 + Amulette(dx : int, dy : int)
-+ etrePresent(dx : int, dy : int) : boolean
-+ getX() : int
-+ getY() : int
-+ setX(x : int)
-+ setY(y : int)
-+ estPossede(p : Perso) : boolean
-+ toString() : String
 }
 
 interface Objet{
@@ -102,21 +96,16 @@ abstract Monstre{
 + x : int
 + y : int
 + {abstract} deplacerMonstre(action : String)
-+ Monstre(dx : int, dy : int)
-+ etrePresent(dx : int, dy : int) : boolean
-+ recupererObjet(objet : Objet)
-+ getX() : int
-+ getY() : int
-+ setX(x : int)
-+ setY(y : int)
-+ toString() : String
+
 }
 class TasDeMorve{
 + pv : int
++ deplacerMonstre(action : String)
 }
 
 class Fantome{
 + pv : int
++ deplacerMonstre((action : String)
 }
 
 class epee{
@@ -134,11 +123,11 @@ Labyrinthe "1" ---> "1" Sortie : sortie
 Labyrinthe "1" ---> "1" Amulette : amulette
 Amulette  ..|>  Objet
 Joueur "1"--> "0..*"Objet : inventaire
-Perso  ..|>  Joueur
+Perso  <|..  Joueur
 
-Perso  ..|>  Monstre
-Monstre --|> TasDeMorve
-Monstre --|> Fantome
+Perso  <|..  Monstre
+Monstre <|-- TasDeMorve
+Monstre <|-- Fantome
 epee ..|> Objet
 Joueur "1" --> "1" epee : "epee"
 
