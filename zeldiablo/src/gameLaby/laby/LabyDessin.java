@@ -63,15 +63,14 @@ public class LabyDessin implements DessinJeu {
         }
 
 
-        //dessin monstre
-        Perso monstre = labyrinthe.monstre;
-        FileInputStream inputstream2 = new FileInputStream("zeldiablo/images/monstre.gif");
-        Image mechant = new Image(inputstream2);
-        int monstreX = monstre.getX();
-        int monstreY = monstre.getY();
-        gc.drawImage(mechant,monstreY*30,monstreX*30,30,30);
+        dessinerSortie(gc,labyrinthe);
 
-        //dessin sortie
+        dessinerMonstre(gc,labyrinthe);
+        dessinerPerso(gc,labyrinthe);
+    }
+
+
+    public void dessinerSortie(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
         if((!labyrinthe.pj.etrePresent(labyrinthe.sortie.getX(),labyrinthe.sortie.getY()))){
             Sortie sortie = labyrinthe.sortie;
             int sortieX = sortie.getX();
@@ -80,10 +79,18 @@ public class LabyDessin implements DessinJeu {
             Image porte = new Image(inputstream5);
             gc.drawImage(porte,sortieY*30,sortieX*30,30,30);
         }
+    }
 
+    public void dessinerMonstre(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
+        Perso monstre = labyrinthe.monstre;
+        FileInputStream inputstream2 = new FileInputStream("zeldiablo/images/monstre.gif");
+        Image mechant = new Image(inputstream2);
+        int monstreX = monstre.getX();
+        int monstreY = monstre.getY();
+        gc.drawImage(mechant, monstreY * 30, monstreX * 30, 30, 30);
+    }
 
-        // dessin Perso
-        gc.setFill(Color.RED);
+    public void dessinerPerso(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
         Perso perso = labyrinthe.pj;
 
         FileInputStream inputStream3 = new FileInputStream("zeldiablo/images/personnage2.png");
@@ -92,7 +99,6 @@ public class LabyDessin implements DessinJeu {
         int px = perso.getX();
         int py = perso.getY();
         gc.drawImage(personnage,py*30,px*30,30,30);
-
     }
 
 }
