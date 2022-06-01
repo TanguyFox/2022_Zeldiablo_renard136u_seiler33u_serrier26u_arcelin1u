@@ -55,6 +55,14 @@ public class LabyDessin implements DessinJeu {
         dessinerAmulette(gc,labyrinthe);
         dessinerMonstre(gc,labyrinthe);
         dessinerPerso(gc,labyrinthe);
+
+        if(labyrinthe.etreFini()){
+            FileInputStream ipWin = new FileInputStream("zeldiablo/images/win.png");
+            Image win = new Image(ipWin);
+            int x = labyrinthe.getLength();
+            int y = labyrinthe.getLengthY();
+            gc.drawImage(win,x*7,y*2,200,200);
+        }
     }
 
     //dessin amulette
@@ -100,13 +108,7 @@ public class LabyDessin implements DessinJeu {
         int py = perso.getY();
         gc.drawImage(personnage,py*30,px*30,30,30);
 
-        if(labyrinthe.etreFini() == true){
-            FileInputStream ipWin = new FileInputStream("zeldiablo/images/win.png");
-            Image win = new Image(ipWin);
-            int x = labyrinthe.getLength();
-            int y = labyrinthe.getLengthY();
-            gc.drawImage(win,x*7,y*2,200,200);
-        }
+
 
     }
 
