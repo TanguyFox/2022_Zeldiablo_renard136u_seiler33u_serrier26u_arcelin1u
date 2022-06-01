@@ -118,9 +118,10 @@ class epee{
 
 
 LabyJeu "1" --> "1 " Labyrinthe : labyrinthe
-Labyrinthe "1" ---> "1..*" Perso : perso,monstre
+Labyrinthe "1" ---> "1" Joueur : pj
 Labyrinthe "1" ---> "1" Sortie : sortie
 Labyrinthe "1" ---> "1" Amulette : amulette
+Labyrinthe "1" ---> "0..*" Monstre : monstres
 Amulette  ..|>  Objet
 Joueur "1"--> "0..*"Objet : inventaire
 Perso  <|..  Joueur
