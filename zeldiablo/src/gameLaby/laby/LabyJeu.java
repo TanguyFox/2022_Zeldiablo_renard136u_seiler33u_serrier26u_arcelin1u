@@ -46,9 +46,6 @@ public class LabyJeu implements Jeu {
             this.laby.deplacerPerso(HAUT);
             laby.deplacerMonstre(DEPLACEMENT_MONSTRE[i]);
         }
-        if(etreFini()){
-            System.exit(0);
-        }
 
     }
     @Override
