@@ -40,18 +40,11 @@ class LabyJeu{
 +etreFini() : boolean
 +getLabyrinthe() : Labyrinthe
 }
-class LabyDessin{
-+dessinerJeu(jeu : Jeu, canvas: Canvas)
-+dessinerAmulette()
-+dessinerMonstre()
-+dessinerSortie()
-+dessinerPerso()
-}
+
 
 class Perso{
 + x : int
 + y : int
-+ inventaire : List<Objet>
 + Personnage(dx : int, dy : int)
 + etrePresent(dx : int, dy : int) : boolean
 + inventairePlein(): boolean
@@ -102,26 +95,15 @@ class Sortie{
 }
 }
 
-package Moteurjeu{
-interface Jeu{
-+ init()
-+update(seconds:double, clavier: Clavier)
-+etreFini() : boolean
-}
-
-interface DessinJeu{
-+ dessinerJeu(jeu : Jeu, canvas : Canvas)
-}
-}
 
 
-LabyJeu .|> Jeu
-LabyDessin ...|> DessinJeu
+
+
 LabyJeu "1" --> "1 " Labyrinthe : labyrinthe
 Labyrinthe "1" ---> "1..*" Perso : perso,monstre
 Labyrinthe "1" ---> "1" Sortie : sortie
 Labyrinthe "1" ---> "1" Amulette : amulette
 Amulette  ..|>  Objet
-LabyDessin ..> LabyJeu : uses
+Perso "1"--> "0..*"Objet : inventaire
 
 @enduml
