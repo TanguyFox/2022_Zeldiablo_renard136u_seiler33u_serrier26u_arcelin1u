@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+participant "main" as M
+participant "pj : Joueur" as J
+participant "TaDMorve : TasDeMorve" as TD
+
+M -> TD : getPV()
+TD -> M : 40
+
+M -> J : attaquer()
+J -> TD : perdrePV(20)
+TD --> J
+J --> M
+
+M -> TD : getPV()
+TD --> M : 20
+
+M -> TD : etreMort()
+TD --> M : false
+
+
+
+M -> J : attaquer()
+J -> TD : perdrePV(20)
+TD --> J
+J --> M
+
+M -> TD : getPV()
+TD --> M : 0
+
+M -> TD : etreMort()
+TD --> M : true
+@enduml
