@@ -5,6 +5,7 @@ import gameLaby.laby.Cancel.Perso;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * classe labyrinthe. represente un labyrinthe avecW
@@ -38,7 +39,7 @@ public class Labyrinthe {
     public Joueur pj;
 
     //passer par une liste pour en ajouter plusieurs
-    public Perso monstre;
+    public List<Monstre> monstre;
 
     public Amulette amulette;
 
