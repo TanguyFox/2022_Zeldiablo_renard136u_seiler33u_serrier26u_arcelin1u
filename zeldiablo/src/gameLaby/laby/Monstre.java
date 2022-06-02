@@ -4,12 +4,14 @@ public abstract class Monstre implements Personnage{
 
     public int x;
     public int y;
+    public int pv;
     public Epee epee;
 
     public Monstre(int x, int y) {
         this.x = x;
         this.y = y;
-        this.epee = null;
+        this.epee = new Epee(x,y,10);
+        this.pv = 100;
     }
 
     /**
@@ -23,13 +25,6 @@ public abstract class Monstre implements Personnage{
         return (this.x == dx && this.y == dy);
     }
 
-    /**
-     * A faire
-     * @param epee
-     */
-    public void recupererArme(Epee epee) {
-        this.epee = epee;
-    }
 
     @Override
     public int getX() {
@@ -53,10 +48,12 @@ public abstract class Monstre implements Personnage{
 
     /**
      * A FAIRE
-     * @param epee
+     * Ca fonctionne peut etre
      */
-    public void attaquer(Epee epee) {
-        throw new Error("TO DO");
+    public void attaquer(Joueur cible) {
+        if(this.etrePresent(cible.x,cible.y)){
+            cible.pertePv(epee.degat);
+        }
     }
 
     /**
@@ -65,7 +62,7 @@ public abstract class Monstre implements Personnage{
      */
     @Override
     public void pertePv(int degatSubis) {
-        throw new Error("TO DO");
+        this.pv -=degatSubis;
     }
 
     @Override
@@ -76,4 +73,31 @@ public abstract class Monstre implements Personnage{
                 ", epee=" + epee +
                 '}';
     }
+
+    /**
+     *     public void deplacerMonstre(String action) {
+     *         // case courante
+     *         int[] courante = {this.monstre.getX(), this.monstre.getY()};
+     *
+     *         // calcule case suivante
+     *         int[] suivante = getSuivant(courante[0], courante[1], action);
+     *
+     *         // si c'est pas un mur, on effectue le deplacement
+     *
+     *         if (!this.murs[suivante[0]][suivante[1]] && !etreFini()) {
+     *
+     *             if ((!this.murs[suivante[0]][suivante[1]]) && (!etreFini())) {
+     *
+     *                 // si c'est un monstre, on reste aux mêmes coordonnées
+     *                 if (suivante[0] == pj.getX() && suivante[1] == pj.getY()) {
+     *                     System.out.println("Le Monstre attaque !");
+     *                 } else {
+     *                     // on met a jour personnage
+     *                     this.monstre.setX(suivante[0]);
+     *                     this.monstre.setY(suivante[1]);
+     *                 }
+     *             }
+     *         }
+     *     }
+     */
 }

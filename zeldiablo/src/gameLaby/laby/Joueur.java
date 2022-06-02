@@ -9,12 +9,14 @@ public class Joueur implements Personnage{
     public int y;
     public List<Objet> inventaire;
     public boolean possedeAmulette;
+    public int pv;
 
     public Joueur(int dx, int dy) {
         this.x = dx;
         this.y = dy;
         this.inventaire = new ArrayList<>();
         this.possedeAmulette=false;
+        this.pv=100;
     }
 
     @Override
@@ -30,7 +32,6 @@ public class Joueur implements Personnage{
         return plein;
     }
 
-    @Override
     public void recupererObjet(Objet objet) {
         if (this.etrePresent(objet.getX(), objet.getY())){
             if (!inventairePlein()) {
@@ -57,6 +58,8 @@ public class Joueur implements Personnage{
         return this.y;
     }
 
+    public int getPv(){return this.pv;}
+
     public boolean isAmulettePossedee(){
         return this.possedeAmulette;
     }
@@ -75,11 +78,11 @@ public class Joueur implements Personnage{
 
     /**
      * A FAIRE
-     * @param epee
      */
-    @Override
-    public void attaquer(Epee epee) {
-        throw new Error("TO DO");
+    public void attaquer(Monstre cible) {
+        if(this.etrePresent(cible.getX(),cible.getY())) {
+            this.epee.faireDegats();
+        }
     }
 
     /**
@@ -88,8 +91,10 @@ public class Joueur implements Personnage{
      */
     @Override
     public void pertePv(int degatSubis) {
-        throw new Error("TO DO");
+        this.pv-=degatSubis;
     }
+
+
 
     @Override
     public String toString() {

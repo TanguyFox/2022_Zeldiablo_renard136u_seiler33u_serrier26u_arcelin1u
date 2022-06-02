@@ -6,69 +6,30 @@ title Attaque du joueur
 participant "main" as MAIN
 participant "pj : Joueur" as J
 participant "laby : Labyrinthe" as L
-participant "suivante : int[][]" as S
 participant "epee : Epee" as E
 participant "monstre : Monstre" as M
 
 MAIN -> J : attaquer()
 activate J
 J -> J : recupCasesVoisines(laby3)
-
-J -> L : getSuivant(5,3, HAUT)
-activate L
-L -> S : get(0)
-S -> L : 5
-L -> S : get(1)
-S -> L : 2
-L --> J : add(5,2)
-deactivate L
+J <-- J : casesVoisines
 
 
-J -> L : getSuivant(5,3, BAS)
-activate L
-L -> S : get(0)
-S -> L : 5
-L -> S : get(1)
-S -> L : 4
-L --> J : add(5,4)
-deactivate L
-
-J -> L : getSuivant(5,3, GAUCHE)
-activate L
-L -> S : get(0)
-S -> L : 4
-L -> S : get(1)
-S -> L : 3
-L --> J : add(4,3)
-deactivate L
-
-J -> L : getSuivant(5,3, HAUT)
-activate L
-L -> S : get(0)
-S -> L : 6
-L -> S : get(1)
-S -> L : 3
-L --> J : add(6,3)
-deactivate L
-
-J --> J : CasesVoisines
-deactivate J
-
-
-loop i<5
-J -> E : faireDegats(10)
-
-
-        activate J
-        activate E
-    E -> M : perdrePv(10)
-
-activate M
-M --> E
-deactivate M
+loop i < casesVoisines.size()
+J -> E : faireDegats(20)
+activate J
+activate E
+        alt le monstre se trouve sur une case voisine
+         E -> M : perdrePv(20)
+         activate M
+         M --> E
+         deactivate M
+        end alt
 E --> J
-end
 deactivate E
+end loop
+
+
 
 
 J --> MAIN

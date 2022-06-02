@@ -50,7 +50,7 @@ interface Perso{
 + setX(x : int)
 + setY(y : int)
 + toString() : String
-+ attaquer(arme : Arme)
++ attaquer()
 + pertePv(degatSubis : int);
 + etreMort() : boolean
 }
@@ -87,14 +87,31 @@ class Joueur{
 + x : int
 + y : int
 + Joueur(dx : int, dy : int)
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ estPossede(p : Perso) : boolean
++ getObjet() : Objet
++ toString() : String
 + inventairePlein(): boolean
 + isAmulettePossedee(): boolean
 + getInventaire() : List<Objet>
++ recupCasesVoisines : List<int[][]>
 }
 
 abstract Monstre{
 + x : int
 + y : int
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ estPossede(p : Perso) : boolean
++ getObjet() : Objet
++ toString() : String
 + {abstract} deplacerMonstre(action : String)
 
 }
@@ -110,7 +127,17 @@ class Fantome{
 
 class epee{
 + degat : int
++ Epee()
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ estPossede(p : Perso) : boolean
++ getObjet() : Objet
++ toString() : String
 + faireDegat()
+
 }
 }
 

@@ -11,6 +11,7 @@ import moteurJeu.Jeu;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.List;
 
 
 public class LabyDessin implements DessinJeu {
@@ -64,7 +65,6 @@ public class LabyDessin implements DessinJeu {
         }
     }
 
-    //dessin amulette
     public void dessinerSortie(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
         if((!labyrinthe.pj.etrePresent(labyrinthe.sortie.getX(),labyrinthe.sortie.getY()))){
             Sortie sortie = labyrinthe.sortie;
@@ -88,12 +88,15 @@ public class LabyDessin implements DessinJeu {
     }
 
     public void dessinerMonstre(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
-        Perso monstre = labyrinthe.monstre;
-        FileInputStream inputstream2 = new FileInputStream("zeldiablo/images/monstre.gif");
-        Image mechant = new Image(inputstream2);
-        int monstreX = monstre.getX();
-        int monstreY = monstre.getY();
-        gc.drawImage(mechant, monstreY * 30, monstreX * 30, 30, 30);
+        for(int j=0;j<labyrinthe.monstre.size();j++){
+            List<Monstre> monstre = labyrinthe.monstre;
+            FileInputStream inputstream2 = new FileInputStream("zeldiablo/images/monstre.gif");
+            Image mechant = new Image(inputstream2);
+            int monstreX = monstre.get(j).getX();
+            int monstreY = monstre.get(j).getY();
+            gc.drawImage(mechant, monstreY * 30, monstreX * 30, 30, 30);
+        }
+
     }
 
     public void dessinerZombie(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {

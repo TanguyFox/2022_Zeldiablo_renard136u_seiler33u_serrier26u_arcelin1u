@@ -82,7 +82,8 @@ public class Epee implements Objet {
     /**
      * a faire
      */
-    public void faireDegat(){
+    public void faireDegat(Monstre cible){
+        cible.pertePv(this.degat);
     }
 
 }
