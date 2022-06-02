@@ -9,7 +9,7 @@ public class Zombie extends Monstre{
     public static String type="zombie";
 
     public Zombie(int x, int y) {
-        super(x, y);
+        super(x,y);
         this.pv = 70;
         this.epee=null;
     }

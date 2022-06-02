@@ -2,6 +2,7 @@ package gameLaby.laby;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Joueur implements Personnage{
 
@@ -39,14 +40,13 @@ public class Joueur implements Personnage{
     public void recupererObjet(Objet objet) {
         if (this.etrePresent(objet.getX(), objet.getY())){
             if (!inventairePlein()) {
-                if(objet.getType()=="amulette"){
+                if(Objects.equals(objet.getType(), "amulette")){
                     this.setPossedeAmulette(true);
-                }else if(objet.getType()=="epee"){
+                }else if(Objects.equals(objet.getType(), "epee")){
                     this.setPossedeEpee(true);
+                    this.epee = (Epee) objet;
                 }
-                inventaire.add(objet);
-                this.setPossedeAmulette(true);
-                System.out.println("Vous avez récupérez l'amulette !");
+                inventaire.add(objet);;
             } else {
                 System.out.println("Inventaire plein !");
             }

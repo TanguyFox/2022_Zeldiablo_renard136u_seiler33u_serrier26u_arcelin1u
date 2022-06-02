@@ -83,11 +83,12 @@ public class Epee implements Objet {
         return "epee";
     }
 
-    /**
-     * a faire
-     */
+
     public void faireDegats(Monstre cible){
         cible.pertePv(this.degat);
     }
 
+    public int getDegat() {
+        return degat;
+    }
 }

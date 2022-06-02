@@ -11,6 +11,7 @@ import moteurJeu.Jeu;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Objects;
 
 
 public class LabyDessin implements DessinJeu {
@@ -90,25 +91,22 @@ public class LabyDessin implements DessinJeu {
         for(int j=0;j<labyrinthe.monstre.size();j++){
             List<Monstre> monstre = labyrinthe.monstre;
             if(monstre.get(j).pv>0){
-                FileInputStream inputstream2 = new FileInputStream("zeldiablo/images/monstre.gif");
-                Image mechant = new Image(inputstream2);
-                int monstreX = monstre.get(j).getX();
-                int monstreY = monstre.get(j).getY();
-                gc.drawImage(mechant, monstreY * 30, monstreX * 30, 30, 30);
+                if(Objects.equals(monstre.get(j).getType(), TasDeMorve.type)){
+                    FileInputStream inputstream2 = new FileInputStream("zeldiablo/images/monstre.gif");
+                    Image mechant = new Image(inputstream2);
+                    int monstreX = monstre.get(j).getX();
+                    int monstreY = monstre.get(j).getY();
+                    gc.drawImage(mechant, monstreY * 30, monstreX * 30, 30, 30);
+                }else if(Objects.equals(monstre.get(j).getType(), Zombie.type)){
+                    FileInputStream inputstream8 = new FileInputStream("zeldiablo/images/zombie.png");
+                    Image zombie = new Image(inputstream8);
+                    int zombieX = monstre.get(j).getX();
+                    int zombieY = monstre.get(j).getY();
+                    gc.drawImage(zombie, zombieY * 30, zombieX * 30, 30, 30);
+                }
             }
         }
-
     }
-
-    public void dessinerZombie(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
-        //Zombie zombie = labyrinthe.zombie;
-        //FileInputStream inputstream8 = new FileInputStream("zeldiablo/images/zombie.png");
-        //Image mechant = new Image(inputstream8);
-        //int zombieX = zombie.getX();
-        //int zombieY = zombie.getY();
-        //gc.drawImage(mechant, zombieY * 30, zombieX * 30, 30, 30);
-    }
-
 
     public void dessinerEpee(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException{
         //si le joueur n'a pas l'inventaire plein et ne possède pas l'épée
