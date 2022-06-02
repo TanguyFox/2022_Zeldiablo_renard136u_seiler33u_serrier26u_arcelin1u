@@ -1,7 +1,5 @@
 package gameLaby.laby;
 
-import gameLaby.laby.Cancel.Perso;
-
 public class Epee implements Objet {
 
     /**
@@ -18,7 +16,8 @@ public class Epee implements Objet {
      * @param degat degats inflige pas l'epee
      */
     public Epee(int dx, int dy, int degat){
-        super();
+        this.x=dx;
+        this.y=dy;
         this.degat=degat;
     }
 
@@ -61,7 +60,7 @@ public class Epee implements Objet {
     }
 
     @Override
-    public boolean estPossede(Perso p) {
+    public boolean estPossede(Joueur p) {
         return p.getInventaire().contains(this);
     }
 
@@ -79,10 +78,15 @@ public class Epee implements Objet {
                 '}';
     }
 
+    @Override
+    public String getType() {
+        return "epee";
+    }
+
     /**
      * a faire
      */
-    public void faireDegat(Monstre cible){
+    public void faireDegats(Monstre cible){
         cible.pertePv(this.degat);
     }
 

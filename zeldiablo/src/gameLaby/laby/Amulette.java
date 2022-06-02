@@ -1,6 +1,5 @@
 package gameLaby.laby;
 
-import gameLaby.laby.Cancel.Perso;
 
 public class Amulette implements Objet{
 
@@ -60,6 +59,11 @@ public class Amulette implements Objet{
     }
 
     @Override
+    public String getType() {
+        return "amulette";
+    }
+
+    @Override
     public void setX(int x) {
         this.x=x;
     }
@@ -70,7 +74,7 @@ public class Amulette implements Objet{
     }
 
     @Override
-    public boolean estPossede(Perso p) {
+    public boolean estPossede(Joueur p) {
         return p.getInventaire().contains(this);
     }
 }

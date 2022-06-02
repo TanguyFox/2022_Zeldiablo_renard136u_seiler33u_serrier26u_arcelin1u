@@ -9,7 +9,9 @@ public class Joueur implements Personnage{
     public int y;
     public List<Objet> inventaire;
     public boolean possedeAmulette;
+    public Epee epee;
     public int pv;
+    public boolean possedeEpee;
 
     public Joueur(int dx, int dy) {
         this.x = dx;
@@ -17,6 +19,8 @@ public class Joueur implements Personnage{
         this.inventaire = new ArrayList<>();
         this.possedeAmulette=false;
         this.pv=100;
+        this.epee = null;
+        this.possedeEpee = false;
     }
 
     @Override
@@ -35,6 +39,11 @@ public class Joueur implements Personnage{
     public void recupererObjet(Objet objet) {
         if (this.etrePresent(objet.getX(), objet.getY())){
             if (!inventairePlein()) {
+                if(objet.getType()=="amulette"){
+                    this.setPossedeAmulette(true);
+                }else if(objet.getType()=="epee"){
+                    this.setPossedeEpee(true);
+                }
                 inventaire.add(objet);
                 this.setPossedeAmulette(true);
                 System.out.println("Vous avez récupérez l'amulette !");
@@ -64,6 +73,10 @@ public class Joueur implements Personnage{
         return this.possedeAmulette;
     }
 
+    public boolean isEpeePossedee(){
+        return this.possedeEpee;
+    }
+
     public void setX(int x) {
         this.x = x;
     }
@@ -76,17 +89,17 @@ public class Joueur implements Personnage{
         this.possedeAmulette = b;
     }
 
-    /**
-     * A FAIRE
-     */
+    public void setPossedeEpee(boolean b){
+        this.possedeEpee = b;
+    }
+
     public void attaquer(Monstre cible) {
         if(this.etrePresent(cible.getX(),cible.getY())) {
-            this.epee.faireDegats();
+            this.epee.faireDegats(cible);
         }
     }
 
     /**
-     * A FAIRE
      * @param degatSubis
      */
     @Override
@@ -94,7 +107,10 @@ public class Joueur implements Personnage{
         this.pv-=degatSubis;
     }
 
-
+    @Override
+    public boolean etreMort() {
+        return this.getPv() < 1;
+    }
 
     @Override
     public String toString() {

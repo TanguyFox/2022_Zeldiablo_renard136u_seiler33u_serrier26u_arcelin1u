@@ -6,19 +6,16 @@ public abstract class Monstre implements Personnage{
     public int y;
     public int pv;
     public Epee epee;
+    public String type;
 
     public Monstre(int x, int y) {
         this.x = x;
         this.y = y;
         this.epee = new Epee(x,y,10);
         this.pv = 100;
+        this.type=null;
     }
 
-    /**
-     * A FAIRE
-     * @param action
-     */
-    public abstract void deplacerMonstres(String action);
 
     @Override
     public boolean etrePresent(int dx, int dy) {
@@ -36,6 +33,10 @@ public abstract class Monstre implements Personnage{
         return this.y;
     }
 
+    public String getType(){
+        return this.type;
+    }
+
     @Override
     public void setX(int x) {
         this.x = x;
@@ -46,10 +47,6 @@ public abstract class Monstre implements Personnage{
         this.y = y;
     }
 
-    /**
-     * A FAIRE
-     * Ca fonctionne peut etre
-     */
     public void attaquer(Joueur cible) {
         if(this.etrePresent(cible.x,cible.y)){
             cible.pertePv(epee.degat);
@@ -57,7 +54,6 @@ public abstract class Monstre implements Personnage{
     }
 
     /**
-     * A FAIRE
      * @param degatSubis
      */
     @Override
@@ -74,30 +70,13 @@ public abstract class Monstre implements Personnage{
                 '}';
     }
 
-    /**
-     *     public void deplacerMonstre(String action) {
-     *         // case courante
-     *         int[] courante = {this.monstre.getX(), this.monstre.getY()};
-     *
-     *         // calcule case suivante
-     *         int[] suivante = getSuivant(courante[0], courante[1], action);
-     *
-     *         // si c'est pas un mur, on effectue le deplacement
-     *
-     *         if (!this.murs[suivante[0]][suivante[1]] && !etreFini()) {
-     *
-     *             if ((!this.murs[suivante[0]][suivante[1]]) && (!etreFini())) {
-     *
-     *                 // si c'est un monstre, on reste aux mêmes coordonnées
-     *                 if (suivante[0] == pj.getX() && suivante[1] == pj.getY()) {
-     *                     System.out.println("Le Monstre attaque !");
-     *                 } else {
-     *                     // on met a jour personnage
-     *                     this.monstre.setX(suivante[0]);
-     *                     this.monstre.setY(suivante[1]);
-     *                 }
-     *             }
-     *         }
-     *     }
-     */
+    @Override
+    public int getPv() {
+        return this.pv;
+    }
+
+    @Override
+    public boolean etreMort() {
+        return this.getPv()<1;
+    }
 }

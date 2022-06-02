@@ -1,11 +1,12 @@
 package gameLaby.laby;
 
-import gameLaby.laby.Cancel.Perso;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 
 /**
  * classe labyrinthe. represente un labyrinthe avecW
@@ -22,7 +23,7 @@ public class Labyrinthe {
     public static final char VIDE = '.';
     public static final char EPEE = 'E';
     public static final char MORVE = 'M';
-    public static final char FANTOME = 'F';
+    public static final char ZOMBIE = 'Z';
     public static final char AMULETTE = 'A';
     public static final char SORTIE = 'S';
 
@@ -34,6 +35,9 @@ public class Labyrinthe {
     public static final String BAS = "Bas";
     public static final String GAUCHE = "Gauche";
     public static final String DROITE = "Droite";
+
+    public final String[] DEPLACEMENT_MONSTRE = {"Gauche","Droite","Haut","Bas"};
+
 
     /**
      * attribut du personnage
@@ -107,9 +111,10 @@ public class Labyrinthe {
         // creation labyrinthe vide
         this.murs = new boolean[nbLignes][nbColonnes];
         this.pj = null;
-        this.monstre = null;
-        //this.amulette = null;
+        this.monstre = new ArrayList<>();
+        this.amulette = null;
         this.sortie = null;
+        this.epee = null;
 
         // lecture des cases
         String ligne = bfRead.readLine();
@@ -140,12 +145,11 @@ public class Labyrinthe {
                         this.murs[numeroLigne][colonne] = false;
                         TasDeMorve tasDeMorve = new TasDeMorve(numeroLigne, colonne);
                         monstre.add(tasDeMorve);
-                        //this.monstre = new Perso(numeroLigne, colonne);
                         break;
-                    case FANTOME:
+                    case ZOMBIE:
                         this.murs[numeroLigne][colonne] = false;
-                        Fantome fantome = new Fantome(numeroLigne, colonne);
-                        monstre.add(fantome);
+                        Zombie zombie = new Zombie(numeroLigne, colonne);
+                        monstre.add(zombie);
                         break;
                     case EPEE:
                         this.murs[numeroLigne][colonne] = false;
@@ -195,18 +199,55 @@ public class Labyrinthe {
             for(int i=0;i<monstre.size();i++){
                 if(suivante[0] == monstre.get(i).getX() && suivante[1] == monstre.get(i).getY()){
                     System.out.println("ATTENTION, il y a un monstre ici");
+                    this.pj.attaquer(monstre.get(i));
+                }else {
+                    // on met a jour personnage
+                    this.pj.setX(suivante[0]);
+                    this.pj.setY(suivante[1]);
                 }
             }
-        } else {
-            // on met a jour personnage
-            this.pj.setX(suivante[0]);
-            this.pj.setY(suivante[1]);
+        }
+
+        if(!this.pj.isEpeePossedee()){
+            pj.recupererObjet(epee);
         }
 
         if (!this.pj.isAmulettePossedee()) {
             pj.recupererObjet(amulette);
         }
     }
+
+    public void deplacerMonstre(){
+        for(int i=0;i< monstre.size();i++){
+            Random rand = new Random();
+            int j = rand.nextInt(4);
+
+            int[] courante = {this.monstre.get(i).getX(), this.monstre.get(i).getY()};
+
+            int[] suivante = getSuivant(courante[0], courante[1], DEPLACEMENT_MONSTRE[j]);
+
+            if(!Objects.equals(monstre.get(i).getType(), "tas")){
+                if (!this.murs[suivante[0]][suivante[1]] && !etreFini()) {
+
+                    if ((!this.murs[suivante[0]][suivante[1]]) && (!etreFini())) {
+
+                        // si c'est un monstre, on reste aux mêmes coordonnées
+                        if (suivante[0] == pj.getX() && suivante[1] == pj.getY()) {
+                            System.out.println("Le Monstre attaque !");
+                        } else {
+                            // on met a jour personnage
+                            this.monstre.get(i).setX(suivante[0]);
+                            this.monstre.get(i).setY(suivante[1]);
+                        }
+                    }
+                }
+            }
+
+
+        }
+    }
+
+
 
 
 
@@ -228,7 +269,7 @@ public class Labyrinthe {
          *
          * @return
          */
-        public int getLengthY () {
+         public int getLengthY () {
             return murs[0].length;
         }
 
@@ -266,6 +307,10 @@ public class Labyrinthe {
 
         public Sortie getSortie () {
             return sortie;
+        }
+
+        public Epee getEpee(){
+            return this.epee;
         }
 
     }

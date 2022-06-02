@@ -1,6 +1,5 @@
 package gameLaby.laby;
 
-import gameLaby.laby.Cancel.Perso;
 
 public interface Objet {
 
@@ -12,7 +11,7 @@ public interface Objet {
      * @return true si l'objet est bien en (dx,dy)
      */
 
-    public boolean etrePresent(int dx, int dy);
+    boolean etrePresent(int dx, int dy);
 
     // ############################################
     // GETTER ET SETTER
@@ -21,21 +20,23 @@ public interface Objet {
     /**
      * @return position x de l'objet
      */
-    public int getX();
+    int getX();
 
     /**
      * @return position y de l'objet
      */
-    public int getY();
+    int getY();
 
-    public void setX(int x);
+    void setX(int x);
 
-    public void setY(int y);
+    void setY(int y);
 
-    public boolean estPossede(Perso p);
+    boolean estPossede(Joueur p);
 
-    public Objet getObjet();
+    Objet getObjet();
 
-    public String toString();
+    String toString();
+
+    String getType();
 
 }
