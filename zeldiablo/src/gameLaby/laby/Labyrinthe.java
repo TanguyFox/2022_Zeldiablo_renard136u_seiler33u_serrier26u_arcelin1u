@@ -154,17 +154,14 @@ public class Labyrinthe {
                     case EPEE:
                         this.murs[numeroLigne][colonne] = false;
                         this.epee = new Epee(numeroLigne, colonne, 20);
-                        System.out.println(epee.getX() + " " + epee.getY());
                         break;
                     case AMULETTE:
                         this.murs[numeroLigne][colonne] = false;
                         this.amulette = new Amulette(numeroLigne, colonne);
-                        System.out.println(amulette.getX() + " " + amulette.getY());
                         break;
                     case SORTIE:
                         this.murs[numeroLigne][colonne] = false;
                         this.sortie = new Sortie(numeroLigne, colonne);
-                        System.out.println(sortie.getX() + " " + sortie.getY());
                         break;
 
                     default:
@@ -200,6 +197,10 @@ public class Labyrinthe {
                 if(suivante[0] == monstre.get(i).getX() && suivante[1] == monstre.get(i).getY()){
                     System.out.println("ATTENTION, il y a un monstre ici");
                     this.pj.attaquer(monstre.get(i));
+                    if(this.pj.possedeEpee){
+                        System.out.println("je possède l'épée");
+                        this.pj.attaquer(monstre.get(i));
+                    }
                 }else {
                     // on met a jour personnage
                     this.pj.setX(suivante[0]);
@@ -234,6 +235,7 @@ public class Labyrinthe {
                         // si c'est un monstre, on reste aux mêmes coordonnées
                         if (suivante[0] == pj.getX() && suivante[1] == pj.getY()) {
                             System.out.println("Le Monstre attaque !");
+                            monstre.get(j).attaquer(this.pj);
                         } else {
                             // on met a jour personnage
                             this.monstre.get(i).setX(suivante[0]);

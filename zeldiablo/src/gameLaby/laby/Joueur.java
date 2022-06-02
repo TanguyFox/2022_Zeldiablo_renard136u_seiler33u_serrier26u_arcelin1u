@@ -45,6 +45,7 @@ public class Joueur implements Personnage{
                 }else if(Objects.equals(objet.getType(), "epee")){
                     this.setPossedeEpee(true);
                     this.epee = (Epee) objet;
+                    System.out.println(this.epee.getDegat());
                 }
                 inventaire.add(objet);;
             } else {
@@ -66,6 +67,7 @@ public class Joueur implements Personnage{
     public int getY() {
         return this.y;
     }
+
 
     public int getPv(){return this.pv;}
 
@@ -101,6 +103,7 @@ public class Joueur implements Personnage{
                 cible.pertePv(2);
             }
             System.out.println("Vie du monstre : "+cible.getPv());
+
         }
     }
 

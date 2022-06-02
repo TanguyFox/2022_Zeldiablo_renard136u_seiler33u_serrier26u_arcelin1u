@@ -30,7 +30,6 @@ public class LabyJeu implements Jeu {
         // deplace le perso en fonction des touches
         if (clavier.droite) {
             laby.deplacerPerso(DROITE);
-            System.out.println("Perso :"+laby.pj.getX()+ " "+laby.pj.getY());
             laby.deplacerMonstre();
         }
         if (clavier.gauche) {

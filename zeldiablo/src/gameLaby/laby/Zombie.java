@@ -19,9 +19,16 @@ public class Zombie extends Monstre{
         return this.pv;
     }
 
+    public void pertePv(int degatSubis){
+        this.pv -=degatSubis;
+    }
+
     public String getType(){
         return type;
     }
 
-
+    @Override
+    public boolean etreMort() {
+        return this.getPv()<1;
+    }
 }

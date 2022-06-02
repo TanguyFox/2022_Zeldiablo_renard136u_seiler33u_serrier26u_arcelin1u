@@ -8,6 +8,7 @@ public class Epee implements Objet {
     public int degat;
     public int x;
     public int y;
+    public static String type = "epee";
 
     /**
      * Constructeur
@@ -49,6 +50,8 @@ public class Epee implements Objet {
         return y;
     }
 
+    public int getDegat(){return this.degat;}
+
     @Override
     public void setX(int x) {
         this.x=x;
@@ -83,12 +86,11 @@ public class Epee implements Objet {
         return "epee";
     }
 
-
+    /**
+     * a faire
+     */
     public void faireDegats(Monstre cible){
         cible.pertePv(this.degat);
     }
 
-    public int getDegat() {
-        return degat;
-    }
 }
