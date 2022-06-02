@@ -19,16 +19,17 @@ loop i < casesVoisines.size()
 J -> E : faireDegats(20)
 activate J
 activate E
-        alt le monstre se trouve sur cases voisines
+        alt le monstre se trouve sur une case voisine
          E -> M : perdrePv(20)
          activate M
          M --> E
          deactivate M
         end alt
 E --> J
+deactivate E
 end loop
 
-deactivate E
+
 
 
 J --> MAIN
