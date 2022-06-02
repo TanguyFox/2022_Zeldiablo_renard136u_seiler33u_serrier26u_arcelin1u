@@ -6,7 +6,7 @@ title Récuperation des cases voisines
 participant "main" as M
 participant "pj : Joueur" as J
 participant "laby : Labyrinthe" as L
-participant "suivante : int[][]" as S
+participant "suivante : int[]" as S
 participant "casesVoisines : List<Integer[][]>" as CS
 
 M -> J : recupCasesVoisines(laby3)
