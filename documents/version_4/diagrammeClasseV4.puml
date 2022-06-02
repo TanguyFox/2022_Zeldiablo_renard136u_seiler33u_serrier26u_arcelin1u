@@ -50,7 +50,7 @@ interface Perso{
 + setX(x : int)
 + setY(y : int)
 + toString() : String
-+ attaquer(arme : Arme)
++ attaquer()
 + pertePv(degatSubis : int);
 + etreMort() : boolean
 }

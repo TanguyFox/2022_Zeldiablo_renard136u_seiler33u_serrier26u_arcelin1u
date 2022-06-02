@@ -8,6 +8,7 @@ public class TasDeMorve extends Monstre{
 
     public TasDeMorve(int x, int y) {
         super(x, y);
+        this.pv = 40;
         this.epee=null;
     }
 
@@ -16,7 +17,7 @@ public class TasDeMorve extends Monstre{
     }
 
     @Override
-    public void recupererObjet(Objet objet) {
-        throw new Error("TO DO");
+    public int getPv() {
+        return this.pv;
     }
 }

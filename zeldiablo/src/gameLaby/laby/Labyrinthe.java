@@ -20,7 +20,9 @@ public class Labyrinthe {
     public static final char MUR = 'X';
     public static final char PJ = 'P';
     public static final char VIDE = '.';
-    public static final char MONSTRE = 'M';
+    public static final char EPEE = 'E';
+    public static final char MORVE = 'M';
+    public static final char FANTOME = 'F';
     public static final char AMULETTE = 'A';
     public static final char SORTIE = 'S';
 
@@ -42,6 +44,8 @@ public class Labyrinthe {
     public List<Monstre> monstre;
 
     public Amulette amulette;
+
+    public Epee epee;
 
     public Sortie sortie;
 
@@ -132,9 +136,21 @@ public class Labyrinthe {
                         // ajoute PJ
                         this.pj = new Joueur(numeroLigne, colonne);
                         break;
-                    case MONSTRE:
+                    case MORVE:
                         this.murs[numeroLigne][colonne] = false;
-                        this.monstre = new Perso(numeroLigne, colonne);
+                        TasDeMorve tasDeMorve = new TasDeMorve(numeroLigne, colonne);
+                        monstre.add(tasDeMorve);
+                        //this.monstre = new Perso(numeroLigne, colonne);
+                        break;
+                    case FANTOME:
+                        this.murs[numeroLigne][colonne] = false;
+                        Fantome fantome = new Fantome(numeroLigne, colonne);
+                        monstre.add(fantome);
+                        break;
+                    case EPEE:
+                        this.murs[numeroLigne][colonne] = false;
+                        this.epee = new Epee(numeroLigne, colonne, 20);
+                        System.out.println(epee.getX() + " " + epee.getY());
                         break;
                     case AMULETTE:
                         this.murs[numeroLigne][colonne] = false;
@@ -176,45 +192,23 @@ public class Labyrinthe {
 
         // si c'est pas un mur, on effectue le deplacement
         if (!this.murs[suivante[0]][suivante[1]] && !etreFini()) {
-            // si c'est un monstre, on reste aux mêmes coordonnées
-            if (suivante[0] == monstre.getX() && suivante[1] == monstre.getY()) {
-                System.out.println("ATTENTION, il y a un monstre ici");
-            } else {
-                // on met a jour personnage
-                this.pj.setX(suivante[0]);
-                this.pj.setY(suivante[1]);
-            }
-
-            if (!this.pj.isAmulettePossedee()) {
-                pj.recupererObjet(amulette);
-            }
-        }
-    }
-
-    public void deplacerMonstre(String action) {
-        // case courante
-        int[] courante = {this.monstre.getX(), this.monstre.getY()};
-
-        // calcule case suivante
-        int[] suivante = getSuivant(courante[0], courante[1], action);
-
-        // si c'est pas un mur, on effectue le deplacement
-
-        if (!this.murs[suivante[0]][suivante[1]] && !etreFini()) {
-
-            if ((!this.murs[suivante[0]][suivante[1]]) && (!etreFini())) {
-
-                // si c'est un monstre, on reste aux mêmes coordonnées
-                if (suivante[0] == pj.getX() && suivante[1] == pj.getY()) {
-                    System.out.println("Le Monstre attaque !");
-                } else {
-                    // on met a jour personnage
-                    this.monstre.setX(suivante[0]);
-                    this.monstre.setY(suivante[1]);
+            for(int i=0;i<monstre.size();i++){
+                if(suivante[0] == monstre.get(i).getX() && suivante[1] == monstre.get(i).getY()){
+                    System.out.println("ATTENTION, il y a un monstre ici");
                 }
             }
+        } else {
+            // on met a jour personnage
+            this.pj.setX(suivante[0]);
+            this.pj.setY(suivante[1]);
+        }
+
+        if (!this.pj.isAmulettePossedee()) {
+            pj.recupererObjet(amulette);
         }
     }
+
+
 
         /**
          * jamais fini
@@ -258,7 +252,7 @@ public class Labyrinthe {
             return this.murs[x][y];
         }
 
-        public Perso getMonstre () {
+        public List<Monstre> getMonstre() {
             return this.monstre;
         }
 
