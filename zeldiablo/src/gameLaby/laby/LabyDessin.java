@@ -29,7 +29,7 @@ public class LabyDessin implements DessinJeu {
         final GraphicsContext gc = canvas.getGraphicsContext2D();
 
         // dessin fond
-        gc.setFill(Color.LIGHTGRAY);
+        gc.setFill(Color.web("0x003333"));
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         // dessin laby
         Labyrinthe labyrinthe = labyJeu.getLabyrinthe();
@@ -52,6 +52,7 @@ public class LabyDessin implements DessinJeu {
         dessinerSortie(gc,labyrinthe);
         dessinerAmulette(gc,labyrinthe);
         dessinerMonstre(gc,labyrinthe);
+        dessinerEpee(gc,labyrinthe);
         dessinerPerso(gc,labyrinthe);
 
         if(labyrinthe.etreFini()){
@@ -59,7 +60,7 @@ public class LabyDessin implements DessinJeu {
             Image win = new Image(ipWin);
             int x = labyrinthe.getLength();
             int y = labyrinthe.getLengthY();
-            gc.drawImage(win,x*7,y*2,200,200);
+            gc.drawImage(win,x*15,y*8,200,200);
         }
     }
 
@@ -95,6 +96,31 @@ public class LabyDessin implements DessinJeu {
         gc.drawImage(mechant, monstreY * 30, monstreX * 30, 30, 30);
     }
 
+    public void dessinerZombie(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
+        //Perso zombie = labyrinthe.zombie;
+        //FileInputStream inputstream8 = new FileInputStream("zeldiablo/images/zombie.png");
+        //Image mechant = new Image(inputstream8);
+        //int zombieX = zombie.getX();
+        //int zombieY = zombie.getY();
+        //gc.drawImage(mechant, zombieY * 30, zombieX * 30, 30, 30);
+    }
+
+
+    public void dessinerEpee(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException{
+
+
+        Epee epee = new Epee(1,1,5);
+
+        FileInputStream inputStream7 = new FileInputStream("zeldiablo/images/epee.png");
+        int epeeX = epee.getX();
+        int epeeY = epee.getY();
+        Image arme1 = new Image(inputStream7);
+
+        gc.drawImage(arme1,25*30,14*30,30,30);
+
+
+    }
+
     public void dessinerPerso(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
         Joueur joueur = labyrinthe.pj;
 
@@ -104,7 +130,6 @@ public class LabyDessin implements DessinJeu {
         int px = joueur.getX();
         int py = joueur.getY();
         gc.drawImage(personnage,py*30,px*30,30,30);
-
 
 
     }
