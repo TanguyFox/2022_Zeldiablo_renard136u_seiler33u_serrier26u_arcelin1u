@@ -79,8 +79,10 @@ public class Joueur implements Personnage{
     /**
      * A FAIRE
      */
-    public void attaquer() {
-        throw new Error("TO DO");
+    public void attaquer(Monstre cible) {
+        if(this.etrePresent(cible.getX(),cible.getY())) {
+            this.epee.faireDegats();
+        }
     }
 
     /**
@@ -89,8 +91,10 @@ public class Joueur implements Personnage{
      */
     @Override
     public void pertePv(int degatSubis) {
-        throw new Error("TO DO");
+        this.pv-=degatSubis;
     }
+
+
 
     @Override
     public String toString() {
