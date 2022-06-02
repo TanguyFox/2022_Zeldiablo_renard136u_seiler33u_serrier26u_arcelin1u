@@ -95,7 +95,12 @@ public class Joueur implements Personnage{
 
     public void attaquer(Monstre cible) {
         if(this.etrePresent(cible.getX(),cible.getY())) {
-            this.epee.faireDegats(cible);
+            if(this.isEpeePossedee()){
+                this.epee.faireDegats(cible);
+            }else{
+                cible.pertePv(2);
+            }
+            System.out.println("Vie du monstre : "+cible.getPv());
         }
     }
 
