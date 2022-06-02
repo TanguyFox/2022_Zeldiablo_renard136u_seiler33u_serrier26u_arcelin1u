@@ -198,8 +198,9 @@ public class Labyrinthe {
                     System.out.println("ATTENTION, il y a un monstre ici");
                     this.pj.attaquer(monstre.get(i));
                     if(this.pj.possedeEpee){
-                        System.out.println("je possède l'épée");
-                        this.pj.attaquer(monstre.get(i));
+                        System.out.println("je possède l'épée\n");
+                    }else{
+                        System.out.println("*Coup de poing*");
                     }
                 }else {
                     // on met a jour personnage

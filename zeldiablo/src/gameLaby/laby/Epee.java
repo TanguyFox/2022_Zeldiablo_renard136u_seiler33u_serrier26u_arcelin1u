@@ -74,10 +74,8 @@ public class Epee implements Objet {
 
     @Override
     public String toString() {
-        return "epee{" +
+        return "Epee{" +
                 "degat=" + degat +
-                ", x=" + x +
-                ", y=" + y +
                 '}';
     }
 
@@ -89,7 +87,7 @@ public class Epee implements Objet {
     /**
      * a faire
      */
-    public void faireDegats(Monstre cible){
+    public void faireDegats(Personnage cible){
         cible.pertePv(this.degat);
     }
 

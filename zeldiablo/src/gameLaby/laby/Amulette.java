@@ -77,4 +77,8 @@ public class Amulette implements Objet{
     public boolean estPossede(Joueur p) {
         return p.getInventaire().contains(this);
     }
+
+    public String toString(){
+        return "Amulette, objet légendaire";
+    }
 }

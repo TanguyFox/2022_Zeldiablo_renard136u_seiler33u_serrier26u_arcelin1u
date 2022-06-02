@@ -49,8 +49,9 @@ public abstract class Monstre implements Personnage{
 
     public void attaquer(Joueur cible) {
         if(this.etrePresent(cible.x,cible.y)){
-            cible.pertePv(epee.degat);
+            epee.faireDegats(cible);
         }
+        System.out.println("Votre vie : "+cible.getPv());
     }
 
     /**
@@ -59,6 +60,9 @@ public abstract class Monstre implements Personnage{
     @Override
     public void pertePv(int degatSubis) {
         this.pv -=degatSubis;
+        if(this.etreMort()){
+            System.out.println("Monstre mort\n");
+        }
     }
 
     @Override
@@ -77,6 +81,6 @@ public abstract class Monstre implements Personnage{
 
     @Override
     public boolean etreMort() {
-        return this.getPv()<1;
+        return (this.getPv()<1);
     }
 }

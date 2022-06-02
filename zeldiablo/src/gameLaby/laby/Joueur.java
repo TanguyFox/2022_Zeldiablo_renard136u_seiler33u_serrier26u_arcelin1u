@@ -45,9 +45,14 @@ public class Joueur implements Personnage{
                 }else if(Objects.equals(objet.getType(), "epee")){
                     this.setPossedeEpee(true);
                     this.epee = (Epee) objet;
-                    System.out.println(this.epee.getDegat());
                 }
-                inventaire.add(objet);;
+                System.out.println("Nouvelle possession : "+objet);
+                inventaire.add(objet);
+                System.out.println("Votre inventaire :\n -------------------" );
+                for(int i = 0;i<this.inventaire.size();i++){
+                    System.out.println(inventaire.get(i));
+                }
+                System.out.println("-------------------\n");
             } else {
                 System.out.println("Inventaire plein !");
             }
@@ -96,14 +101,15 @@ public class Joueur implements Personnage{
     }
 
     public void attaquer(Monstre cible) {
-        if(this.etrePresent(cible.getX(),cible.getY())) {
-            if(this.isEpeePossedee()){
-                this.epee.faireDegats(cible);
-            }else{
-                cible.pertePv(2);
+        if(!cible.etreMort()) {
+            if (this.etrePresent(cible.getX(), cible.getY())) {
+                if (this.isEpeePossedee()) {
+                    this.epee.faireDegats(cible);
+                } else {
+                    cible.pertePv(2);
+                }
+                System.out.println("Vie du monstre : " + cible.getPv());
             }
-            System.out.println("Vie du monstre : "+cible.getPv());
-
         }
     }
 
@@ -117,7 +123,7 @@ public class Joueur implements Personnage{
 
     @Override
     public boolean etreMort() {
-        return this.getPv() < 1;
+        return (this.getPv() < 1);
     }
 
     @Override

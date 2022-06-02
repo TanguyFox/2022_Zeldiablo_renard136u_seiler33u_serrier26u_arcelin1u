@@ -90,7 +90,7 @@ public class LabyDessin implements DessinJeu {
     public void dessinerMonstre(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
         for(int j=0;j<labyrinthe.monstre.size();j++){
             List<Monstre> monstre = labyrinthe.monstre;
-            if(monstre.get(j).pv>0){
+            if(!monstre.get(j).etreMort()){
                 if(Objects.equals(monstre.get(j).getType(), TasDeMorve.type) && !monstre.get(j).etreMort()){
                     FileInputStream inputstream2 = new FileInputStream("zeldiablo/images/monstre.gif");
                     Image mechant = new Image(inputstream2);

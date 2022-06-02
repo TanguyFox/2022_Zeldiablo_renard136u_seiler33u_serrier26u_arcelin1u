@@ -49,6 +49,7 @@ public class LabyJeu implements Jeu {
     }
     @Override
     public void init() {
+
     }
     @Override
     public boolean etreFini() {
