@@ -226,7 +226,7 @@ public class Labyrinthe {
 
             int[] suivante = getSuivant(courante[0], courante[1], DEPLACEMENT_MONSTRE[j]);
 
-            if(!Objects.equals(monstre.get(i).getType(), "tas")){
+            if(!Objects.equals(monstre.get(i).getType(), TasDeMorve.type)){
                 if (!this.murs[suivante[0]][suivante[1]] && !etreFini()) {
 
                     if ((!this.murs[suivante[0]][suivante[1]]) && (!etreFini())) {
