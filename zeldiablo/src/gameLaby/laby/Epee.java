@@ -87,8 +87,12 @@ public class Epee implements Objet {
     /**
      * a faire
      */
-    public void faireDegats(Personnage cible){
-        cible.pertePv(this.degat);
-    }
+    public void faireDegats(Personnage cible) {
 
+        if (cible.getPv() < 20) {
+            cible.pertePv(cible.getPv());
+        } else {
+            cible.pertePv(this.degat);
+        }
+    }
 }
