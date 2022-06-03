@@ -1,0 +1,27 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title Attaque du joueur
+
+participant "main" as MAIN
+participant "laby : Labyrinthe" as L
+participant "monstre : Monstre" as M
+participant "epee : Epee" as E
+
+participant "pj : Joueur" as J
+
+create M
+MAIN -> M : new Monstre (7,10,epee)
+create E
+ M -> E : new Epee(7,10,20)
+MAIN -> L : deplacerMonstre()
+alt Le joueur se trouve sur la prochaine case
+    L -> M : attaquer(pj)
+         M -> E : faireDegats(monstre)
+         E -> J : perdrePv(20)
+         J --> E
+         E --> M
+         M --> L
+end
+L --> MAIN
+@enduml
