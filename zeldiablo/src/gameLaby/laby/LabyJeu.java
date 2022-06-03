@@ -1,7 +1,10 @@
 package gameLaby.laby;
+import javafx.event.ActionEvent;
+import javafx.scene.layout.HBox;
 import moteurJeu.Clavier;
 import moteurJeu.Jeu;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.Random;
 
@@ -49,8 +52,9 @@ public class LabyJeu implements Jeu {
     }
     @Override
     public void init() {
-
     }
+
+
     @Override
     public boolean etreFini() {
         return laby.etreFini();

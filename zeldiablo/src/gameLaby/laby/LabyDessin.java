@@ -4,7 +4,9 @@ package gameLaby.laby;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import moteurJeu.DessinJeu;
 import moteurJeu.Jeu;
 
@@ -24,13 +26,14 @@ public class LabyDessin implements DessinJeu {
      */
     @Override
     public void dessinerJeu(Jeu jeu, Canvas canvas) throws FileNotFoundException {
+
         LabyJeu labyJeu = (LabyJeu) jeu;
 
         // recupere un pinceau pour dessiner
         final GraphicsContext gc = canvas.getGraphicsContext2D();
 
         // dessin fond
-        gc.setFill(Color.web("0x003333"));
+        gc.setFill(Color.web("0x52271a"));
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         // dessin laby
         Labyrinthe labyrinthe = labyJeu.getLabyrinthe();
@@ -55,6 +58,9 @@ public class LabyDessin implements DessinJeu {
         dessinerMonstre(gc,labyrinthe);
         dessinerEpee(gc,labyrinthe);
         dessinerPerso(gc,labyrinthe);
+        dessinerInventaire(gc,labyrinthe);
+        dessinerPotion(gc,labyrinthe);
+        dessinerPiege(gc,labyrinthe);
 
         if(labyrinthe.etreFini()){
             FileInputStream ipWin = new FileInputStream("zeldiablo/images/win.png");
@@ -109,17 +115,18 @@ public class LabyDessin implements DessinJeu {
     }
 
     public void dessinerEpee(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException{
+        FileInputStream inputStream7 = new FileInputStream("zeldiablo/images/epee.png");
+        Image arme1 = new Image(inputStream7);
         //si le joueur n'a pas l'inventaire plein et ne possède pas l'épée
         if((!labyrinthe.pj.inventairePlein()) && !(labyrinthe.epee.estPossede(labyrinthe.pj))) {
             Epee epee = labyrinthe.epee;
-            FileInputStream inputStream7 = new FileInputStream("zeldiablo/images/epee.png");
             int epeeX = epee.x;
             int epeeY = epee.y;
-            Image arme1 = new Image(inputStream7);
-
             gc.drawImage(arme1,epeeY*30,epeeX*30,30,30);
         }
     }
+
+
 
     public void dessinerPerso(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
         Joueur joueur = labyrinthe.pj;
@@ -130,8 +137,54 @@ public class LabyDessin implements DessinJeu {
         int px = joueur.getX();
         int py = joueur.getY();
         gc.drawImage(personnage,py*30,px*30,30,30);
+    }
+
+    public void dessinerPotion(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException{
+        Potion potion = labyrinthe.potion;
+        FileInputStream inputStream = new FileInputStream("zeldiablo/images/potion.png");
+        Image potion = new Image(inputStream);
+        int px = potion.getX();
+        int py = potion.getY();
+        gc.drawImage(potion,py*30,px*30,30,30);
+    }
+
+    public void dessinerPiege(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException{
+        FileInputStream inputstream8 = new FileInputStream("zeldiablo/images/piege.png");
+        Image trap = new Image(inputstream8);
+        for(int j=0;j<labyrinthe.pieges.size();j++) {
+            List<Piege> pieges = labyrinthe.pieges;
+            if (!pieges.get(j).explose()) {
+                int piegeX = pieges.get(j).getX();
+                int piegeY = pieges.get(j).getY();
+                gc.drawImage(trap, monstreY * 30, monstreX * 30, 30, 30);
+            }
+        }
+    }
 
 
+    public void dessinerInventaire(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
+        //dessin de l'inventaire vide
+        FileInputStream inputStream = new FileInputStream("zeldiablo/images/caseInv.png");
+        Image caseInv = new Image(inputStream);
+        int TAILLE_CASE = 162;
+        for(int i = 0;i<5;i++){
+            gc.drawImage(caseInv,i*(TAILLE_CASE),600,100,100);
+        }
+        //dessin des objets dans l'inventaire
+        FileInputStream inputStream7 = new FileInputStream("zeldiablo/images/epee.png");
+        Image epee = new Image(inputStream7);
+        FileInputStream inputStream4 = new FileInputStream("zeldiablo/images/amulette2.png");
+        Image amulette = new Image(inputStream4);
+        if(labyrinthe.pj.inventaire.size()>0){
+            for(int i=0; i<labyrinthe.pj.inventaire.size();i++){
+                if(labyrinthe.pj.inventaire.get(i).getType().equals("epee")){
+                    gc.drawImage(epee,i*(TAILLE_CASE),600,100,100);
+                }
+                if(labyrinthe.pj.inventaire.get(i).getType().equals("amulette")){
+                    gc.drawImage(amulette,i*(TAILLE_CASE),600,100,100);
+                }
+            }
+        }
     }
 
 }

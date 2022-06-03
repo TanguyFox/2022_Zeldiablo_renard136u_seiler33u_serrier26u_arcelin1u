@@ -8,7 +8,7 @@ public class MainLaby {
 
     public static void main(String[] args) {
         int width = 810;
-        int height = 618;
+        int height = 718;
 
         int pFPS = 30;
 
