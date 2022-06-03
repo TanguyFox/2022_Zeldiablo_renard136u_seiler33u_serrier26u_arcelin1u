@@ -207,6 +207,8 @@ Labyrinthe "1" ---> "1" Joueur : pj
 Labyrinthe "1" ---> "1" Sortie : sortie
 Labyrinthe "1" ---> "1" Amulette : amulette
 Labyrinthe "1" ---> "0..*" Monstre : monstres
+Labyrinthe "1" ---> "0..*" Piege : pieges
+Labyrinthe "1" ---> "1" Potion
 Amulette  ..|>  Objet
 Joueur "1"--> "0..*"Objet : inventaire
 Personnage  <|..  Joueur

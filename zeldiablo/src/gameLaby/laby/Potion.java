@@ -3,10 +3,12 @@ package gameLaby.laby;
 public class Potion {
 
     public int x,y;
+    public boolean aSoigner;
 
     public Potion(int dx, int dy){
         this.x = dx;
         this.y = dy;
+        this.aSoigner=false;
     }
 
     /**
@@ -43,11 +45,13 @@ public class Potion {
     }
 
     public void soigner(Joueur j){
-        if((j.etrePresent(this.x,this.y)&&(!j.etreMort()))){
+        if((j.etrePresent(this.x,this.y)&&(!j.etreMort()))&&(!this.aSoigner)){
             j.pv = 100;
+            this.aSoigner=true;
             System.out.println("Vous vous soigné");
             System.out.println("Votre vie : "+ j.pv);
         }
     }
+
 }
 
