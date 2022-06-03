@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title Attaque du Monstre
+
+participant "main" as MAIN
+participant "laby : Labyrinthe" as L
+participant "monstre : Monstre" as M
+participant "epee : Epee" as E
+
+participant "pj : Joueur" as J
+
+create M
+MAIN -> M : new Monstre (7,10,epee)
+create E
+ M -> E : new Epee(7,10,20)
+MAIN -> L : deplacerMonstre()
+activate L
+alt Le joueur se trouve sur la prochaine case
+    L -> M : attaquer(pj)
+    activate M
+         M -> E : faireDegats(monstre)
+         activate E
+         E -> J : perdrePv(20)
+         activate J
+         J --> E
+         deactivate J
+         E --> M
+         deactivate E
+         M --> L
+         deactivate M
+end
+L --> MAIN
+deactivate L
+@enduml

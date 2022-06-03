@@ -26,6 +26,8 @@ public class Labyrinthe {
     public static final char ZOMBIE = 'Z';
     public static final char AMULETTE = 'A';
     public static final char SORTIE = 'S';
+    public static final char PIEGE = 'T';
+    public static final char POTION = 'H';
 
 
     /**
@@ -50,6 +52,10 @@ public class Labyrinthe {
     public Amulette amulette;
 
     public Epee epee;
+
+    public List<Piege> pieges;
+
+    public Potion potion;
 
     public Sortie sortie;
 
@@ -114,6 +120,8 @@ public class Labyrinthe {
         this.monstre = new ArrayList<>();
         this.amulette = null;
         this.sortie = null;
+        this.potion = null;
+        this.pieges = new ArrayList<>();
         this.epee = null;
 
         // lecture des cases
@@ -159,6 +167,14 @@ public class Labyrinthe {
                         this.murs[numeroLigne][colonne] = false;
                         this.amulette = new Amulette(numeroLigne, colonne);
                         break;
+                    case POTION:
+                        this.murs[numeroLigne][colonne] = false;
+                        this.potion = new Potion(numeroLigne, colonne);
+                        break;
+                    case PIEGE:
+                        this.murs[numeroLigne][colonne] = false;
+                        Piege piege = new Piege(numeroLigne, colonne);
+                        pieges.add(piege);
                     case SORTIE:
                         this.murs[numeroLigne][colonne] = false;
                         this.sortie = new Sortie(numeroLigne, colonne);
@@ -192,17 +208,28 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && !etreFini()) {
+        if (!this.murs[suivante[0]][suivante[1]] && !etreFini() && !pj.etreMort()) {
+
             for(int i=0;i<monstre.size();i++){
                 if(suivante[0] == monstre.get(i).getX() && suivante[1] == monstre.get(i).getY()){
-                    System.out.println("ATTENTION, il y a un monstre ici");
-                    this.pj.attaquer(monstre.get(i));
                     if(this.pj.possedeEpee){
-                        System.out.println("je possède l'épée\n");
+                        System.out.println("*coup d'épée*\n");
                     }else{
                         System.out.println("*Coup de poing*");
                     }
+                    this.pj.attaquer(monstre.get(i));
+                    System.out.println("le monstre attaque");
+                    this.monstre.get(i).attaquer(pj);
+
                 }else {
+                    /**for(int j=0;j<pieges.size();j++){
+                        if(suivante[0] == pieges.get(j).getX() && suivante[1] == pieges.get(j).getY()){
+                            pieges.get(j).faireDegats(this.pj);
+                        }
+                    }
+                    if(pj.etrePresent(potion.getX(), potion.getY())){
+                        potion.soigner(pj);
+                    }**/
                     // on met a jour personnage
                     this.pj.setX(suivante[0]);
                     this.pj.setY(suivante[1]);
@@ -229,7 +256,7 @@ public class Labyrinthe {
             int[] suivante = getSuivant(courante[0], courante[1], DEPLACEMENT_MONSTRE[j]);
 
             if(!Objects.equals(monstre.get(i).getType(), TasDeMorve.type)){
-                if (!this.murs[suivante[0]][suivante[1]] && !etreFini()) {
+                if (!this.murs[suivante[0]][suivante[1]] && !etreFini() &&!pj.etreMort()) {
 
                     if ((!this.murs[suivante[0]][suivante[1]]) && (!etreFini())) {
 
@@ -245,8 +272,6 @@ public class Labyrinthe {
                     }
                 }
             }
-
-
         }
     }
 

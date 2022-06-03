@@ -62,12 +62,21 @@ public class LabyDessin implements DessinJeu {
         dessinerPotion(gc,labyrinthe);
         dessinerPiege(gc,labyrinthe);
 
+        //dessin "WIN" quand joueur fini
         if(labyrinthe.etreFini()){
             FileInputStream ipWin = new FileInputStream("zeldiablo/images/win.png");
             Image win = new Image(ipWin);
             int x = labyrinthe.getLength();
             int y = labyrinthe.getLengthY();
-            gc.drawImage(win,x*15,y*8,200,200);
+            gc.drawImage(win,x*13,y*8,338,43);
+        }
+        //dessin "LOOSE" quand joueur meurt
+        if(labyrinthe.pj.etreMort()){
+            FileInputStream ipLoose = new FileInputStream("zeldiablo/images/loose.png");
+            Image loose = new Image(ipLoose);
+            int x = labyrinthe.getLength();
+            int y = labyrinthe.getLengthY();
+            gc.drawImage(loose,x*10,y*8,477,87);
         }
     }
 

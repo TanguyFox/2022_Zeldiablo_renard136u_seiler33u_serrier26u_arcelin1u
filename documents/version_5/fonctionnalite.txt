@@ -1,0 +1,21 @@
+1. Piège : lorsque le joueur est sur la case du piège, il subit des degats
+
+Critères de validation:
+
+• Seul le joueur prend des degats du piège.
+• le joueur prend des degats seulement s'il est sur la case du piège.
+. le joueur subit 50 de degats.
+
+2. Potion de vie : lorsque le joueur est sur la case de la potion, les pv du joueur sont régénérés.
+
+Critères de validation:
+
+• Seul le joueur peut utiliser la potion.
+• les pv du joueur remonte à 100.
+
+3. Affichage de l'inventaire :
+
+Critères de validation:
+
+• l'inventaire s'affiche en bas de la fenetre.
+• Il s'actualise lorsque le joueur récupère un objet.

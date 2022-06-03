@@ -4,36 +4,39 @@
 title Attaque du joueur
 
 participant "main" as MAIN
-participant "pj : Joueur" as J
 participant "laby : Labyrinthe" as L
+participant "pj : Joueur" as J
+
 participant "epee : Epee" as E
 participant "monstre : Monstre" as M
 
-MAIN -> J : attaquer()
-activate J
-J -> J : recupCasesVoisines(laby3)
-J <-- J : casesVoisines
 
-
-loop i < casesVoisines.size()
-J -> E : faireDegats(20)
-activate J
-activate E
-        alt le monstre se trouve sur une case voisine
+MAIN -> L : deplacerPerso(DROITE)
+activate L
+alt Un monstre se trouve sur la prochaine case
+    L -> J : attaquer(monstre)
+    activate J
+    alt Le joueur possède une épée
+         J -> E : faireDegats(monstre)
+         activate E
          E -> M : perdrePv(20)
          activate M
          M --> E
          deactivate M
-        end alt
-E --> J
-deactivate E
-end loop
+         E --> J
+         deactivate E
+    else Le joueur se bat aux poings
+        J-> M : perdrePv(2)
+        activate M
+        M --> J
+        deactivate M
+    end
+end
 
-
-
-
-J --> MAIN
+J-->L
 deactivate J
 
+L --> MAIN
+deactivate L
 
 @enduml

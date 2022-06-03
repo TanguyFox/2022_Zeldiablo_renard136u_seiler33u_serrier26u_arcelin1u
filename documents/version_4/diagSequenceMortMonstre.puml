@@ -1,6 +1,8 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+title Mort du Monstre
+
 participant "main" as M
 participant "pj : Joueur" as J
 participant "TaDMorve : TasDeMorve" as TD

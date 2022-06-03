@@ -14,6 +14,8 @@ class Labyrinthe{
 + {static} EPEE : char
 + {static} VIDE : char
 + {static} AMULETTE : char
++ {static} PIEGE : char
++ {static} POTION : char
 + {static} SORTIE : char
 + {static} HAUT : String
 + {static} BAS : String
@@ -71,6 +73,7 @@ class Amulette{
 + toString() : String
 }
 
+
 interface Objet{
 + etrePresent(dx : int, dy : int) : boolean
 + getX() : int
@@ -95,6 +98,34 @@ class Sortie{
 + setY(y : int)
 + toString() : String
 }
+
+class Piege{
++ x : int
++ y : int
++ explose : boolean
++ Piege(dx : int, dy : int)
++ etrePresent(dx : int, dy : int)
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ toString() : String
++ faireDegats(cible : Joueur)
+}
+
+class Potion{
++ x : int
++ y : int
++ Potion(dx : int, dy : int)
++ etrePresent(dx : int, dy : int)
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ toString() : String
++ soigner(j : Joueur)
+}
+
 class Joueur{
 + x : int
 + y : int
@@ -185,7 +216,6 @@ Monstre <|-- TasDeMorve
 Monstre <|-- Zombie
 epee ..|> Objet
 Joueur "1" --> "1" epee : "epee"
-
 
 
 
