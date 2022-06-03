@@ -1,0 +1,223 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+title Structure Jeu Labyrinthe
+
+
+package gameLaby.laby{
+skinparam classAttributeIconSize 0
+class Labyrinthe{
++ {static} MUR : char
++ {static} PJ : char
++ {static} MORVE : char
++ {static} ZOMBIE : char
++ {static} EPEE : char
++ {static} VIDE : char
++ {static} AMULETTE : char
++ {static} PIEGE : char
++ {static} POTION : char
++ {static} SORTIE : char
++ {static} HAUT : String
++ {static} BAS : String
++ {static} GAUCHE : String
++ {static} DROITE : String
++ DEPLACEMENT_MONSTRE : String[]
++ murs : boolean[][]
++ {static} getSuivant (x : int, y : int, action : String) : int []
++ Labyrinthe (nom : String)
++ deplacerPerso(action : String)
++ deplacerMonstre()
++ etreFini() : boolean
++ getLengthY() : int
++ getLength() : int
++ getMur(x : int, y : int) : boolean
++ getPj() : Joueur
++ getMonstre() : List<Monstre>
++ getAmulette() : Amulette
++ getEpee() : Epee
+}
+
+class LabyJeu{
++LabyJeu()
++update(seconde : Double, clavier : Clavier)
++init()
++etreFini() : boolean
++getLabyrinthe() : Labyrinthe
+}
+
+
+interface Personnage{
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ getPv() : int
++ setX(x : int)
++ setY(y : int)
++ toString() : String
++ pertePv(degatSubis : int);
++ etreMort() : boolean
+}
+
+class Amulette{
++ x : int
++ y : int
++ Amulette(dx : int, dy : int)
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ getObjet() : Objet
++ getType() : String
++ estPossede(p : Joueur) : boolean
++ toString() : String
+}
+
+
+interface Objet{
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ getObjet() : Objet
++ getType() : String
++ setX(x : int)
++ setY(y : int)
++ estPossede(p : Joueur) : boolean
++ getObjet() : Objet
++ toString() : String
+}
+
+class Sortie{
++ x : int
++ y : int
++ Sortie(dx : int, dy : int)
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ toString() : String
+}
+
+class Piege{
++ x : int
++ y : int
++ explose : boolean
++ Piege(dx : int, dy : int)
++ etrePresent(dx : int, dy : int)
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ toString() : String
++ faireDegats(cible : Joueur)
+}
+
+class Potion{
++ x : int
++ y : int
++ Potion(dx : int, dy : int)
++ etrePresent(dx : int, dy : int)
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ toString() : String
++ soigner(j : Joueur)
+}
+
+class Joueur{
++ x : int
++ y : int
++ possedeAmulette : boolean
++ epee : Epee
++ pv : int
++ possedeEpee : boolean
++ Joueur(dx : int, dy : int)
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ getPv() : int
++ setX(x : int)
++ setY(y : int)
++ setPossedeEpee(b : boolean)
++ setPossedeAmulette(b : boolean)
++ estPossede(p : Joueur) : boolean
++ toString() : String
++ attaquer(cible : Monstre)
++ pertePv(degatSubis : int)
++ etreMort() : boolean
++ inventairePlein(): boolean
++ recupererObjet(objet : Objet)
++ isAmulettePossedee(): boolean
++ isEpeePossedee() : boolean
++ getInventaire() : List<Objet>
+}
+
+abstract Monstre{
++ x : int
++ y : int
++ pv : int
++ epee : Epee
++ type : String
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ getType() : String
++ getPv() : int
++ setX(x : int)
++ setY(y : int)
++ estPossede(p : Perso) : boolean
++ attaquer(cible : Monstre)
++ pertePv(degatSubis : int)
++ etreMort() : boolean
++ toString() : String
+}
+
+class TasDeMorve{
++ pv : int
+}
+
+class Zombie{
++ pv : int
+}
+
+class epee{
++ degat : int
++ Epee()
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ getDegat() : int
++ setX(x : int)
++ setY(y : int)
++ estPossede(p : Joueur) : boolean
++ getObjet() : Objet
++ getType() : String
++ toString() : String
++ faireDegats(cible : Personnage)
+}
+}
+
+
+
+
+LabyJeu "1" --> "1 " Labyrinthe : labyrinthe
+Labyrinthe "1" ---> "1" Joueur : pj
+Labyrinthe "1" ---> "1" Sortie : sortie
+Labyrinthe "1" ---> "1" Amulette : amulette
+Labyrinthe "1" ---> "0..*" Monstre : monstres
+Amulette  ..|>  Objet
+Joueur "1"--> "0..*"Objet : inventaire
+Personnage  <|..  Joueur
+epee "1"<---"1" Labyrinthe
+Personnage  <|..  Monstre
+Monstre <|-- TasDeMorve
+Monstre <|-- Zombie
+epee ..|> Objet
+Joueur "1" --> "1" epee : "epee"
+
+
+
+
+@enduml
