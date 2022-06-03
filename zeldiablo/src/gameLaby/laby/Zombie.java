@@ -1,19 +1,18 @@
 package gameLaby.laby;
 
-public class TasDeMorve extends Monstre{
+public class Zombie extends Monstre{
 
     public int x;
     public int y;
-    public Epee epee;
     public int pv;
-    public static String type="tas";
+    public Epee epee;
+    public static String type="zombie";
 
-    public TasDeMorve(int x, int y) {
-        super(x, y);
-        this.pv = 40;
+    public Zombie(int x, int y) {
+        super(x,y);
+        this.pv = 70;
         this.epee=null;
     }
-
 
     @Override
     public int getPv() {

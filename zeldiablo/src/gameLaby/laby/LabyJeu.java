@@ -12,7 +12,6 @@ public class LabyJeu implements Jeu {
     //Labyrinthe et personnage
 
     private Labyrinthe laby;
-    public final String[] DEPLACEMENT_MONSTRE = {"Gauche","Droite","Haut","Bas"};
 
     /**
      Constructeur par défaut
@@ -27,31 +26,30 @@ public class LabyJeu implements Jeu {
 
 
     public void update(double secondes, Clavier clavier) {
-        Random rand = new Random();
-        int i = rand.nextInt(4);
 
         // deplace le perso en fonction des touches
         if (clavier.droite) {
             laby.deplacerPerso(DROITE);
-            laby.deplacerMonstre(DEPLACEMENT_MONSTRE[i]);
+            laby.deplacerMonstre();
         }
         if (clavier.gauche) {
             laby.deplacerPerso(GAUCHE);
-            laby.deplacerMonstre(DEPLACEMENT_MONSTRE[i]);
+            laby.deplacerMonstre();
         }
         if (clavier.bas) {
             laby.deplacerPerso(BAS);
-            laby.deplacerMonstre(DEPLACEMENT_MONSTRE[i]);
+            laby.deplacerMonstre();
         }
         if (clavier.haut) {
             this.laby.deplacerPerso(HAUT);
-            laby.deplacerMonstre(DEPLACEMENT_MONSTRE[i]);
+            laby.deplacerMonstre();
         }
 
 
     }
     @Override
     public void init() {
+
     }
     @Override
     public boolean etreFini() {

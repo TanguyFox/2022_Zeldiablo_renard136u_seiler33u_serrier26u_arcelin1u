@@ -1,7 +1,6 @@
 package gameLaby.laby;
 
 
-import gameLaby.laby.Cancel.Perso;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -12,6 +11,7 @@ import moteurJeu.Jeu;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Objects;
 
 
 public class LabyDessin implements DessinJeu {
@@ -90,38 +90,35 @@ public class LabyDessin implements DessinJeu {
     public void dessinerMonstre(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
         for(int j=0;j<labyrinthe.monstre.size();j++){
             List<Monstre> monstre = labyrinthe.monstre;
-            FileInputStream inputstream2 = new FileInputStream("zeldiablo/images/monstre.gif");
-            Image mechant = new Image(inputstream2);
-            int monstreX = monstre.get(j).getX();
-            int monstreY = monstre.get(j).getY();
-            gc.drawImage(mechant, monstreY * 30, monstreX * 30, 30, 30);
+            if(!monstre.get(j).etreMort()){
+                if(Objects.equals(monstre.get(j).getType(), TasDeMorve.type) && !monstre.get(j).etreMort()){
+                    FileInputStream inputstream2 = new FileInputStream("zeldiablo/images/monstre.gif");
+                    Image mechant = new Image(inputstream2);
+                    int monstreX = monstre.get(j).getX();
+                    int monstreY = monstre.get(j).getY();
+                    gc.drawImage(mechant, monstreY * 30, monstreX * 30, 30, 30);
+                }else if(Objects.equals(monstre.get(j).getType(), Zombie.type) && !monstre.get(j).etreMort()){
+                    FileInputStream inputstream8 = new FileInputStream("zeldiablo/images/zombie.png");
+                    Image zombie = new Image(inputstream8);
+                    int zombieX = monstre.get(j).getX();
+                    int zombieY = monstre.get(j).getY();
+                    gc.drawImage(zombie, zombieY * 30, zombieX * 30, 30, 30);
+                }
+            }
         }
-
     }
-
-    public void dessinerZombie(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {
-        //Perso zombie = labyrinthe.zombie;
-        //FileInputStream inputstream8 = new FileInputStream("zeldiablo/images/zombie.png");
-        //Image mechant = new Image(inputstream8);
-        //int zombieX = zombie.getX();
-        //int zombieY = zombie.getY();
-        //gc.drawImage(mechant, zombieY * 30, zombieX * 30, 30, 30);
-    }
-
 
     public void dessinerEpee(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException{
+        //si le joueur n'a pas l'inventaire plein et ne possède pas l'épée
+        if((!labyrinthe.pj.inventairePlein()) && !(labyrinthe.epee.estPossede(labyrinthe.pj))) {
+            Epee epee = labyrinthe.epee;
+            FileInputStream inputStream7 = new FileInputStream("zeldiablo/images/epee.png");
+            int epeeX = epee.x;
+            int epeeY = epee.y;
+            Image arme1 = new Image(inputStream7);
 
-
-        Epee epee = new Epee(1,1,5);
-
-        FileInputStream inputStream7 = new FileInputStream("zeldiablo/images/epee.png");
-        int epeeX = epee.getX();
-        int epeeY = epee.getY();
-        Image arme1 = new Image(inputStream7);
-
-        gc.drawImage(arme1,25*30,14*30,30,30);
-
-
+            gc.drawImage(arme1,epeeY*30,epeeX*30,30,30);
+        }
     }
 
     public void dessinerPerso(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException {

@@ -17,4 +17,6 @@ public interface Personnage {
     String toString();
 
     void pertePv(int degatSubis);
+
+    boolean etreMort();
 }

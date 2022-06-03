@@ -2,6 +2,7 @@ package gameLaby.laby;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Joueur implements Personnage{
 
@@ -9,7 +10,9 @@ public class Joueur implements Personnage{
     public int y;
     public List<Objet> inventaire;
     public boolean possedeAmulette;
+    public Epee epee;
     public int pv;
+    public boolean possedeEpee;
 
     public Joueur(int dx, int dy) {
         this.x = dx;
@@ -17,6 +20,8 @@ public class Joueur implements Personnage{
         this.inventaire = new ArrayList<>();
         this.possedeAmulette=false;
         this.pv=100;
+        this.epee = null;
+        this.possedeEpee = false;
     }
 
     @Override
@@ -35,9 +40,19 @@ public class Joueur implements Personnage{
     public void recupererObjet(Objet objet) {
         if (this.etrePresent(objet.getX(), objet.getY())){
             if (!inventairePlein()) {
+                if(Objects.equals(objet.getType(), "amulette")){
+                    this.setPossedeAmulette(true);
+                }else if(Objects.equals(objet.getType(), "epee")){
+                    this.setPossedeEpee(true);
+                    this.epee = (Epee) objet;
+                }
+                System.out.println("Nouvelle possession : "+objet);
                 inventaire.add(objet);
-                this.setPossedeAmulette(true);
-                System.out.println("Vous avez récupérez l'amulette !");
+                System.out.println("Votre inventaire :\n -------------------" );
+                for(int i = 0;i<this.inventaire.size();i++){
+                    System.out.println(inventaire.get(i));
+                }
+                System.out.println("-------------------\n");
             } else {
                 System.out.println("Inventaire plein !");
             }
@@ -58,10 +73,15 @@ public class Joueur implements Personnage{
         return this.y;
     }
 
+
     public int getPv(){return this.pv;}
 
     public boolean isAmulettePossedee(){
         return this.possedeAmulette;
+    }
+
+    public boolean isEpeePossedee(){
+        return this.possedeEpee;
     }
 
     public void setX(int x) {
@@ -76,17 +96,24 @@ public class Joueur implements Personnage{
         this.possedeAmulette = b;
     }
 
-    /**
-     * A FAIRE
-     */
+    public void setPossedeEpee(boolean b){
+        this.possedeEpee = b;
+    }
+
     public void attaquer(Monstre cible) {
-        if(this.etrePresent(cible.getX(),cible.getY())) {
-            this.epee.faireDegats();
+        if(!cible.etreMort()) {
+            if (this.etrePresent(cible.getX(), cible.getY())) {
+                if (this.isEpeePossedee()) {
+                    this.epee.faireDegats(cible);
+                } else {
+                    cible.pertePv(2);
+                }
+                System.out.println("Vie du monstre : " + cible.getPv());
+            }
         }
     }
 
     /**
-     * A FAIRE
      * @param degatSubis
      */
     @Override
@@ -94,7 +121,10 @@ public class Joueur implements Personnage{
         this.pv-=degatSubis;
     }
 
-
+    @Override
+    public boolean etreMort() {
+        return (this.getPv() < 1);
+    }
 
     @Override
     public String toString() {
