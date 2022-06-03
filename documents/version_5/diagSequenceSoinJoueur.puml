@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title Soin du joueur
+
+participant "main" as M
+participant "Laby : Labyrinthe " as L
+participant "potion : Potion" as P
+participant "pj : Joueur" as J
+
+M -> L : deplacerPerso(GAUCHE)
+activate L
+
+
+alt Le joueur se trouve sur la case de la potion
+L -> P : soigner(pj)
+activate P
+P -> J : setPv(100)
+activate J
+J --> P
+deactivate J
+P --> L
+deactivate P
+end
+
+L --> M
+deactivate L
+@enduml
