@@ -12,26 +12,31 @@ participant "monstre : Monstre" as M
 
 
 MAIN -> L : deplacerPerso(DROITE)
+activate L
 alt Un monstre se trouve sur la prochaine case
     L -> J : attaquer(monstre)
+    activate J
     alt Le joueur possède une épée
          J -> E : faireDegats(monstre)
+         activate E
          E -> M : perdrePv(20)
+         activate M
          M --> E
+         deactivate M
          E --> J
+         deactivate E
     else Le joueur se bat aux poings
         J-> M : perdrePv(2)
+        activate M
         M --> J
+        deactivate M
     end
 end
 
 J-->L
+deactivate J
 
 L --> MAIN
-
-
-
-
-
+deactivate L
 
 @enduml
