@@ -149,11 +149,10 @@ public class LabyDessin implements DessinJeu {
     }
 
     public void dessinerPotion(GraphicsContext gc, Labyrinthe labyrinthe) throws FileNotFoundException{
-        Potion potion = labyrinthe.potion;
         FileInputStream inputStream = new FileInputStream("zeldiablo/images/potion.png");
         Image potion = new Image(inputStream);
-        int px = potion.getX();
-        int py = potion.getY();
+        int px = labyrinthe.potion.getX();
+        int py = labyrinthe.potion.getY();
         gc.drawImage(potion,py*30,px*30,30,30);
     }
 
@@ -162,10 +161,10 @@ public class LabyDessin implements DessinJeu {
         Image trap = new Image(inputstream8);
         for(int j=0;j<labyrinthe.pieges.size();j++) {
             List<Piege> pieges = labyrinthe.pieges;
-            if (!pieges.get(j).explose()) {
+            if (!pieges.get(j).isExplose()) {
                 int piegeX = pieges.get(j).getX();
                 int piegeY = pieges.get(j).getY();
-                gc.drawImage(trap, monstreY * 30, monstreX * 30, 30, 30);
+                gc.drawImage(trap, piegeY * 30, piegeX * 30, 30, 30);
             }
         }
     }

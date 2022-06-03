@@ -174,10 +174,13 @@ public class Labyrinthe {
                     case PIEGE:
                         this.murs[numeroLigne][colonne] = false;
                         Piege piege = new Piege(numeroLigne, colonne);
-                        pieges.add(piege);
+                        System.out.println(piege.x+" "+piege.y);
+                        this.pieges.add(piege);
+                        break;
                     case SORTIE:
                         this.murs[numeroLigne][colonne] = false;
                         this.sortie = new Sortie(numeroLigne, colonne);
+                        System.out.println(this.sortie.getX()+ " " +this.sortie.getY());
                         break;
 
                     default:
@@ -222,14 +225,14 @@ public class Labyrinthe {
                     this.monstre.get(i).attaquer(pj);
 
                 }else {
-                    /**for(int j=0;j<pieges.size();j++){
+                    for(int j=0;j<pieges.size();j++){
                         if(suivante[0] == pieges.get(j).getX() && suivante[1] == pieges.get(j).getY()){
                             pieges.get(j).faireDegats(this.pj);
                         }
                     }
                     if(pj.etrePresent(potion.getX(), potion.getY())){
                         potion.soigner(pj);
-                    }**/
+                    }
                     // on met a jour personnage
                     this.pj.setX(suivante[0]);
                     this.pj.setY(suivante[1]);

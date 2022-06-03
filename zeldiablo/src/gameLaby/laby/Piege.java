@@ -45,12 +45,16 @@ public class Piege{
     }
 
     public void faireDegats(Joueur cible){
-        if((cible.etrePresent(this.x,this.y)) && (!cible.etreMort())){
+        if((cible.etrePresent(this.x,this.y)) && (!cible.etreMort())&&(!isExplose())){
             cible.pertePv(50);
             this.explose=true;
             System.out.println("la mine a explosé");
             System.out.println("Votre vie : "+ cible.pv);
         }
+    }
+
+    public boolean isExplose(){
+        return explose;
     }
 
 
