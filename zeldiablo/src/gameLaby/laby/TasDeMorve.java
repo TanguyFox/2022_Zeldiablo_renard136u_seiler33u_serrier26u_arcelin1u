@@ -11,7 +11,7 @@ public class TasDeMorve extends Monstre{
     public TasDeMorve(int x, int y) {
         super(x, y);
         this.pv = 40;
-        this.epee=null;
+        this.epee= new Epee(this.x,this.y,30);
     }
 
 
@@ -31,5 +31,15 @@ public class TasDeMorve extends Monstre{
     @Override
     public boolean etreMort() {
         return this.getPv()<1;
+    }
+
+    public void attaquer(Joueur cible) {
+        if(!this.etreMort()){
+            if(this.etrePresent(cible.x,cible.y)){
+                epee.faireDegats(cible);
+            }
+            System.out.println("Votre vie : "+cible.getPv());
+        }
+
     }
 }

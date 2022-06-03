@@ -11,7 +11,7 @@ public class Zombie extends Monstre{
     public Zombie(int x, int y) {
         super(x,y);
         this.pv = 70;
-        this.epee=null;
+        this.epee= new Epee(this.x,this.y,10);
     }
 
     @Override
@@ -30,5 +30,12 @@ public class Zombie extends Monstre{
     @Override
     public boolean etreMort() {
         return this.getPv()<1;
+    }
+
+    public void attaquer(Joueur cible) {
+        if(this.etrePresent(cible.x,cible.y)){
+            epee.faireDegats(cible);
+        }
+        System.out.println("Votre vie : "+cible.getPv());
     }
 }

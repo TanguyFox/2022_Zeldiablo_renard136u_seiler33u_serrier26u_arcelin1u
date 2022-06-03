@@ -9,7 +9,9 @@ skinparam classAttributeIconSize 0
 class Labyrinthe{
 + {static} MUR : char
 + {static} PJ : char
-+ {static} MONSTRE : char
++ {static} MORVE : char
++ {static} ZOMBIE : char
++ {static} EPEE : char
 + {static} VIDE : char
 + {static} AMULETTE : char
 + {static} SORTIE : char
@@ -17,23 +19,23 @@ class Labyrinthe{
 + {static} BAS : String
 + {static} GAUCHE : String
 + {static} DROITE : String
++ DEPLACEMENT_MONSTRE : String[]
 + murs : boolean[][]
 + {static} getSuivant (x : int, y : int, action : String) : int []
 + Labyrinthe (nom : String)
 + deplacerPerso(action : String)
-+ deplacerMonstre(action : String)
++ deplacerMonstre()
 + etreFini() : boolean
 + getLengthY() : int
 + getLength() : int
 + getMur(x : int, y : int) : boolean
-+ getPj() : Perso
-+ getMonstre() : Perso
++ getPj() : Joueur
++ getMonstre() : List<Monstre>
 + getAmulette() : Amulette
-+ getSortie() : Sortie
++ getEpee() : Epee
 }
 
 class LabyJeu{
-+DEPLACEMENT_MONSTRE : String[]
 +LabyJeu()
 +update(seconde : Double, clavier : Clavier)
 +init()
@@ -42,15 +44,14 @@ class LabyJeu{
 }
 
 
-interface Perso{
+interface Personnage{
 + etrePresent(dx : int, dy : int) : boolean
-+ recupererObjet(objet : Objet)
 + getX() : int
 + getY() : int
++ getPv() : int
 + setX(x : int)
 + setY(y : int)
 + toString() : String
-+ attaquer()
 + pertePv(degatSubis : int);
 + etreMort() : boolean
 }
@@ -59,15 +60,26 @@ class Amulette{
 + x : int
 + y : int
 + Amulette(dx : int, dy : int)
++ etrePresent(dx : int, dy : int) : boolean
++ getX() : int
++ getY() : int
++ setX(x : int)
++ setY(y : int)
++ getObjet() : Objet
++ getType() : String
++ estPossede(p : Joueur) : boolean
++ toString() : String
 }
 
 interface Objet{
 + etrePresent(dx : int, dy : int) : boolean
 + getX() : int
 + getY() : int
++ getObjet() : Objet
++ getType() : String
 + setX(x : int)
 + setY(y : int)
-+ estPossede(p : Perso) : boolean
++ estPossede(p : Joueur) : boolean
 + getObjet() : Objet
 + toString() : String
 }
@@ -86,43 +98,57 @@ class Sortie{
 class Joueur{
 + x : int
 + y : int
++ possedeAmulette : boolean
++ epee : Epee
++ pv : int
++ possedeEpee : boolean
 + Joueur(dx : int, dy : int)
 + etrePresent(dx : int, dy : int) : boolean
 + getX() : int
 + getY() : int
++ getPv() : int
 + setX(x : int)
 + setY(y : int)
-+ estPossede(p : Perso) : boolean
-+ getObjet() : Objet
++ setPossedeEpee(b : boolean)
++ setPossedeAmulette(b : boolean)
++ estPossede(p : Joueur) : boolean
 + toString() : String
++ attaquer(cible : Monstre)
++ pertePv(degatSubis : int)
++ etreMort() : boolean
 + inventairePlein(): boolean
++ recupererObjet(objet : Objet)
 + isAmulettePossedee(): boolean
++ isEpeePossedee() : boolean
 + getInventaire() : List<Objet>
-+ recupCasesVoisines : List<int[][]>
 }
 
 abstract Monstre{
 + x : int
 + y : int
++ pv : int
++ epee : Epee
++ type : String
 + etrePresent(dx : int, dy : int) : boolean
 + getX() : int
 + getY() : int
++ getType() : String
++ getPv() : int
 + setX(x : int)
 + setY(y : int)
 + estPossede(p : Perso) : boolean
-+ getObjet() : Objet
++ attaquer(cible : Monstre)
++ pertePv(degatSubis : int)
++ etreMort() : boolean
 + toString() : String
-+ {abstract} deplacerMonstre(action : String)
-
 }
+
 class TasDeMorve{
 + pv : int
-+ deplacerMonstre(action : String)
 }
 
-class Fantome{
+class Zombie{
 + pv : int
-+ deplacerMonstre((action : String)
 }
 
 class epee{
@@ -131,13 +157,14 @@ class epee{
 + etrePresent(dx : int, dy : int) : boolean
 + getX() : int
 + getY() : int
++ getDegat() : int
 + setX(x : int)
 + setY(y : int)
-+ estPossede(p : Perso) : boolean
++ estPossede(p : Joueur) : boolean
 + getObjet() : Objet
++ getType() : String
 + toString() : String
-+ faireDegat()
-
++ faireDegats(cible : Personnage)
 }
 }
 
@@ -151,11 +178,11 @@ Labyrinthe "1" ---> "1" Amulette : amulette
 Labyrinthe "1" ---> "0..*" Monstre : monstres
 Amulette  ..|>  Objet
 Joueur "1"--> "0..*"Objet : inventaire
-Perso  <|..  Joueur
-
-Perso  <|..  Monstre
+Personnage  <|..  Joueur
+epee "1"<---"1" Labyrinthe
+Personnage  <|..  Monstre
 Monstre <|-- TasDeMorve
-Monstre <|-- Fantome
+Monstre <|-- Zombie
 epee ..|> Objet
 Joueur "1" --> "1" epee : "epee"
 

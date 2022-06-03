@@ -195,13 +195,15 @@ public class Labyrinthe {
         if (!this.murs[suivante[0]][suivante[1]] && !etreFini()) {
             for(int i=0;i<monstre.size();i++){
                 if(suivante[0] == monstre.get(i).getX() && suivante[1] == monstre.get(i).getY()){
-                    System.out.println("ATTENTION, il y a un monstre ici");
-                    this.pj.attaquer(monstre.get(i));
                     if(this.pj.possedeEpee){
-                        System.out.println("je possède l'épée\n");
+                        System.out.println("*coup d'épée*\n");
                     }else{
                         System.out.println("*Coup de poing*");
                     }
+                    this.pj.attaquer(monstre.get(i));
+                    System.out.println("le monstre attaque");
+                    this.monstre.get(i).attaquer(pj);
+
                 }else {
                     // on met a jour personnage
                     this.pj.setX(suivante[0]);
