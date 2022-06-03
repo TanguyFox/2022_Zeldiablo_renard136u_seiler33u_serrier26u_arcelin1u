@@ -65,7 +65,7 @@ public class LabyDessin implements DessinJeu {
             gc.drawImage(win,x*13,y*8,338,43);
         }
         //dessin "LOOSE" quand joueur meurt
-        if(labyrinthe.pj.etreMort()==true){
+        if(labyrinthe.pj.etreMort()){
             FileInputStream ipLoose = new FileInputStream("zeldiablo/images/loose.png");
             Image loose = new Image(ipLoose);
             int x = labyrinthe.getLength();

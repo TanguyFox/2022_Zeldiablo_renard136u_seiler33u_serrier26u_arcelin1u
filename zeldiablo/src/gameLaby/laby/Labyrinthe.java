@@ -192,7 +192,7 @@ public class Labyrinthe {
         int[] suivante = getSuivant(courante[0], courante[1], action);
 
         // si c'est pas un mur, on effectue le deplacement
-        if (!this.murs[suivante[0]][suivante[1]] && !etreFini()) {
+        if (!this.murs[suivante[0]][suivante[1]] && !etreFini() && !pj.etreMort()) {
             for(int i=0;i<monstre.size();i++){
                 if(suivante[0] == monstre.get(i).getX() && suivante[1] == monstre.get(i).getY()){
                     if(this.pj.possedeEpee){
@@ -231,7 +231,7 @@ public class Labyrinthe {
             int[] suivante = getSuivant(courante[0], courante[1], DEPLACEMENT_MONSTRE[j]);
 
             if(!Objects.equals(monstre.get(i).getType(), TasDeMorve.type)){
-                if (!this.murs[suivante[0]][suivante[1]] && !etreFini()) {
+                if (!this.murs[suivante[0]][suivante[1]] && !etreFini() &&!pj.etreMort()) {
 
                     if ((!this.murs[suivante[0]][suivante[1]]) && (!etreFini())) {
 
