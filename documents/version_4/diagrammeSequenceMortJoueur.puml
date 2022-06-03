@@ -1,0 +1,55 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+title Mort du Joueur
+
+participant "main" as M
+participant "TaDMorve : TasDeMorve" as TD
+participant "pj : Joueur" as J
+
+M -> J : getPV()
+activate J
+J --> M : 40
+deactivate J
+
+M -> TD : attaquer()
+activate TD
+TD -> J : perdrePV(20)
+activate J
+J --> TD
+deactivate J
+TD --> M
+deactivate TD
+
+M -> J : getPV()
+activate J
+J --> M : 20
+deactivate J
+
+M -> TD : etreMort()
+activate TD
+TD --> M : false
+deactivate TD
+
+
+
+M -> TD : attaquer()
+activate TD
+TD -> J : perdrePV(20)
+activate J
+J --> TD
+deactivate J
+TD --> M
+deactivate TD
+
+M -> J : getPV()
+activate J
+J --> M : 0
+deactivate J
+
+M -> J : etreMort()
+activate J
+J --> M : true
+deactivate J
+@enduml
