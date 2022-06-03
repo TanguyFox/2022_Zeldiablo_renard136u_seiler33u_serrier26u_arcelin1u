@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+title Dégat Piege sur Joueur
+
+participant "main" as M
+participant "c4 : Piege" as P
+participant "pj : Joueur" as J
+
+M -> J : getPV()
+activate J
+J --> M : 100
+deactivate J
+
+alt le joueur se trouve sur une case avec un piège
+M -> P : faireDegat()
+activate P
+P -> J : perdrePV(50)
+activate J
+J --> P
+deactivate J
+P --> M
+deactivate P
+
+end
+M -> J : getPV()
+activate J
+J --> M : 50
+deactivate J
+@enduml
