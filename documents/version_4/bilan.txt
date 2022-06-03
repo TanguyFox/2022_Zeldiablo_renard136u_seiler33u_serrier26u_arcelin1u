@@ -1,0 +1,12 @@
+Bilan v4:
+
+-Ajout interface Personnage : le Joueur et les monstres implémente Personnage
+-Ajout d'une épée implémentant l'interface objet
+-Ajout d'un système d'attaque pour le joueur et les monstres
+-Ajout d'un système de point de vie à tout les personnages
+-Ajout d'une classe abstraite(qui aurait pu etre une interface) Monstre qui permet d'avoir différent type de monstre (Zombie et TasDeMorve)
+
+Nous avons du modifier notre conception initiale car notre système d'attaque prévu initialement ne fonctionnait pas comme nous
+l'espérions.
+La version est fonctionnel mais la conception n'est pas optimisée.
+Les tests sont tous validés.
